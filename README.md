@@ -21,15 +21,19 @@ model-sales-performance-analysis/
 │   └── clean_final_data.csv   # bukan raw; hasil referensi, TIDAK dipakai pipeline
 ├── materi/              # PDF materi kuliah
 ├── temp/                # semua OUTPUT pipeline
-├── cleaning.py          # langkah 1: cleaning + merge
-├── modeling.py          # langkah 2: split + training + evaluasi
-└── DOKUMENTASI.md
+├── salespipe/
+│   ├── config.py        # nama file, nama kolom (Schema), parameter model
+│   ├── cleaning.py      # langkah 1: load, cleaning, merge
+│   └── modeling.py      # langkah 2: split, training, evaluasi, tren
+├── main.py              # entry point (CLI)
+├── config.example.json  # contoh override untuk dataset lain
+└── README.md
 ```
 
 ## 2. Persiapan
 
 ### 2.1 Menaruh dataset
-Letakkan 4 file raw di folder `datasets/` dengan nama persis seperti di atas:
+Letakkan 4 file raw di folder `datasets/` (atau folder lain, lihat 2.4):
 
 | File | Isi | Kunci |
 |---|---|---|
@@ -38,7 +42,7 @@ Letakkan 4 file raw di folder `datasets/` dengan nama persis seperti di atas:
 | `payments.csv` | Status pembayaran per order | OrderID |
 | `products.csv` | Master produk (ProductName, Category, UnitPrice) | ProductID |
 
-Folder `temp/` dibuat otomatis oleh `cleaning.py` jika belum ada.
+Format file yang didukung: `.csv`, `.xlsx`, `.parquet`. Folder output dibuat otomatis jika belum ada.
 
 ### 2.2 Kebutuhan
 Python 3 dengan `pandas` dan `scikit-learn`:
@@ -48,16 +52,43 @@ pip install pandas scikit-learn
 ```
 
 ### 2.3 Cara menjalankan
-Jalankan dari root project, berurutan:
+Dari root project:
 
 ```
-python cleaning.py     # menghasilkan temp/clean_merged.csv
-python modeling.py     # menghasilkan split, metrik, dan tren per produk
+python main.py clean     # cleaning + merge -> temp/clean_merged.csv
+python main.py model     # split, training, evaluasi (butuh clean_merged.csv)
+python main.py all       # keduanya berurutan
 ```
+
+### 2.4 Memakai dataset lain
+Input bersifat dinamis lewat tiga opsi:
+
+| Opsi | Default | Fungsi |
+|---|---|---|
+| `--data-dir` | `datasets` | folder berisi 4 tabel raw |
+| `--out-dir` | `temp` | folder output |
+| `--config` | (tidak ada) | file JSON untuk mengganti nama file, nama kolom, dan parameter model |
+
+Contoh: dataset dengan `transactions.csv` yang kolom tanggalnya `date` dan jumlahnya `qty`:
+
+```
+python main.py all --data-dir data_baru --out-dir hasil_baru --config config.json
+```
+
+```json
+{
+  "schema": {"orders_file": "transactions.csv", "order_date": "date", "quantity": "qty"},
+  "model":  {"sales_status": "Completed", "train_ratio": 0.7, "val_ratio": 0.15}
+}
+```
+
+Semua kunci yang bisa diganti ada di `salespipe/config.py` (`Schema` dan `ModelConfig`). Kunci yang salah ditolak dengan pesan jelas. Jika file atau kolom wajib tidak ditemukan, pipeline berhenti dengan pesan yang menyebut tabel dan kolomnya.
+
+Syarat dataset lain: tetap punya 4 tabel dengan peran yang sama (orders, customers, payments, products) dan `Discount` berupa pecahan (0,1 = 10%).
 
 ---
 
-## 3. Tahap 1: Cleaning dan merge (`cleaning.py`)
+## 3. Tahap 1: Cleaning dan merge (`salespipe/cleaning.py`)
 
 Mengikuti `Cleaning.pdf`. Prinsipnya: pilih teknik sesuai tujuan analisis. Data yang menentukan nominal transaksi tidak boleh diimputasi, tetapi baris dihapus bila missing sedikit (<5%) dan acak.
 
@@ -114,7 +145,7 @@ Kolom: OrderID, CustomerID, OrderDate, ProductID, Quantity, Discount, PaymentMet
 
 ---
 
-## 4. Tahap 2: Training model (`modeling.py`)
+## 4. Tahap 2: Training model (`salespipe/modeling.py`)
 
 Mengikuti `Modeling.pdf` dan `SUPERVISED LEARNING  REGRESSION.pdf`.
 

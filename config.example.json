@@ -1,0 +1,12 @@
+{
+  "schema": {
+    "orders_file": "transactions.csv",
+    "order_date": "date",
+    "quantity": "qty"
+  },
+  "model": {
+    "sales_status": "Completed",
+    "train_ratio": 0.7,
+    "val_ratio": 0.15
+  }
+}

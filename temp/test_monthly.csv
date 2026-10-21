@@ -41,7 +41,7 @@ ProductID,ProductName,Category,Month,Sales,t
 2001,Wireless Mouse,Electronics,2026-06-01,2630.7,29
 2005,Laptop Stand,Accessories,2026-02-01,2303.0,25
 2005,Laptop Stand,Accessories,2026-03-01,2279.2,26
-2005,Laptop Stand,Accessories,2026-04-01,2188.2000000000003,27
+2005,Laptop Stand,Accessories,2026-04-01,2188.2,27
 2005,Laptop Stand,Accessories,2026-05-01,2556.4,28
 2005,Laptop Stand,Accessories,2026-06-01,2504.6,29
 2013,Notebook,Stationery,2026-02-01,1400.7,25
@@ -74,7 +74,7 @@ ProductID,ProductName,Category,Month,Sales,t
 2007,Headphones,Electronics,2026-04-01,7582.5,27
 2007,Headphones,Electronics,2026-05-01,10511.25,28
 2007,Headphones,Electronics,2026-06-01,6821.25,29
-2020,Gaming Controller,Gaming,2026-02-01,3848.7999999999997,25
+2020,Gaming Controller,Gaming,2026-02-01,3848.8,25
 2020,Gaming Controller,Gaming,2026-03-01,4369.0,26
 2020,Gaming Controller,Gaming,2026-04-01,4787.2,27
 2020,Gaming Controller,Gaming,2026-05-01,5117.0,28
@@ -97,5 +97,5 @@ ProductID,ProductName,Category,Month,Sales,t
 2016,Monitor,Electronics,2026-02-01,612.15,25
 2016,Monitor,Electronics,2026-03-01,433.65,26
 2016,Monitor,Electronics,2026-04-01,216.3,27
-2016,Monitor,Electronics,2026-05-01,296.09999999999997,28
+2016,Monitor,Electronics,2026-05-01,296.1,28
 2016,Monitor,Electronics,2026-06-01,292.95,29

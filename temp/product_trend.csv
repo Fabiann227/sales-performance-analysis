@@ -1,0 +1,21 @@
+ProductID,ProductName,Category,avg_monthly_sales,slope_train,slope_all,R2_all,trend_train
+2009,Smart Watch,Wearables,8018.8,-100.9403,-117.8696,0.3035,turun
+2019,Tablet,Electronics,8813.1333,-53.0636,-48.622,0.0426,turun
+2011,Desk Lamp,Home Office,3624.1067,-29.2031,-49.1711,0.3313,turun
+2004,Power Bank,Electronics,5557.125,-20.3682,-57.3132,0.4231,turun
+2020,Gaming Controller,Gaming,6122.2667,-10.8668,-47.1915,0.102,turun
+2005,Laptop Stand,Accessories,3421.8333,-7.7109,-37.4505,0.2583,turun
+2001,Wireless Mouse,Electronics,3118.92,-6.2018,-26.1539,0.1704,turun
+2006,Webcam,Electronics,4633.12,-5.0338,-56.3068,0.329,turun
+2012,Office Chair,Home Office,10207.8,-3.0506,-125.4434,0.1648,turun
+2002,Mechanical Keyboard,Electronics,6924.16,-1.9003,-77.7476,0.2396,turun
+2003,USB-C Cable,Accessories,2285.82,1.5236,-24.1024,0.2719,naik/stabil
+2016,Monitor,Electronics,688.17,3.9464,-9.5161,0.154,naik/stabil
+2017,HDMI Cable,Accessories,2348.2433,7.33,-22.7567,0.2097,naik/stabil
+2008,Phone Case,Accessories,3815.7933,8.2373,-36.2468,0.209,naik/stabil
+2014,Backpack,Accessories,5275.34,9.8564,-46.5289,0.1661,naik/stabil
+2013,Notebook,Stationery,2046.6133,11.7391,-13.2251,0.1304,naik/stabil
+2018,Microphone,Electronics,7192.7,18.0045,-48.5304,0.0696,naik/stabil
+2010,Fitness Band,Wearables,5368.1833,26.1107,-41.7547,0.1122,naik/stabil
+2015,Bluetooth Speaker,Electronics,6575.46,58.9001,-52.9058,0.1082,naik/stabil
+2007,Headphones,Electronics,10427.125,96.901,-32.6204,0.023,naik/stabil

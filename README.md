@@ -45,10 +45,10 @@ Letakkan 4 file raw di folder `datasets/` (atau folder lain, lihat 2.4):
 Format file yang didukung: `.csv`, `.xlsx`, `.parquet`. Folder output dibuat otomatis jika belum ada.
 
 ### 2.2 Kebutuhan
-Python 3 dengan `pandas` dan `scikit-learn`:
+Python 3 dengan `pandas` dan `scikit-learn` (`openpyxl` dan `pyarrow` hanya perlu untuk file `.xlsx` / `.parquet`):
 
 ```
-pip install pandas scikit-learn
+pip install -r requirements.txt
 ```
 
 ### 2.3 Cara menjalankan

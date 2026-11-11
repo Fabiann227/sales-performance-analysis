@@ -13,7 +13,7 @@ CLEAN_FILE = "clean_merged.csv"
 
 
 def cmd_clean(args, cfg) -> None:
-    df = clean_and_merge(args.data_dir, cfg.schema)
+    df = clean_and_merge(args.data_dir, cfg.schema, cfg.period)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     df.to_csv(args.out_dir / CLEAN_FILE, index=False)
     logging.info("tersimpan: %s", args.out_dir / CLEAN_FILE)

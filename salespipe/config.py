@@ -61,9 +61,17 @@ class ModelConfig:
 
 
 @dataclass(frozen=True)
+class PeriodConfig:
+    full_years_only: bool = True  # buang tahun yang datanya tidak lengkap 12 bulan (mis. 2026 baru Jan-Jun)
+    start: str | None = None  # batas manual, format "YYYY-MM-DD"; None = tanpa batas
+    end: str | None = None
+
+
+@dataclass(frozen=True)
 class Config:
     schema: Schema = field(default_factory=Schema)
     model: ModelConfig = field(default_factory=ModelConfig)
+    period: PeriodConfig = field(default_factory=PeriodConfig)
 
 
 def _override(obj, values: dict):
@@ -75,15 +83,16 @@ def _override(obj, values: dict):
 
 
 def load_config(path: str | Path | None) -> Config:
-    """Baca override dari JSON: {"schema": {...}, "model": {...}}. None = default."""
+    """Baca override dari JSON: {"schema": {...}, "model": {...}, "period": {...}}. None = default."""
     cfg = Config()
     if path is None:
         return cfg
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    unknown = set(raw) - {"schema", "model"}
+    unknown = set(raw) - {"schema", "model", "period"}
     if unknown:
         raise ValueError(f"Bagian konfigurasi tidak dikenal: {sorted(unknown)}")
     return Config(
         schema=_override(cfg.schema, raw.get("schema", {})),
         model=_override(cfg.model, raw.get("model", {})),
+        period=_override(cfg.period, raw.get("period", {})),
     )

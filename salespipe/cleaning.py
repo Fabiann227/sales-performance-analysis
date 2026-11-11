@@ -14,7 +14,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from .config import Schema
+from .config import PeriodConfig, Schema
 
 log = logging.getLogger(__name__)
 
@@ -96,6 +96,29 @@ def clean_orders(df: pd.DataFrame, s: Schema) -> pd.DataFrame:
     return df
 
 
+def filter_period(df: pd.DataFrame, s: Schema, p: PeriodConfig) -> pd.DataFrame:
+    """Batasi periode order: rentang manual (start/end) lalu, bila diminta, hanya tahun penuh 12 bulan."""
+    dates = df[s.order_date]
+    keep = pd.Series(True, index=df.index)
+    if p.start is not None:
+        keep &= dates >= pd.Timestamp(p.start)
+    if p.end is not None:
+        keep &= dates <= pd.Timestamp(p.end)
+    if p.full_years_only:
+        months_per_year = dates[keep].dt.to_period("M").groupby(dates[keep].dt.year).nunique()
+        partial = months_per_year[months_per_year < 12]
+        if not partial.empty:
+            log.info("periode: tahun tidak lengkap dibuang %s", partial.to_dict())
+        keep &= ~dates.dt.year.isin(partial.index)
+
+    out = df[keep]
+    if out.empty:
+        raise ValueError("Tidak ada order tersisa setelah filter periode; periksa konfigurasi 'period'.")
+    log.info("periode: %s .. %s, baris di luar periode dihapus %d",
+             f"{out[s.order_date].min():%Y-%m-%d}", f"{out[s.order_date].max():%Y-%m-%d}", len(df) - len(out))
+    return out
+
+
 def merge_tables(orders, payments, products, customers, s: Schema) -> pd.DataFrame:
     """validate= mencegah baris menggandakan diam-diam bila kunci tidak unik."""
     payments = payments[[s.order_id, s.payment_status]]  # tanggal bayar redundan dengan order_date
@@ -113,12 +136,12 @@ def add_sales(df: pd.DataFrame, s: Schema) -> pd.DataFrame:
     return df
 
 
-def clean_and_merge(data_dir: Path, s: Schema) -> pd.DataFrame:
+def clean_and_merge(data_dir: Path, s: Schema, period: PeriodConfig) -> pd.DataFrame:
     tables = load_tables(data_dir, s)
     _report_missing(tables)
 
     df = merge_tables(
-        clean_orders(tables["orders"], s),
+        filter_period(clean_orders(tables["orders"], s), s, period),
         tables["payments"],
         tables["products"],
         clean_customers(tables["customers"], s),

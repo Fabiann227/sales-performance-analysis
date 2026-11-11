@@ -82,7 +82,17 @@ python main.py all --data-dir data_baru --out-dir hasil_baru --config config.jso
 }
 ```
 
-Semua kunci yang bisa diganti ada di `salespipe/config.py` (`Schema` dan `ModelConfig`). Kunci yang salah ditolak dengan pesan jelas. Jika file atau kolom wajib tidak ditemukan, pipeline berhenti dengan pesan yang menyebut tabel dan kolomnya.
+### 2.5 Periode data
+Secara default hanya **tahun penuh (12 bulan)** yang diproses. Data mentah berisi Jan 2024 – Jun 2026, sehingga 2026 (baru 6 bulan) dibuang otomatis dan yang dipakai 2024–2025. Ini diatur di bagian `period`:
+
+```json
+{"period": {"full_years_only": true, "start": null, "end": null}}
+```
+
+- `full_years_only: false` memakai semua data termasuk tahun yang belum lengkap.
+- `start` / `end` (format `"YYYY-MM-DD"`) membatasi rentang secara manual.
+
+Semua kunci yang bisa diganti ada di `salespipe/config.py` (`Schema`, `ModelConfig`, dan `PeriodConfig`). Kunci yang salah ditolak dengan pesan jelas. Jika file atau kolom wajib tidak ditemukan, pipeline berhenti dengan pesan yang menyebut tabel dan kolomnya.
 
 Syarat dataset lain: tetap punya 4 tabel dengan peran yang sama (orders, customers, payments, products) dan `Discount` berupa pecahan (0,1 = 10%).
 

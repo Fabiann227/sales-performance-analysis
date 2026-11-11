@@ -16,10 +16,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2003,USB-C Cable,Accessories,2025-03-01,2952.9,14
 2003,USB-C Cable,Accessories,2025-04-01,2415.6,15
 2003,USB-C Cable,Accessories,2025-05-01,2148.75,16
-2003,USB-C Cable,Accessories,2025-06-01,2454.75,17
-2003,USB-C Cable,Accessories,2025-07-01,2411.55,18
-2003,USB-C Cable,Accessories,2025-08-01,2324.25,19
-2003,USB-C Cable,Accessories,2025-09-01,2355.75,20
 2014,Backpack,Accessories,2024-01-01,5892.6,0
 2014,Backpack,Accessories,2024-02-01,4762.8,1
 2014,Backpack,Accessories,2024-03-01,6054.3,2
@@ -37,10 +33,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2014,Backpack,Accessories,2025-03-01,5997.6,14
 2014,Backpack,Accessories,2025-04-01,5877.9,15
 2014,Backpack,Accessories,2025-05-01,5739.3,16
-2014,Backpack,Accessories,2025-06-01,5197.5,17
-2014,Backpack,Accessories,2025-07-01,4326.0,18
-2014,Backpack,Accessories,2025-08-01,5040.0,19
-2014,Backpack,Accessories,2025-09-01,5838.0,20
 2002,Mechanical Keyboard,Electronics,2024-01-01,7743.8,0
 2002,Mechanical Keyboard,Electronics,2024-02-01,4758.5,1
 2002,Mechanical Keyboard,Electronics,2024-03-01,8419.6,2
@@ -58,10 +50,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2002,Mechanical Keyboard,Electronics,2025-03-01,6593.7,14
 2002,Mechanical Keyboard,Electronics,2025-04-01,8828.8,15
 2002,Mechanical Keyboard,Electronics,2025-05-01,8918.7,16
-2002,Mechanical Keyboard,Electronics,2025-06-01,6258.9,17
-2002,Mechanical Keyboard,Electronics,2025-07-01,7889.5,18
-2002,Mechanical Keyboard,Electronics,2025-08-01,7988.7,19
-2002,Mechanical Keyboard,Electronics,2025-09-01,6125.6,20
 2012,Office Chair,Home Office,2024-01-01,11907.0,0
 2012,Office Chair,Home Office,2024-02-01,10836.0,1
 2012,Office Chair,Home Office,2024-03-01,10044.0,2
@@ -79,10 +67,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2012,Office Chair,Home Office,2025-03-01,8460.0,14
 2012,Office Chair,Home Office,2025-04-01,11025.0,15
 2012,Office Chair,Home Office,2025-05-01,9882.0,16
-2012,Office Chair,Home Office,2025-06-01,16407.0,17
-2012,Office Chair,Home Office,2025-07-01,7713.0,18
-2012,Office Chair,Home Office,2025-08-01,13014.0,19
-2012,Office Chair,Home Office,2025-09-01,8694.0,20
 2008,Phone Case,Accessories,2024-01-01,4018.0,0
 2008,Phone Case,Accessories,2024-02-01,3295.6,1
 2008,Phone Case,Accessories,2024-03-01,4583.6,2
@@ -100,10 +84,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2008,Phone Case,Accessories,2025-03-01,4893.7,14
 2008,Phone Case,Accessories,2025-04-01,3882.2,15
 2008,Phone Case,Accessories,2025-05-01,4142.6,16
-2008,Phone Case,Accessories,2025-06-01,3567.2,17
-2008,Phone Case,Accessories,2025-07-01,3943.1,18
-2008,Phone Case,Accessories,2025-08-01,4536.7,19
-2008,Phone Case,Accessories,2025-09-01,4145.4,20
 2017,HDMI Cable,Accessories,2024-01-01,2341.35,0
 2017,HDMI Cable,Accessories,2024-02-01,2314.95,1
 2017,HDMI Cable,Accessories,2024-03-01,2564.1,2
@@ -121,10 +101,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2017,HDMI Cable,Accessories,2025-03-01,2642.75,14
 2017,HDMI Cable,Accessories,2025-04-01,2480.5,15
 2017,HDMI Cable,Accessories,2025-05-01,2263.25,16
-2017,HDMI Cable,Accessories,2025-06-01,2730.75,17
-2017,HDMI Cable,Accessories,2025-07-01,2774.75,18
-2017,HDMI Cable,Accessories,2025-08-01,2625.7,19
-2017,HDMI Cable,Accessories,2025-09-01,2505.8,20
 2004,Power Bank,Electronics,2024-01-01,7000.0,0
 2004,Power Bank,Electronics,2024-02-01,6076.0,1
 2004,Power Bank,Electronics,2024-03-01,5197.5,2
@@ -142,10 +118,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2004,Power Bank,Electronics,2025-03-01,5964.0,14
 2004,Power Bank,Electronics,2025-04-01,6128.5,15
 2004,Power Bank,Electronics,2025-05-01,5542.25,16
-2004,Power Bank,Electronics,2025-06-01,6240.5,17
-2004,Power Bank,Electronics,2025-07-01,6594.0,18
-2004,Power Bank,Electronics,2025-08-01,5057.5,19
-2004,Power Bank,Electronics,2025-09-01,5600.0,20
 2001,Wireless Mouse,Electronics,2024-01-01,3092.4,0
 2001,Wireless Mouse,Electronics,2024-02-01,2713.5,1
 2001,Wireless Mouse,Electronics,2024-03-01,3690.0,2
@@ -163,10 +135,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2001,Wireless Mouse,Electronics,2025-03-01,3789.0,14
 2001,Wireless Mouse,Electronics,2025-04-01,2384.1,15
 2001,Wireless Mouse,Electronics,2025-05-01,2728.8,16
-2001,Wireless Mouse,Electronics,2025-06-01,3844.8,17
-2001,Wireless Mouse,Electronics,2025-07-01,2808.9,18
-2001,Wireless Mouse,Electronics,2025-08-01,3303.0,19
-2001,Wireless Mouse,Electronics,2025-09-01,3128.4,20
 2005,Laptop Stand,Accessories,2024-01-01,3658.2,0
 2005,Laptop Stand,Accessories,2024-02-01,2976.4,1
 2005,Laptop Stand,Accessories,2024-03-01,4575.2,2
@@ -184,10 +152,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2005,Laptop Stand,Accessories,2025-03-01,3696.0,14
 2005,Laptop Stand,Accessories,2025-04-01,2919.0,15
 2005,Laptop Stand,Accessories,2025-05-01,4050.2,16
-2005,Laptop Stand,Accessories,2025-06-01,3857.0,17
-2005,Laptop Stand,Accessories,2025-07-01,3997.0,18
-2005,Laptop Stand,Accessories,2025-08-01,3505.6,19
-2005,Laptop Stand,Accessories,2025-09-01,3474.8,20
 2013,Notebook,Stationery,2024-01-01,2337.3,0
 2013,Notebook,Stationery,2024-02-01,1871.1,1
 2013,Notebook,Stationery,2024-03-01,1904.35,2
@@ -205,10 +169,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2013,Notebook,Stationery,2025-03-01,2486.4,14
 2013,Notebook,Stationery,2025-04-01,2287.25,15
 2013,Notebook,Stationery,2025-05-01,2384.2,16
-2013,Notebook,Stationery,2025-06-01,2231.6,17
-2013,Notebook,Stationery,2025-07-01,2249.8,18
-2013,Notebook,Stationery,2025-08-01,2267.3,19
-2013,Notebook,Stationery,2025-09-01,2076.55,20
 2006,Webcam,Electronics,2024-01-01,3993.6,0
 2006,Webcam,Electronics,2024-02-01,5508.0,1
 2006,Webcam,Electronics,2024-03-01,4982.4,2
@@ -226,10 +186,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2006,Webcam,Electronics,2025-03-01,3885.6,14
 2006,Webcam,Electronics,2025-04-01,3820.8,15
 2006,Webcam,Electronics,2025-05-01,4857.6,16
-2006,Webcam,Electronics,2025-06-01,6019.2,17
-2006,Webcam,Electronics,2025-07-01,5152.8,18
-2006,Webcam,Electronics,2025-08-01,4980.0,19
-2006,Webcam,Electronics,2025-09-01,4504.8,20
 2010,Fitness Band,Wearables,2024-01-01,5717.25,0
 2010,Fitness Band,Wearables,2024-02-01,5390.0,1
 2010,Fitness Band,Wearables,2024-03-01,5750.25,2
@@ -247,10 +203,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2010,Fitness Band,Wearables,2025-03-01,5929.0,14
 2010,Fitness Band,Wearables,2025-04-01,6762.25,15
 2010,Fitness Band,Wearables,2025-05-01,4889.5,16
-2010,Fitness Band,Wearables,2025-06-01,5585.25,17
-2010,Fitness Band,Wearables,2025-07-01,7284.75,18
-2010,Fitness Band,Wearables,2025-08-01,6179.25,19
-2010,Fitness Band,Wearables,2025-09-01,5159.0,20
 2019,Tablet,Electronics,2024-01-01,5460.0,0
 2019,Tablet,Electronics,2024-02-01,8879.0,1
 2019,Tablet,Electronics,2024-03-01,12714.0,2
@@ -268,10 +220,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2019,Tablet,Electronics,2025-03-01,8333.0,14
 2019,Tablet,Electronics,2025-04-01,6461.0,15
 2019,Tablet,Electronics,2025-05-01,10842.0,16
-2019,Tablet,Electronics,2025-06-01,7579.0,17
-2019,Tablet,Electronics,2025-07-01,6786.0,18
-2019,Tablet,Electronics,2025-08-01,7241.0,19
-2019,Tablet,Electronics,2025-09-01,8762.0,20
 2011,Desk Lamp,Home Office,2024-01-01,4300.8,0
 2011,Desk Lamp,Home Office,2024-02-01,4688.0,1
 2011,Desk Lamp,Home Office,2024-03-01,4097.6,2
@@ -289,10 +237,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2011,Desk Lamp,Home Office,2025-03-01,3310.4,14
 2011,Desk Lamp,Home Office,2025-04-01,3910.4,15
 2011,Desk Lamp,Home Office,2025-05-01,4507.2,16
-2011,Desk Lamp,Home Office,2025-06-01,4395.2,17
-2011,Desk Lamp,Home Office,2025-07-01,3091.2,18
-2011,Desk Lamp,Home Office,2025-08-01,3953.6,19
-2011,Desk Lamp,Home Office,2025-09-01,3401.6,20
 2007,Headphones,Electronics,2024-01-01,9585.0,0
 2007,Headphones,Electronics,2024-02-01,7788.75,1
 2007,Headphones,Electronics,2024-03-01,10665.0,2
@@ -310,10 +254,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2007,Headphones,Electronics,2025-03-01,13443.75,14
 2007,Headphones,Electronics,2025-04-01,11313.75,15
 2007,Headphones,Electronics,2025-05-01,13263.75,16
-2007,Headphones,Electronics,2025-06-01,12521.25,17
-2007,Headphones,Electronics,2025-07-01,9431.25,18
-2007,Headphones,Electronics,2025-08-01,11100.0,19
-2007,Headphones,Electronics,2025-09-01,11021.25,20
 2020,Gaming Controller,Gaming,2024-01-01,8170.2,0
 2020,Gaming Controller,Gaming,2024-02-01,5576.0,1
 2020,Gaming Controller,Gaming,2024-03-01,6718.4,2
@@ -331,10 +271,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2020,Gaming Controller,Gaming,2025-03-01,4787.2,14
 2020,Gaming Controller,Gaming,2025-04-01,4902.8,15
 2020,Gaming Controller,Gaming,2025-05-01,8313.0,16
-2020,Gaming Controller,Gaming,2025-06-01,5698.4,17
-2020,Gaming Controller,Gaming,2025-07-01,6014.6,18
-2020,Gaming Controller,Gaming,2025-08-01,5878.6,19
-2020,Gaming Controller,Gaming,2025-09-01,8619.0,20
 2018,Microphone,Electronics,2024-01-01,8967.5,0
 2018,Microphone,Electronics,2024-02-01,7021.0,1
 2018,Microphone,Electronics,2024-03-01,9647.5,2
@@ -352,10 +288,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2018,Microphone,Electronics,2025-03-01,7072.0,14
 2018,Microphone,Electronics,2025-04-01,6749.0,15
 2018,Microphone,Electronics,2025-05-01,7063.5,16
-2018,Microphone,Electronics,2025-06-01,7590.5,17
-2018,Microphone,Electronics,2025-07-01,10336.0,18
-2018,Microphone,Electronics,2025-08-01,8049.5,19
-2018,Microphone,Electronics,2025-09-01,8725.25,20
 2009,Smart Watch,Wearables,2024-01-01,9702.0,0
 2009,Smart Watch,Wearables,2024-02-01,8910.0,1
 2009,Smart Watch,Wearables,2024-03-01,8880.0,2
@@ -373,10 +305,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2009,Smart Watch,Wearables,2025-03-01,7818.0,14
 2009,Smart Watch,Wearables,2025-04-01,8454.0,15
 2009,Smart Watch,Wearables,2025-05-01,9150.0,16
-2009,Smart Watch,Wearables,2025-06-01,5214.0,17
-2009,Smart Watch,Wearables,2025-07-01,9780.0,18
-2009,Smart Watch,Wearables,2025-08-01,6798.0,19
-2009,Smart Watch,Wearables,2025-09-01,8922.0,20
 2015,Bluetooth Speaker,Electronics,2024-01-01,6904.9,0
 2015,Bluetooth Speaker,Electronics,2024-02-01,7502.3,1
 2015,Bluetooth Speaker,Electronics,2024-03-01,6449.6,2
@@ -394,10 +322,6 @@ ProductID,ProductName,Category,Month,Sales,t
 2015,Bluetooth Speaker,Electronics,2025-03-01,7629.9,14
 2015,Bluetooth Speaker,Electronics,2025-04-01,5898.6,15
 2015,Bluetooth Speaker,Electronics,2025-05-01,8236.0,16
-2015,Bluetooth Speaker,Electronics,2025-06-01,8041.7,17
-2015,Bluetooth Speaker,Electronics,2025-07-01,7656.0,18
-2015,Bluetooth Speaker,Electronics,2025-08-01,8572.4,19
-2015,Bluetooth Speaker,Electronics,2025-09-01,7972.1,20
 2016,Monitor,Electronics,2024-01-01,715.05,0
 2016,Monitor,Electronics,2024-02-01,787.5,1
 2016,Monitor,Electronics,2024-03-01,548.1,2
@@ -415,7 +339,3 @@ ProductID,ProductName,Category,Month,Sales,t
 2016,Monitor,Electronics,2025-03-01,732.9,14
 2016,Monitor,Electronics,2025-04-01,938.7,15
 2016,Monitor,Electronics,2025-05-01,686.7,16
-2016,Monitor,Electronics,2025-06-01,1001.7,17
-2016,Monitor,Electronics,2025-07-01,691.95,18
-2016,Monitor,Electronics,2025-08-01,817.95,19
-2016,Monitor,Electronics,2025-09-01,708.75,20

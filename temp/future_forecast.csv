@@ -5,12 +5,12 @@ ProductID,ProductName,Category,Month,model,PredictedSales
 2002,Mechanical Keyboard,Electronics,2026-01-01,Naive (rata-rata train),7373.8667
 2002,Mechanical Keyboard,Electronics,2026-02-01,Naive (rata-rata train),7373.8667
 2002,Mechanical Keyboard,Electronics,2026-03-01,Naive (rata-rata train),7373.8667
-2003,USB-C Cable,Accessories,2026-01-01,Naive (rata-rata train),2433.4875
-2003,USB-C Cable,Accessories,2026-02-01,Naive (rata-rata train),2433.4875
-2003,USB-C Cable,Accessories,2026-03-01,Naive (rata-rata train),2433.4875
-2004,Power Bank,Electronics,2026-01-01,Naive (rata-rata train),5843.9062
-2004,Power Bank,Electronics,2026-02-01,Naive (rata-rata train),5843.9062
-2004,Power Bank,Electronics,2026-03-01,Naive (rata-rata train),5843.9062
+2003,USB-C Cable,Accessories,2026-01-01,Moving Average,2461.35
+2003,USB-C Cable,Accessories,2026-02-01,Moving Average,2342.95
+2003,USB-C Cable,Accessories,2026-03-01,Moving Average,2319.1833
+2004,Power Bank,Electronics,2026-01-01,Moving Average,5597.6667
+2004,Power Bank,Electronics,2026-02-01,Moving Average,5393.8889
+2004,Power Bank,Electronics,2026-03-01,Moving Average,5332.1852
 2005,Laptop Stand,Accessories,2026-01-01,Seasonal Naive,3162.6
 2005,Laptop Stand,Accessories,2026-02-01,Seasonal Naive,2910.6
 2005,Laptop Stand,Accessories,2026-03-01,Seasonal Naive,3696.0
@@ -41,9 +41,9 @@ ProductID,ProductName,Category,Month,model,PredictedSales
 2014,Backpack,Accessories,2026-01-01,Seasonal Naive,6665.4
 2014,Backpack,Accessories,2026-02-01,Seasonal Naive,6552.0
 2014,Backpack,Accessories,2026-03-01,Seasonal Naive,5997.6
-2015,Bluetooth Speaker,Electronics,2026-01-01,Polynomial 2,7653.6545
-2015,Bluetooth Speaker,Electronics,2026-02-01,Polynomial 2,7730.5934
-2015,Bluetooth Speaker,Electronics,2026-03-01,Polynomial 2,7810.5167
+2015,Bluetooth Speaker,Electronics,2026-01-01,Moving Average,6965.8
+2015,Bluetooth Speaker,Electronics,2026-02-01,Moving Average,7191.0333
+2015,Bluetooth Speaker,Electronics,2026-03-01,Moving Average,6912.3111
 2016,Monitor,Electronics,2026-01-01,Polynomial 2,782.028
 2016,Monitor,Electronics,2026-02-01,Polynomial 2,782.5033
 2016,Monitor,Electronics,2026-03-01,Polynomial 2,782.7682

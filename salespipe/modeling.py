@@ -185,6 +185,48 @@ def predict_seasonal_naive(
     return predictions
 
 
+def predict_moving_average(
+    sets: dict[str, pd.DataFrame],
+    product_col: str,
+    window: int = 3,
+) -> dict[str, pd.Series]:
+    """Predict sales using a recursive moving average."""
+    if window < 1:
+        raise ValueError("Window harus minimal 1.")
+
+    predictions = {
+        name: pd.Series(index=data.index, dtype=float) for name, data in sets.items()
+    }
+
+    for pid, train_group in sets["train"].groupby(product_col):
+        history = train_group.sort_values("t")[TARGET].tolist()
+
+        # Training predictions use the previous actual observations.
+        for index in range(window, len(history)):
+            predictions["train"].loc[train_group.sort_values("t").index[index]] = float(
+                np.mean(history[index - window : index])
+            )
+
+        # Forecast validation and test recursively from the training period.
+        for split_name in ("validasi", "test"):
+            split_data = sets[split_name]
+            product_data = cast(
+                pd.DataFrame,
+                split_data.loc[split_data[product_col] == pid].sort_values("t"),
+            )
+
+            for index in product_data.index:
+                if len(history) < window:
+                    raise ValueError(f"Insufficient history for product {pid}.")
+
+                prediction = float(np.mean(history[-window:]))
+
+                predictions[split_name].loc[index] = prediction
+                history.append(prediction)
+
+    return predictions
+
+
 def calculate_wape(
     y_true: pd.Series,
     y_pred: pd.Series,
@@ -220,10 +262,10 @@ def compare_models(
     s: Schema,
     cfg: ModelConfig,
 ) -> pd.DataFrame:
-    """Compare regression models and Seasonal Naive."""
-    rows = []
+    """Compare regression models and forecasting baselines."""
+    rows: list[dict[str, str | float]] = []
 
-    # Evaluate regression models.
+    # 1. Evaluate regression models.
     for name, make_model in build_models(cfg).items():
         preds = predict_per_product(
             make_model,
@@ -232,52 +274,55 @@ def compare_models(
             s.product_id,
         )
 
-        row = {"model": name}
+        row: dict[str, str | float] = {"model": name}
 
         for split_name in SET_NAMES:
             y_true = cast(pd.Series, sets[split_name][TARGET])
             y_pred = cast(pd.Series, preds[split_name])
 
-            row.update(
-                {
-                    f"{split_name}_{metric}": value
-                    for metric, value in regression_metrics(
-                        y_true,
-                        y_pred,
-                    ).items()
-                }
-            )
+            metrics = regression_metrics(y_true, y_pred)
+
+            for metric, value in metrics.items():
+                row[f"{split_name}_{metric}"] = value
 
         rows.append(row)
 
-    # Evaluate Seasonal Naive separately.
-    seasonal_preds = predict_seasonal_naive(
-        sets,
-        s.product_id,
-    )
+    # 2. Evaluate forecasting baselines separately.
+    baseline_predictions = {
+        "Seasonal Naive": predict_seasonal_naive(
+            sets,
+            s.product_id,
+        ),
+        "Moving Average": predict_moving_average(
+            sets,
+            s.product_id,
+            window=3,
+        ),
+    }
 
-    seasonal_row: dict[str, str | float] = {"model": "Seasonal Naive"}
+    for model_name, preds in baseline_predictions.items():
+        row = {"model": model_name}
 
-    for split_name in SET_NAMES:
-        y_pred = seasonal_preds[split_name].dropna()
+        for split_name in SET_NAMES:
+            y_pred = preds[split_name].dropna()
 
-        if y_pred.empty:
-            for metric in ("MAE", "MSE", "RMSE", "WAPE", "R2"):
-                seasonal_row[f"{split_name}_{metric}"] = float("nan")
+            if y_pred.empty:
+                for metric in ("MAE", "MSE", "RMSE", "WAPE", "R2"):
+                    row[f"{split_name}_{metric}"] = float("nan")
 
-            continue
+                continue
 
-        y_true = cast(
-            pd.Series,
-            sets[split_name].loc[y_pred.index, TARGET],
-        )
+            y_true = cast(
+                pd.Series,
+                sets[split_name].loc[y_pred.index, TARGET],
+            )
 
-        metrics = regression_metrics(y_true, y_pred)
+            metrics = regression_metrics(y_true, y_pred)
 
-        for metric, value in metrics.items():
-            seasonal_row[f"{split_name}_{metric}"] = value
+            for metric, value in metrics.items():
+                row[f"{split_name}_{metric}"] = value
 
-    rows.append(seasonal_row)
+        rows.append(row)
 
     return pd.DataFrame(rows)
 
@@ -300,19 +345,17 @@ def compare_models_per_product(
         )
 
         for pid, train_group in sets["train"].groupby(s.product_id):
-            product_name = train_group[s.product_name].iloc[0]
-            category = train_group[s.category].iloc[0]
-
             row = {
                 s.product_id: pid,
-                s.product_name: product_name,
-                s.category: category,
+                s.product_name: train_group[s.product_name].iloc[0],
+                s.category: train_group[s.category].iloc[0],
                 "model": name,
             }
 
             for split_name in SET_NAMES:
-                split_data = sets[split_name]
-                product_data = split_data.loc[split_data[s.product_id] == pid]
+                product_data = sets[split_name].loc[
+                    sets[split_name][s.product_id] == pid
+                ]
 
                 if product_data.empty:
                     continue
@@ -337,51 +380,59 @@ def compare_models_per_product(
 
             rows.append(row)
 
-    # Evaluate Seasonal Naive separately.
-    seasonal_preds = predict_seasonal_naive(
-        sets,
-        s.product_id,
-    )
+    # Evaluate forecasting baselines.
+    baseline_predictions = {
+        "Seasonal Naive": predict_seasonal_naive(
+            sets,
+            s.product_id,
+        ),
+        "Moving Average": predict_moving_average(
+            sets,
+            s.product_id,
+            window=3,
+        ),
+    }
 
-    for pid, train_group in sets["train"].groupby(s.product_id):
-        row = {
-            s.product_id: pid,
-            s.product_name: train_group[s.product_name].iloc[0],
-            s.category: train_group[s.category].iloc[0],
-            "model": "Seasonal Naive",
-        }
+    for model_name, preds in baseline_predictions.items():
+        for pid, train_group in sets["train"].groupby(s.product_id):
+            row = {
+                s.product_id: pid,
+                s.product_name: train_group[s.product_name].iloc[0],
+                s.category: train_group[s.category].iloc[0],
+                "model": model_name,
+            }
 
-        for split_name in SET_NAMES:
-            split_data = sets[split_name]
+            for split_name in SET_NAMES:
+                product_data = sets[split_name].loc[
+                    sets[split_name][s.product_id] == pid
+                ]
 
-            product_data = split_data.loc[split_data[s.product_id] == pid]
+                if product_data.empty:
+                    continue
 
-            if product_data.empty:
-                continue
+                y_pred = preds[split_name].reindex(product_data.index).dropna()
 
-            y_pred = seasonal_preds[split_name].reindex(product_data.index).dropna()
+                if y_pred.empty:
+                    continue
 
-            if y_pred.empty:
-                continue
+                y_true = cast(
+                    pd.Series,
+                    product_data.loc[y_pred.index, TARGET],
+                )
 
-            y_true = cast(
-                pd.Series,
-                product_data.loc[y_pred.index, TARGET],
-            )
+                mse = mean_squared_error(y_true, y_pred)
 
-            mse = mean_squared_error(y_true, y_pred)
+                row[f"{split_name}_MAE"] = mean_absolute_error(
+                    y_true,
+                    y_pred,
+                )
+                row[f"{split_name}_RMSE"] = np.sqrt(mse)
+                row[f"{split_name}_WAPE"] = calculate_wape(
+                    y_true,
+                    y_pred,
+                )
 
-            row[f"{split_name}_MAE"] = mean_absolute_error(
-                y_true,
-                y_pred,
-            )
-            row[f"{split_name}_RMSE"] = np.sqrt(mse)
-            row[f"{split_name}_WAPE"] = calculate_wape(
-                y_true,
-                y_pred,
-            )
-
-        rows.append(row)
+            rows.append(row)
 
     return (
         pd.DataFrame(rows).sort_values(["model", s.product_id]).reset_index(drop=True)
@@ -501,7 +552,7 @@ def forecast_future(
 
     future_features = pd.DataFrame({"t": future_t})
 
-    rows = []
+    rows: list[dict[str, object]] = []
 
     for _, selected in selected_models.iterrows():
         pid = selected[s.product_id]
@@ -512,11 +563,9 @@ def forecast_future(
             monthly.loc[monthly[s.product_id] == pid].sort_values("t"),
         )
 
-        if len(history) == 0:
+        if history.empty:
             raise ValueError(f"Historical data unavailable for product {pid}.")
 
-        # Seasonal Naive uses the corresponding month
-        # from the previous year.
         if model_name == "Seasonal Naive":
             historical_sales = cast(
                 pd.Series,
@@ -527,10 +576,30 @@ def forecast_future(
 
             if np.isnan(predictions).any():
                 raise ValueError(
-                    f"Historical seasonal values unavailable " f"for product {pid}."
+                    f"Historical seasonal values unavailable for product {pid}."
                 )
 
-        # Other models use the scikit-learn estimator interface.
+        elif model_name == "Moving Average":
+            window = 3
+            ma_history = history[TARGET].astype(float).tolist()
+            predictions = []
+
+            if len(ma_history) < window:
+                raise ValueError(
+                    f"Insufficient history for moving average, product {pid}."
+                )
+
+            for _ in range(horizon):
+                prediction = max(
+                    0.0,
+                    float(np.mean(ma_history[-window:])),
+                )
+
+                predictions.append(prediction)
+                ma_history.append(prediction)
+
+            predictions = np.array(predictions)
+
         else:
             if model_name not in model_factories:
                 raise ValueError(f"Unknown model: {model_name}")

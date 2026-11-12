@@ -42,7 +42,17 @@ def cmd_model(args, cfg) -> None:
 
     pd.set_option("display.width", 200)
     metrics = artifacts["model_metrics"]
-    cols = ["model", "train_RMSE", "validasi_RMSE", "test_MAE", "test_RMSE", "test_R2"]
+    cols = [
+        "model",
+        "train_RMSE",
+        "validasi_RMSE",
+        "test_MAE",
+        "test_RMSE",
+        "test_R2",
+        "train_WAPE",
+        "validasi_WAPE",
+        "test_WAPE",
+    ]
     print("\n=== Perbandingan model ===")
     print(metrics[cols].round(3).to_string(index=False))
     print("\n=== Tren per produk ===")

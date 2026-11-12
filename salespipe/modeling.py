@@ -29,6 +29,7 @@ SET_NAMES = ("train", "validasi", "test")
 NAIVE = "Naive (rata-rata train)"
 
 
+# Modeling functions
 def build_monthly(
     df: pd.DataFrame,
     s: Schema,
@@ -149,13 +150,33 @@ def predict_per_product(
     return preds
 
 
-def regression_metrics(y, y_pred) -> dict[str, float]:
-    mse = mean_squared_error(y, y_pred)
+def calculate_wape(
+    y_true: pd.Series,
+    y_pred: pd.Series,
+) -> float:
+    """Calculate Weighted Absolute Percentage Error."""
+    denominator = np.abs(y_true).sum()
+
+    if denominator == 0:
+        return float("nan")
+
+    numerator = np.abs(y_true - y_pred).sum()
+
+    return float(numerator / denominator * 100)
+
+
+def regression_metrics(
+    y_true: pd.Series,
+    y_pred: pd.Series,
+) -> dict[str, float]:
+    mse = mean_squared_error(y_true, y_pred)
+
     return {
-        "MAE": mean_absolute_error(y, y_pred),
+        "MAE": mean_absolute_error(y_true, y_pred),
         "MSE": mse,
         "RMSE": np.sqrt(mse),
-        "R2": r2_score(y, y_pred),
+        "WAPE": calculate_wape(y_true, y_pred),
+        "R2": r2_score(y_true, y_pred),
     }
 
 
@@ -167,14 +188,70 @@ def compare_models(
         preds = predict_per_product(make_model, sets["train"], sets, s.product_id)
         row = {"model": name}
         for k in SET_NAMES:
+            y_true = cast(pd.Series, sets[k][TARGET])
+            y_pred = cast(pd.Series, preds[k])
+
             row.update(
-                {
-                    f"{k}_{m}": v
-                    for m, v in regression_metrics(sets[k][TARGET], preds[k]).items()
-                }
+                {f"{k}_{m}": v for m, v in regression_metrics(y_true, y_pred).items()}
             )
         rows.append(row)
     return pd.DataFrame(rows)
+
+
+def compare_models_per_product(
+    sets: dict[str, pd.DataFrame],
+    s: Schema,
+    cfg: ModelConfig,
+) -> pd.DataFrame:
+    """Evaluate MAE and RMSE separately for each product and model."""
+    rows = []
+
+    for name, make_model in build_models(cfg).items():
+        preds = predict_per_product(
+            make_model,
+            sets["train"],
+            sets,
+            s.product_id,
+        )
+
+        for pid, train_group in sets["train"].groupby(s.product_id):
+            product_name = train_group[s.product_name].iloc[0]
+            category = train_group[s.category].iloc[0]
+
+            row = {
+                s.product_id: pid,
+                s.product_name: product_name,
+                s.category: category,
+                "model": name,
+            }
+
+            for split_name in SET_NAMES:
+                split_data = sets[split_name]
+                product_data = split_data.loc[split_data[s.product_id] == pid]
+
+                if product_data.empty:
+                    continue
+
+                y_true = product_data[TARGET]
+                y_pred = preds[split_name].loc[product_data.index]
+
+                mse = mean_squared_error(y_true, y_pred)
+
+                row[f"{split_name}_MAE"] = mean_absolute_error(
+                    y_true,
+                    y_pred,
+                )
+                row[f"{split_name}_RMSE"] = np.sqrt(mse)
+                row[f"{split_name}_WAPE"] = calculate_wape(
+                    y_true,
+                    y_pred,
+                )
+
+            rows.append(row)
+
+    return (
+        pd.DataFrame(rows).sort_values(["model", s.product_id]).reset_index(drop=True)
+    )
 
 
 def best_model(results: pd.DataFrame) -> str:
@@ -279,6 +356,12 @@ def run_modeling(
         )
 
     results = compare_models(sets, s, cfg)
+    product_metrics = compare_models_per_product(
+        sets,
+        s,
+        cfg,
+    )
+
     log.info(
         "model terbaik keseluruhan menurut validasi: %s",
         best_model(results),
@@ -292,5 +375,6 @@ def run_modeling(
     return {
         **{f"{k}_monthly": d for k, d in sets.items()},
         "model_metrics": results,
+        "product_model_metrics": product_metrics,
         "product_trend": product_trends(monthly, month_sets["train"], s),
     }

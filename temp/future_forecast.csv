@@ -11,48 +11,48 @@ ProductID,ProductName,Category,Month,model,PredictedSales
 2004,Power Bank,Electronics,2026-01-01,Naive (rata-rata train),5843.9062
 2004,Power Bank,Electronics,2026-02-01,Naive (rata-rata train),5843.9062
 2004,Power Bank,Electronics,2026-03-01,Naive (rata-rata train),5843.9062
-2005,Laptop Stand,Accessories,2026-01-01,Naive (rata-rata train),3671.2667
-2005,Laptop Stand,Accessories,2026-02-01,Naive (rata-rata train),3671.2667
-2005,Laptop Stand,Accessories,2026-03-01,Naive (rata-rata train),3671.2667
+2005,Laptop Stand,Accessories,2026-01-01,Seasonal Naive,3162.6
+2005,Laptop Stand,Accessories,2026-02-01,Seasonal Naive,2910.6
+2005,Laptop Stand,Accessories,2026-03-01,Seasonal Naive,3696.0
 2006,Webcam,Electronics,2026-01-01,Naive (rata-rata train),4924.0
 2006,Webcam,Electronics,2026-02-01,Naive (rata-rata train),4924.0
 2006,Webcam,Electronics,2026-03-01,Naive (rata-rata train),4924.0
 2007,Headphones,Electronics,2026-01-01,Naive (rata-rata train),10760.1562
 2007,Headphones,Electronics,2026-02-01,Naive (rata-rata train),10760.1562
 2007,Headphones,Electronics,2026-03-01,Naive (rata-rata train),10760.1562
-2008,Phone Case,Accessories,2026-01-01,Naive (rata-rata train),4051.425
-2008,Phone Case,Accessories,2026-02-01,Naive (rata-rata train),4051.425
-2008,Phone Case,Accessories,2026-03-01,Naive (rata-rata train),4051.425
+2008,Phone Case,Accessories,2026-01-01,Seasonal Naive,3822.7
+2008,Phone Case,Accessories,2026-02-01,Seasonal Naive,3812.2
+2008,Phone Case,Accessories,2026-03-01,Seasonal Naive,4893.7
 2009,Smart Watch,Wearables,2026-01-01,Polynomial 2,8481.996
 2009,Smart Watch,Wearables,2026-02-01,Polynomial 2,8611.3186
 2009,Smart Watch,Wearables,2026-03-01,Polynomial 2,8755.7522
-2010,Fitness Band,Wearables,2026-01-01,Linear (baseline),5940.9565
-2010,Fitness Band,Wearables,2026-02-01,Linear (baseline),5962.428
-2010,Fitness Band,Wearables,2026-03-01,Linear (baseline),5983.8996
+2010,Fitness Band,Wearables,2026-01-01,Seasonal Naive,5940.0
+2010,Fitness Band,Wearables,2026-02-01,Seasonal Naive,6151.75
+2010,Fitness Band,Wearables,2026-03-01,Seasonal Naive,5929.0
 2011,Desk Lamp,Home Office,2026-01-01,Ridge (a=10.0),3632.3703
 2011,Desk Lamp,Home Office,2026-02-01,Ridge (a=10.0),3615.44
 2011,Desk Lamp,Home Office,2026-03-01,Ridge (a=10.0),3598.5096
 2012,Office Chair,Home Office,2026-01-01,Naive (rata-rata train),10830.375
 2012,Office Chair,Home Office,2026-02-01,Naive (rata-rata train),10830.375
 2012,Office Chair,Home Office,2026-03-01,Naive (rata-rata train),10830.375
-2013,Notebook,Stationery,2026-01-01,Ridge (a=10.0),2222.7666
-2013,Notebook,Stationery,2026-02-01,Ridge (a=10.0),2228.5385
-2013,Notebook,Stationery,2026-03-01,Ridge (a=10.0),2234.3103
-2014,Backpack,Accessories,2026-01-01,Naive (rata-rata train),5590.725
-2014,Backpack,Accessories,2026-02-01,Naive (rata-rata train),5590.725
-2014,Backpack,Accessories,2026-03-01,Naive (rata-rata train),5590.725
+2013,Notebook,Stationery,2026-01-01,Seasonal Naive,2276.05
+2013,Notebook,Stationery,2026-02-01,Seasonal Naive,1623.65
+2013,Notebook,Stationery,2026-03-01,Seasonal Naive,2486.4
+2014,Backpack,Accessories,2026-01-01,Seasonal Naive,6665.4
+2014,Backpack,Accessories,2026-02-01,Seasonal Naive,6552.0
+2014,Backpack,Accessories,2026-03-01,Seasonal Naive,5997.6
 2015,Bluetooth Speaker,Electronics,2026-01-01,Polynomial 2,7653.6545
 2015,Bluetooth Speaker,Electronics,2026-02-01,Polynomial 2,7730.5934
 2015,Bluetooth Speaker,Electronics,2026-03-01,Polynomial 2,7810.5167
 2016,Monitor,Electronics,2026-01-01,Polynomial 2,782.028
 2016,Monitor,Electronics,2026-02-01,Polynomial 2,782.5033
 2016,Monitor,Electronics,2026-03-01,Polynomial 2,782.7682
-2017,HDMI Cable,Accessories,2026-01-01,Lasso (a=10.0),2558.4849
-2017,HDMI Cable,Accessories,2026-02-01,Lasso (a=10.0),2562.7528
-2017,HDMI Cable,Accessories,2026-03-01,Lasso (a=10.0),2567.0208
-2018,Microphone,Electronics,2026-01-01,Naive (rata-rata train),7627.6875
-2018,Microphone,Electronics,2026-02-01,Naive (rata-rata train),7627.6875
-2018,Microphone,Electronics,2026-03-01,Naive (rata-rata train),7627.6875
+2017,HDMI Cable,Accessories,2026-01-01,Seasonal Naive,2350.15
+2017,HDMI Cable,Accessories,2026-02-01,Seasonal Naive,2081.2
+2017,HDMI Cable,Accessories,2026-03-01,Seasonal Naive,2642.75
+2018,Microphone,Electronics,2026-01-01,Seasonal Naive,6863.75
+2018,Microphone,Electronics,2026-02-01,Seasonal Naive,5342.25
+2018,Microphone,Electronics,2026-03-01,Seasonal Naive,7072.0
 2019,Tablet,Electronics,2026-01-01,Polynomial 2,9162.0519
 2019,Tablet,Electronics,2026-02-01,Polynomial 2,9175.3108
 2019,Tablet,Electronics,2026-03-01,Polynomial 2,9189.5119

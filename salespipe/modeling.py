@@ -152,6 +152,39 @@ def predict_per_product(
     return preds
 
 
+def predict_seasonal_naive(
+    sets: dict[str, pd.DataFrame],
+    product_col: str,
+    seasonal_period: int = 12,
+) -> dict[str, pd.Series]:
+    """Predict sales using the corresponding month from the previous year."""
+    if seasonal_period < 1:
+        raise ValueError("Seasonal period harus minimal 1.")
+
+    historical = pd.concat([sets["train"], sets["validasi"], sets["test"]])
+
+    historical = historical.set_index([product_col, "t"])[TARGET]
+
+    predictions = {}
+
+    for split_name in SET_NAMES:
+        current = sets[split_name]
+
+        previous_index = pd.MultiIndex.from_arrays(
+            [
+                current[product_col],
+                current["t"] - seasonal_period,
+            ],
+            names=[product_col, "t"],
+        )
+
+        predictions[split_name] = (
+            historical.reindex(previous_index).set_axis(current.index).astype(float)
+        )
+
+    return predictions
+
+
 def calculate_wape(
     y_true: pd.Series,
     y_pred: pd.Series,
@@ -183,20 +216,69 @@ def regression_metrics(
 
 
 def compare_models(
-    sets: dict[str, pd.DataFrame], s: Schema, cfg: ModelConfig
+    sets: dict[str, pd.DataFrame],
+    s: Schema,
+    cfg: ModelConfig,
 ) -> pd.DataFrame:
+    """Compare regression models and Seasonal Naive."""
     rows = []
+
+    # Evaluate regression models.
     for name, make_model in build_models(cfg).items():
-        preds = predict_per_product(make_model, sets["train"], sets, s.product_id)
+        preds = predict_per_product(
+            make_model,
+            sets["train"],
+            sets,
+            s.product_id,
+        )
+
         row = {"model": name}
-        for k in SET_NAMES:
-            y_true = cast(pd.Series, sets[k][TARGET])
-            y_pred = cast(pd.Series, preds[k])
+
+        for split_name in SET_NAMES:
+            y_true = cast(pd.Series, sets[split_name][TARGET])
+            y_pred = cast(pd.Series, preds[split_name])
 
             row.update(
-                {f"{k}_{m}": v for m, v in regression_metrics(y_true, y_pred).items()}
+                {
+                    f"{split_name}_{metric}": value
+                    for metric, value in regression_metrics(
+                        y_true,
+                        y_pred,
+                    ).items()
+                }
             )
+
         rows.append(row)
+
+    # Evaluate Seasonal Naive separately.
+    seasonal_preds = predict_seasonal_naive(
+        sets,
+        s.product_id,
+    )
+
+    seasonal_row: dict[str, str | float] = {"model": "Seasonal Naive"}
+
+    for split_name in SET_NAMES:
+        y_pred = seasonal_preds[split_name].dropna()
+
+        if y_pred.empty:
+            for metric in ("MAE", "MSE", "RMSE", "WAPE", "R2"):
+                seasonal_row[f"{split_name}_{metric}"] = float("nan")
+
+            continue
+
+        y_true = cast(
+            pd.Series,
+            sets[split_name].loc[y_pred.index, TARGET],
+        )
+
+        metrics = regression_metrics(y_true, y_pred)
+
+        for metric, value in metrics.items():
+            seasonal_row[f"{split_name}_{metric}"] = value
+
+    rows.append(seasonal_row)
+
     return pd.DataFrame(rows)
 
 
@@ -205,9 +287,10 @@ def compare_models_per_product(
     s: Schema,
     cfg: ModelConfig,
 ) -> pd.DataFrame:
-    """Evaluate MAE and RMSE separately for each product and model."""
-    rows = []
+    """Evaluate MAE, RMSE, and WAPE per product and model."""
+    rows: list[dict] = []
 
+    # Evaluate regression models.
     for name, make_model in build_models(cfg).items():
         preds = predict_per_product(
             make_model,
@@ -234,8 +317,11 @@ def compare_models_per_product(
                 if product_data.empty:
                     continue
 
-                y_true = product_data[TARGET]
-                y_pred = preds[split_name].loc[product_data.index]
+                y_true = cast(pd.Series, product_data[TARGET])
+                y_pred = cast(
+                    pd.Series,
+                    preds[split_name].loc[product_data.index],
+                )
 
                 mse = mean_squared_error(y_true, y_pred)
 
@@ -250,6 +336,52 @@ def compare_models_per_product(
                 )
 
             rows.append(row)
+
+    # Evaluate Seasonal Naive separately.
+    seasonal_preds = predict_seasonal_naive(
+        sets,
+        s.product_id,
+    )
+
+    for pid, train_group in sets["train"].groupby(s.product_id):
+        row = {
+            s.product_id: pid,
+            s.product_name: train_group[s.product_name].iloc[0],
+            s.category: train_group[s.category].iloc[0],
+            "model": "Seasonal Naive",
+        }
+
+        for split_name in SET_NAMES:
+            split_data = sets[split_name]
+
+            product_data = split_data.loc[split_data[s.product_id] == pid]
+
+            if product_data.empty:
+                continue
+
+            y_pred = seasonal_preds[split_name].reindex(product_data.index).dropna()
+
+            if y_pred.empty:
+                continue
+
+            y_true = cast(
+                pd.Series,
+                product_data.loc[y_pred.index, TARGET],
+            )
+
+            mse = mean_squared_error(y_true, y_pred)
+
+            row[f"{split_name}_MAE"] = mean_absolute_error(
+                y_true,
+                y_pred,
+            )
+            row[f"{split_name}_RMSE"] = np.sqrt(mse)
+            row[f"{split_name}_WAPE"] = calculate_wape(
+                y_true,
+                y_pred,
+            )
+
+        rows.append(row)
 
     return (
         pd.DataFrame(rows).sort_values(["model", s.product_id]).reset_index(drop=True)
@@ -280,7 +412,7 @@ def best_ml_model(results: pd.DataFrame) -> str:
     """Select the best machine learning model, excluding Naive."""
     candidates = cast(
         pd.DataFrame,
-        results.loc[results["model"] != NAIVE],
+        results.loc[~results["model"].isin([NAIVE, "Seasonal Naive"])],
     )
 
     if candidates.empty:
@@ -340,6 +472,9 @@ def forecast_future(
     if horizon < 1:
         raise ValueError("Horizon harus minimal 1 bulan.")
 
+    if monthly.empty:
+        raise ValueError("Dataset monthly tidak boleh kosong.")
+
     selected_models = best_model_per_product(
         product_metrics,
         s.product_id,
@@ -370,20 +505,50 @@ def forecast_future(
 
     for _, selected in selected_models.iterrows():
         pid = selected[s.product_id]
-        model_name = selected["model"]
+        model_name = str(selected["model"])
 
-        history = monthly.loc[monthly[s.product_id] == pid]
-
-        model = model_factories[model_name]()
-
-        model.fit(
-            history[FEATURE],
-            history[TARGET],
+        history = cast(
+            pd.DataFrame,
+            monthly.loc[monthly[s.product_id] == pid].sort_values("t"),
         )
 
-        predictions = model.predict(future_features)
+        if len(history) == 0:
+            raise ValueError(f"Historical data unavailable for product {pid}.")
 
-        for month, prediction in zip(future_months, predictions):
+        # Seasonal Naive uses the corresponding month
+        # from the previous year.
+        if model_name == "Seasonal Naive":
+            historical_sales = cast(
+                pd.Series,
+                history.set_index("t")[TARGET],
+            )
+
+            predictions = historical_sales.reindex(future_t - 12).to_numpy(dtype=float)
+
+            if np.isnan(predictions).any():
+                raise ValueError(
+                    f"Historical seasonal values unavailable " f"for product {pid}."
+                )
+
+        # Other models use the scikit-learn estimator interface.
+        else:
+            if model_name not in model_factories:
+                raise ValueError(f"Unknown model: {model_name}")
+
+            model = model_factories[model_name]()
+
+            model.fit(
+                history[FEATURE],
+                history[TARGET],
+            )
+
+            predictions = model.predict(future_features)
+
+        for month, prediction in zip(
+            future_months,
+            predictions,
+            strict=True,
+        ):
             rows.append(
                 {
                     s.product_id: pid,
@@ -391,7 +556,10 @@ def forecast_future(
                     s.category: selected[s.category],
                     "Month": month,
                     "model": model_name,
-                    "PredictedSales": max(0.0, float(prediction)),
+                    "PredictedSales": max(
+                        0.0,
+                        float(prediction),
+                    ),
                 }
             )
 

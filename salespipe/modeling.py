@@ -178,7 +178,27 @@ def compare_models(
 
 
 def best_model(results: pd.DataFrame) -> str:
-    """Select the best ML model using validation RMSE."""
+    """Select the best overall model using validation RMSE."""
+    if results.empty:
+        raise ValueError("Tidak ada hasil evaluasi model.")
+
+    validation_rmse = cast(
+        pd.Series,
+        results["validasi_RMSE"],
+    )
+
+    valid_scores = validation_rmse.dropna()
+
+    if valid_scores.empty:
+        raise ValueError("Tidak ada validation RMSE yang valid.")
+
+    best_idx = valid_scores.idxmin()
+
+    return str(results.at[best_idx, "model"])
+
+
+def best_ml_model(results: pd.DataFrame) -> str:
+    """Select the best machine learning model, excluding Naive."""
     candidates = cast(
         pd.DataFrame,
         results.loc[results["model"] != NAIVE],
@@ -192,7 +212,12 @@ def best_model(results: pd.DataFrame) -> str:
         candidates["validasi_RMSE"],
     )
 
-    best_idx = validation_rmse.idxmin()
+    valid_scores = validation_rmse.dropna()
+
+    if valid_scores.empty:
+        raise ValueError("Tidak ada validation RMSE model ML yang valid.")
+
+    best_idx = valid_scores.idxmin()
 
     return str(candidates.at[best_idx, "model"])
 
@@ -254,7 +279,15 @@ def run_modeling(
         )
 
     results = compare_models(sets, s, cfg)
-    log.info("model terbaik menurut validasi: %s", best_model(results))
+    log.info(
+        "model terbaik keseluruhan menurut validasi: %s",
+        best_model(results),
+    )
+
+    log.info(
+        "model ML terbaik menurut validasi: %s",
+        best_ml_model(results),
+    )
 
     return {
         **{f"{k}_monthly": d for k, d in sets.items()},

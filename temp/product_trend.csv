@@ -1,21 +1,21 @@
 ProductID,ProductName,Category,avg_monthly_sales,slope_train,slope_all,R2_all,trend_train
-2009,Smart Watch,Wearables,8502.5,-118.1471,-67.1217,0.0822,turun
-2018,Microphone,Electronics,7627.6875,-92.4167,49.8137,0.0747,turun
-2020,Gaming Controller,Gaming,6467.7917,-52.1,19.1627,0.0138,turun
-2011,Desk Lamp,Home Office,3844.0,-36.5333,-23.9847,0.0975,turun
-2004,Power Bank,Electronics,5843.9062,-33.576,-22.3932,0.0787,turun
-2012,Office Chair,Home Office,10830.375,-24.8382,-49.723,0.0205,turun
-2006,Webcam,Electronics,4924.0,-23.9882,-13.3753,0.0238,turun
-2005,Laptop Stand,Accessories,3671.2667,-20.8353,5.0546,0.0065,turun
-2001,Wireless Mouse,Electronics,3250.2375,-10.1294,-7.8061,0.0189,turun
-2017,HDMI Cable,Accessories,2505.1354,-1.5678,5.7126,0.0232,turun
-2016,Monitor,Electronics,753.2875,2.782,3.2112,0.0192,naik/stabil
-2015,Bluetooth Speaker,Electronics,7015.2208,3.4118,38.1426,0.0575,naik/stabil
-2003,USB-C Cable,Accessories,2433.4875,7.7658,1.3156,0.0014,naik/stabil
-2010,Fitness Band,Wearables,5672.5625,10.8045,21.4715,0.0376,naik/stabil
-2008,Phone Case,Accessories,4051.425,12.0716,6.0182,0.0086,naik/stabil
-2013,Notebook,Stationery,2150.6188,17.0127,8.1768,0.0682,naik/stabil
-2019,Tablet,Electronics,9098.375,32.723,1.0117,0.0,naik/stabil
-2002,Mechanical Keyboard,Electronics,7373.8667,33.1123,-11.2328,0.0049,naik/stabil
-2014,Backpack,Accessories,5590.725,65.1566,8.9277,0.0077,naik/stabil
-2007,Headphones,Electronics,10760.1562,164.2463,52.4136,0.0584,naik/stabil
+2009,Smart Watch,Wearables,8502.5,-115.9879,-80.7632,0.1106,turun
+2018,Microphone,Electronics,7627.6875,-92.7534,33.5548,0.1185,turun
+2020,Gaming Controller,Gaming,6467.7917,-51.6145,0.1875,0.0908,turun
+2011,Desk Lamp,Home Office,3844.0,-35.9282,-13.3472,0.2056,turun
+2004,Power Bank,Electronics,5843.9062,-33.0858,-20.0412,0.143,turun
+2012,Office Chair,Home Office,10830.375,-26.9939,-91.1859,0.1115,turun
+2006,Webcam,Electronics,4924.0,-24.7233,-25.9742,0.1562,turun
+2005,Laptop Stand,Accessories,3671.2667,-20.4624,6.3447,0.0098,turun
+2001,Wireless Mouse,Electronics,3250.2375,-10.5929,-15.9432,0.1304,turun
+2017,HDMI Cable,Accessories,2505.1354,-1.3342,3.3041,0.133,turun
+2016,Monitor,Electronics,753.2875,2.8123,4.4492,0.0387,naik/stabil
+2015,Bluetooth Speaker,Electronics,7015.2208,4.0549,21.6421,0.198,naik/stabil
+2003,USB-C Cable,Accessories,2433.4875,7.6974,5.1337,0.0719,naik/stabil
+2010,Fitness Band,Wearables,5672.5625,11.1551,32.3643,0.1078,naik/stabil
+2008,Phone Case,Accessories,4051.425,12.372,5.5732,0.0174,naik/stabil
+2013,Notebook,Stationery,2150.6188,17.0483,8.237,0.0747,naik/stabil
+2019,Tablet,Electronics,9098.375,34.3064,26.7775,0.0859,naik/stabil
+2002,Mechanical Keyboard,Electronics,7373.8667,35.2762,-13.1946,0.0768,naik/stabil
+2014,Backpack,Accessories,5590.725,63.348,9.6891,0.2892,naik/stabil
+2007,Headphones,Electronics,10760.1562,166.8487,72.2115,0.1875,naik/stabil

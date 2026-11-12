@@ -1,81 +1,81 @@
-ProductID,ProductName,Category,Month,Sales,t
-2003,USB-C Cable,Accessories,2025-06-01,2454.75,17
-2003,USB-C Cable,Accessories,2025-07-01,2411.55,18
-2003,USB-C Cable,Accessories,2025-08-01,2324.25,19
-2003,USB-C Cable,Accessories,2025-09-01,2355.75,20
-2014,Backpack,Accessories,2025-06-01,5197.5,17
-2014,Backpack,Accessories,2025-07-01,4326.0,18
-2014,Backpack,Accessories,2025-08-01,5040.0,19
-2014,Backpack,Accessories,2025-09-01,5838.0,20
-2002,Mechanical Keyboard,Electronics,2025-06-01,6258.9,17
-2002,Mechanical Keyboard,Electronics,2025-07-01,7889.5,18
-2002,Mechanical Keyboard,Electronics,2025-08-01,7988.7,19
-2002,Mechanical Keyboard,Electronics,2025-09-01,6125.6,20
-2012,Office Chair,Home Office,2025-06-01,16407.0,17
-2012,Office Chair,Home Office,2025-07-01,7713.0,18
-2012,Office Chair,Home Office,2025-08-01,13014.0,19
-2012,Office Chair,Home Office,2025-09-01,8694.0,20
-2008,Phone Case,Accessories,2025-06-01,3567.2,17
-2008,Phone Case,Accessories,2025-07-01,3943.1,18
-2008,Phone Case,Accessories,2025-08-01,4536.7,19
-2008,Phone Case,Accessories,2025-09-01,4145.4,20
-2017,HDMI Cable,Accessories,2025-06-01,2730.75,17
-2017,HDMI Cable,Accessories,2025-07-01,2774.75,18
-2017,HDMI Cable,Accessories,2025-08-01,2625.7,19
-2017,HDMI Cable,Accessories,2025-09-01,2505.8,20
-2004,Power Bank,Electronics,2025-06-01,6240.5,17
-2004,Power Bank,Electronics,2025-07-01,6594.0,18
-2004,Power Bank,Electronics,2025-08-01,5057.5,19
-2004,Power Bank,Electronics,2025-09-01,5600.0,20
-2001,Wireless Mouse,Electronics,2025-06-01,3844.8,17
-2001,Wireless Mouse,Electronics,2025-07-01,2808.9,18
-2001,Wireless Mouse,Electronics,2025-08-01,3303.0,19
-2001,Wireless Mouse,Electronics,2025-09-01,3128.4,20
-2005,Laptop Stand,Accessories,2025-06-01,3857.0,17
-2005,Laptop Stand,Accessories,2025-07-01,3997.0,18
-2005,Laptop Stand,Accessories,2025-08-01,3505.6,19
-2005,Laptop Stand,Accessories,2025-09-01,3474.8,20
-2013,Notebook,Stationery,2025-06-01,2231.6,17
-2013,Notebook,Stationery,2025-07-01,2249.8,18
-2013,Notebook,Stationery,2025-08-01,2267.3,19
-2013,Notebook,Stationery,2025-09-01,2076.55,20
-2006,Webcam,Electronics,2025-06-01,6019.2,17
-2006,Webcam,Electronics,2025-07-01,5152.8,18
-2006,Webcam,Electronics,2025-08-01,4980.0,19
-2006,Webcam,Electronics,2025-09-01,4504.8,20
-2010,Fitness Band,Wearables,2025-06-01,5585.25,17
-2010,Fitness Band,Wearables,2025-07-01,7284.75,18
-2010,Fitness Band,Wearables,2025-08-01,6179.25,19
-2010,Fitness Band,Wearables,2025-09-01,5159.0,20
-2019,Tablet,Electronics,2025-06-01,7579.0,17
-2019,Tablet,Electronics,2025-07-01,6786.0,18
-2019,Tablet,Electronics,2025-08-01,7241.0,19
-2019,Tablet,Electronics,2025-09-01,8762.0,20
-2011,Desk Lamp,Home Office,2025-06-01,4395.2,17
-2011,Desk Lamp,Home Office,2025-07-01,3091.2,18
-2011,Desk Lamp,Home Office,2025-08-01,3953.6,19
-2011,Desk Lamp,Home Office,2025-09-01,3401.6,20
-2007,Headphones,Electronics,2025-06-01,12521.25,17
-2007,Headphones,Electronics,2025-07-01,9431.25,18
-2007,Headphones,Electronics,2025-08-01,11100.0,19
-2007,Headphones,Electronics,2025-09-01,11021.25,20
-2020,Gaming Controller,Gaming,2025-06-01,5698.4,17
-2020,Gaming Controller,Gaming,2025-07-01,6014.6,18
-2020,Gaming Controller,Gaming,2025-08-01,5878.6,19
-2020,Gaming Controller,Gaming,2025-09-01,8619.0,20
-2018,Microphone,Electronics,2025-06-01,7590.5,17
-2018,Microphone,Electronics,2025-07-01,10336.0,18
-2018,Microphone,Electronics,2025-08-01,8049.5,19
-2018,Microphone,Electronics,2025-09-01,8725.25,20
-2009,Smart Watch,Wearables,2025-06-01,5214.0,17
-2009,Smart Watch,Wearables,2025-07-01,9780.0,18
-2009,Smart Watch,Wearables,2025-08-01,6798.0,19
-2009,Smart Watch,Wearables,2025-09-01,8922.0,20
-2015,Bluetooth Speaker,Electronics,2025-06-01,8041.7,17
-2015,Bluetooth Speaker,Electronics,2025-07-01,7656.0,18
-2015,Bluetooth Speaker,Electronics,2025-08-01,8572.4,19
-2015,Bluetooth Speaker,Electronics,2025-09-01,7972.1,20
-2016,Monitor,Electronics,2025-06-01,1001.7,17
-2016,Monitor,Electronics,2025-07-01,691.95,18
-2016,Monitor,Electronics,2025-08-01,817.95,19
-2016,Monitor,Electronics,2025-09-01,708.75,20
+ProductID,ProductName,Category,Month,Sales,t,month_sin,month_cos
+2001,Wireless Mouse,Electronics,2025-06-01,3844.8,17,0.5,-0.866
+2002,Mechanical Keyboard,Electronics,2025-06-01,6258.9,17,0.5,-0.866
+2003,USB-C Cable,Accessories,2025-06-01,2454.75,17,0.5,-0.866
+2004,Power Bank,Electronics,2025-06-01,6240.5,17,0.5,-0.866
+2005,Laptop Stand,Accessories,2025-06-01,3857.0,17,0.5,-0.866
+2006,Webcam,Electronics,2025-06-01,6019.2,17,0.5,-0.866
+2007,Headphones,Electronics,2025-06-01,12521.25,17,0.5,-0.866
+2008,Phone Case,Accessories,2025-06-01,3567.2,17,0.5,-0.866
+2009,Smart Watch,Wearables,2025-06-01,5214.0,17,0.5,-0.866
+2010,Fitness Band,Wearables,2025-06-01,5585.25,17,0.5,-0.866
+2011,Desk Lamp,Home Office,2025-06-01,4395.2,17,0.5,-0.866
+2012,Office Chair,Home Office,2025-06-01,16407.0,17,0.5,-0.866
+2013,Notebook,Stationery,2025-06-01,2231.6,17,0.5,-0.866
+2014,Backpack,Accessories,2025-06-01,5197.5,17,0.5,-0.866
+2015,Bluetooth Speaker,Electronics,2025-06-01,8041.7,17,0.5,-0.866
+2016,Monitor,Electronics,2025-06-01,1001.7,17,0.5,-0.866
+2017,HDMI Cable,Accessories,2025-06-01,2730.75,17,0.5,-0.866
+2018,Microphone,Electronics,2025-06-01,7590.5,17,0.5,-0.866
+2019,Tablet,Electronics,2025-06-01,7579.0,17,0.5,-0.866
+2020,Gaming Controller,Gaming,2025-06-01,5698.4,17,0.5,-0.866
+2001,Wireless Mouse,Electronics,2025-07-01,2808.9,18,0.0,-1.0
+2002,Mechanical Keyboard,Electronics,2025-07-01,7889.5,18,0.0,-1.0
+2003,USB-C Cable,Accessories,2025-07-01,2411.55,18,0.0,-1.0
+2004,Power Bank,Electronics,2025-07-01,6594.0,18,0.0,-1.0
+2005,Laptop Stand,Accessories,2025-07-01,3997.0,18,0.0,-1.0
+2006,Webcam,Electronics,2025-07-01,5152.8,18,0.0,-1.0
+2007,Headphones,Electronics,2025-07-01,9431.25,18,0.0,-1.0
+2008,Phone Case,Accessories,2025-07-01,3943.1,18,0.0,-1.0
+2009,Smart Watch,Wearables,2025-07-01,9780.0,18,0.0,-1.0
+2010,Fitness Band,Wearables,2025-07-01,7284.75,18,0.0,-1.0
+2011,Desk Lamp,Home Office,2025-07-01,3091.2,18,0.0,-1.0
+2012,Office Chair,Home Office,2025-07-01,7713.0,18,0.0,-1.0
+2013,Notebook,Stationery,2025-07-01,2249.8,18,0.0,-1.0
+2014,Backpack,Accessories,2025-07-01,4326.0,18,0.0,-1.0
+2015,Bluetooth Speaker,Electronics,2025-07-01,7656.0,18,0.0,-1.0
+2016,Monitor,Electronics,2025-07-01,691.95,18,0.0,-1.0
+2017,HDMI Cable,Accessories,2025-07-01,2774.75,18,0.0,-1.0
+2018,Microphone,Electronics,2025-07-01,10336.0,18,0.0,-1.0
+2019,Tablet,Electronics,2025-07-01,6786.0,18,0.0,-1.0
+2020,Gaming Controller,Gaming,2025-07-01,6014.6,18,0.0,-1.0
+2001,Wireless Mouse,Electronics,2025-08-01,3303.0,19,-0.5,-0.866
+2002,Mechanical Keyboard,Electronics,2025-08-01,7988.7,19,-0.5,-0.866
+2003,USB-C Cable,Accessories,2025-08-01,2324.25,19,-0.5,-0.866
+2004,Power Bank,Electronics,2025-08-01,5057.5,19,-0.5,-0.866
+2005,Laptop Stand,Accessories,2025-08-01,3505.6,19,-0.5,-0.866
+2006,Webcam,Electronics,2025-08-01,4980.0,19,-0.5,-0.866
+2007,Headphones,Electronics,2025-08-01,11100.0,19,-0.5,-0.866
+2008,Phone Case,Accessories,2025-08-01,4536.7,19,-0.5,-0.866
+2009,Smart Watch,Wearables,2025-08-01,6798.0,19,-0.5,-0.866
+2010,Fitness Band,Wearables,2025-08-01,6179.25,19,-0.5,-0.866
+2011,Desk Lamp,Home Office,2025-08-01,3953.6,19,-0.5,-0.866
+2012,Office Chair,Home Office,2025-08-01,13014.0,19,-0.5,-0.866
+2013,Notebook,Stationery,2025-08-01,2267.3,19,-0.5,-0.866
+2014,Backpack,Accessories,2025-08-01,5040.0,19,-0.5,-0.866
+2015,Bluetooth Speaker,Electronics,2025-08-01,8572.4,19,-0.5,-0.866
+2016,Monitor,Electronics,2025-08-01,817.95,19,-0.5,-0.866
+2017,HDMI Cable,Accessories,2025-08-01,2625.7,19,-0.5,-0.866
+2018,Microphone,Electronics,2025-08-01,8049.5,19,-0.5,-0.866
+2019,Tablet,Electronics,2025-08-01,7241.0,19,-0.5,-0.866
+2020,Gaming Controller,Gaming,2025-08-01,5878.6,19,-0.5,-0.866
+2001,Wireless Mouse,Electronics,2025-09-01,3128.4,20,-0.866,-0.5
+2002,Mechanical Keyboard,Electronics,2025-09-01,6125.6,20,-0.866,-0.5
+2003,USB-C Cable,Accessories,2025-09-01,2355.75,20,-0.866,-0.5
+2004,Power Bank,Electronics,2025-09-01,5600.0,20,-0.866,-0.5
+2005,Laptop Stand,Accessories,2025-09-01,3474.8,20,-0.866,-0.5
+2006,Webcam,Electronics,2025-09-01,4504.8,20,-0.866,-0.5
+2007,Headphones,Electronics,2025-09-01,11021.25,20,-0.866,-0.5
+2008,Phone Case,Accessories,2025-09-01,4145.4,20,-0.866,-0.5
+2009,Smart Watch,Wearables,2025-09-01,8922.0,20,-0.866,-0.5
+2010,Fitness Band,Wearables,2025-09-01,5159.0,20,-0.866,-0.5
+2011,Desk Lamp,Home Office,2025-09-01,3401.6,20,-0.866,-0.5
+2012,Office Chair,Home Office,2025-09-01,8694.0,20,-0.866,-0.5
+2013,Notebook,Stationery,2025-09-01,2076.55,20,-0.866,-0.5
+2014,Backpack,Accessories,2025-09-01,5838.0,20,-0.866,-0.5
+2015,Bluetooth Speaker,Electronics,2025-09-01,7972.1,20,-0.866,-0.5
+2016,Monitor,Electronics,2025-09-01,708.75,20,-0.866,-0.5
+2017,HDMI Cable,Accessories,2025-09-01,2505.8,20,-0.866,-0.5
+2018,Microphone,Electronics,2025-09-01,8725.25,20,-0.866,-0.5
+2019,Tablet,Electronics,2025-09-01,8762.0,20,-0.866,-0.5
+2020,Gaming Controller,Gaming,2025-09-01,8619.0,20,-0.866,-0.5

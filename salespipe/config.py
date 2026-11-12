@@ -4,6 +4,7 @@ Default cocok dengan dataset di folder datasets/. Untuk dataset lain dengan
 struktur serupa tapi nama file/kolom berbeda, cukup buat file JSON override
 (lihat config.example.json) dan berikan lewat --config.
 """
+
 from __future__ import annotations
 
 import json
@@ -48,21 +49,25 @@ class Schema:
     sales: str = "Sales"
 
     # koreksi penulisan kota yang diketahui salah (selain title-case otomatis)
-    city_aliases: dict = field(default_factory=lambda: {"Mashad": "Mashhad"})
+    city_aliases: dict[str, str] = field(default_factory=lambda: {"Mashad": "Mashhad"})
 
 
 @dataclass(frozen=True)
 class ModelConfig:
-    sales_status: str | None = "Completed"  # hanya status ini yang dihitung sebagai penjualan; None = semua
+    sales_status: str | None = (
+        "Completed"  # hanya status ini yang dihitung sebagai penjualan; None = semua
+    )
     train_ratio: float = 0.70
     val_ratio: float = 0.15  # sisanya menjadi test
-    poly_degrees: tuple = (2, 5)
-    alphas: tuple = (0.1, 1, 10)
+    poly_degrees: tuple[int, ...] = (2, 5)
+    alphas: tuple[float, ...] = (0.1, 1.0, 10.0)
 
 
 @dataclass(frozen=True)
 class PeriodConfig:
-    full_years_only: bool = True  # buang tahun yang datanya tidak lengkap 12 bulan (mis. 2026 baru Jan-Jun)
+    full_years_only: bool = (
+        True  # buang tahun yang datanya tidak lengkap 12 bulan (mis. 2026 baru Jan-Jun)
+    )
     start: str | None = None  # batas manual, format "YYYY-MM-DD"; None = tanpa batas
     end: str | None = None
 
@@ -74,11 +79,19 @@ class Config:
     period: PeriodConfig = field(default_factory=PeriodConfig)
 
 
-def _override(obj, values: dict):
+def _override[T: Schema | ModelConfig | PeriodConfig](
+    obj: T,
+    values: dict[str, object],
+) -> T:
     valid = {f.name for f in fields(obj)}
     unknown = set(values) - valid
+
     if unknown:
-        raise ValueError(f"Kunci konfigurasi tidak dikenal: {sorted(unknown)}. Yang valid: {sorted(valid)}")
+        raise ValueError(
+            f"Kunci konfigurasi tidak dikenal: {sorted(unknown)}. "
+            f"Yang valid: {sorted(valid)}"
+        )
+
     return replace(obj, **values)
 
 

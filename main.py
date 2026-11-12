@@ -1,4 +1,5 @@
 """Entry point: python main.py {clean,model,all} [--data-dir DIR] [--out-dir DIR] [--config FILE]"""
+
 import argparse
 import logging
 from pathlib import Path
@@ -9,6 +10,8 @@ from salespipe.cleaning import clean_and_merge
 from salespipe.config import load_config
 from salespipe.modeling import run_modeling
 
+log = logging.getLogger(__name__)
+
 CLEAN_FILE = "clean_merged.csv"
 
 
@@ -16,7 +19,7 @@ def cmd_clean(args, cfg) -> None:
     df = clean_and_merge(args.data_dir, cfg.schema, cfg.period)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     df.to_csv(args.out_dir / CLEAN_FILE, index=False)
-    logging.info("tersimpan: %s", args.out_dir / CLEAN_FILE)
+    log.info("tersimpan: %s", args.out_dir / CLEAN_FILE)
 
 
 def cmd_model(args, cfg) -> None:
@@ -27,7 +30,15 @@ def cmd_model(args, cfg) -> None:
 
     artifacts = run_modeling(df, cfg.schema, cfg.model)
     for name, table in artifacts.items():
-        table.round(4).to_csv(args.out_dir / f"{name}.csv", index=False)
+        numeric_columns = table.select_dtypes(include="number").columns
+
+        output_table = table.copy()
+        output_table[numeric_columns] = output_table[numeric_columns].round(4)
+
+        output_table.to_csv(
+            args.out_dir / f"{name}.csv",
+            index=False,
+        )
 
     pd.set_option("display.width", 200)
     metrics = artifacts["model_metrics"]
@@ -41,9 +52,16 @@ def cmd_model(args, cfg) -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("command", choices=["clean", "model", "all"])
-    p.add_argument("--data-dir", type=Path, default=Path("datasets"), help="folder dataset raw")
+    p.add_argument(
+        "--data-dir", type=Path, default=Path("datasets"), help="folder dataset raw"
+    )
     p.add_argument("--out-dir", type=Path, default=Path("temp"), help="folder output")
-    p.add_argument("--config", type=Path, default=None, help="JSON override nama file/kolom/parameter model")
+    p.add_argument(
+        "--config",
+        type=Path,
+        default=None,
+        help="JSON override nama file/kolom/parameter model",
+    )
     args = p.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")

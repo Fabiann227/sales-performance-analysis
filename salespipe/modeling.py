@@ -101,10 +101,12 @@ def split_months(
 ) -> dict[str, pd.DatetimeIndex]:
     n = len(months)
     n_train, n_val = round(n * cfg.train_ratio), round(n * cfg.val_ratio)
+
     if min(n_train, n_val, n - n_train - n_val) < 1:
         raise ValueError(
             f"{n} bulan terlalu sedikit untuk split {cfg.train_ratio}/{cfg.val_ratio}"
         )
+
     return {
         "train": months[:n_train],
         "validasi": months[n_train : n_train + n_val],
@@ -299,6 +301,103 @@ def best_ml_model(results: pd.DataFrame) -> str:
     return str(candidates.at[best_idx, "model"])
 
 
+def best_model_per_product(
+    product_metrics: pd.DataFrame,
+    product_col: str,
+) -> pd.DataFrame:
+    """Select the best model for each product using validation RMSE."""
+    required_columns = {
+        product_col,
+        "model",
+        "validasi_RMSE",
+    }
+
+    missing_columns = required_columns.difference(product_metrics.columns)
+
+    if missing_columns:
+        raise ValueError(f"Kolom evaluasi tidak ditemukan: {sorted(missing_columns)}")
+
+    valid_metrics = product_metrics.dropna(subset=["validasi_RMSE"])
+
+    if valid_metrics.empty:
+        raise ValueError("Tidak ada validation RMSE yang valid.")
+
+    best_indices = valid_metrics.groupby(product_col)["validasi_RMSE"].idxmin()
+
+    return (
+        valid_metrics.loc[best_indices].sort_values(product_col).reset_index(drop=True)
+    )
+
+
+def forecast_future(
+    monthly: pd.DataFrame,
+    product_metrics: pd.DataFrame,
+    s: Schema,
+    cfg: ModelConfig,
+    horizon: int = 3,
+) -> pd.DataFrame:
+    """Forecast future monthly sales using the best model per product."""
+    if horizon < 1:
+        raise ValueError("Horizon harus minimal 1 bulan.")
+
+    selected_models = best_model_per_product(
+        product_metrics,
+        s.product_id,
+    )
+
+    model_factories = build_models(cfg)
+
+    month_column = cast(pd.Series, monthly["Month"])
+    time_column = cast(pd.Series, monthly["t"])
+
+    last_month = pd.Timestamp(month_column.max())
+    last_t = int(time_column.max())
+
+    future_months = pd.date_range(
+        start=last_month + pd.offsets.MonthBegin(1),
+        periods=horizon,
+        freq="MS",
+    )
+
+    future_t = np.arange(
+        last_t + 1,
+        last_t + horizon + 1,
+    )
+
+    future_features = pd.DataFrame({"t": future_t})
+
+    rows = []
+
+    for _, selected in selected_models.iterrows():
+        pid = selected[s.product_id]
+        model_name = selected["model"]
+
+        history = monthly.loc[monthly[s.product_id] == pid]
+
+        model = model_factories[model_name]()
+
+        model.fit(
+            history[FEATURE],
+            history[TARGET],
+        )
+
+        predictions = model.predict(future_features)
+
+        for month, prediction in zip(future_months, predictions):
+            rows.append(
+                {
+                    s.product_id: pid,
+                    s.product_name: selected[s.product_name],
+                    s.category: selected[s.category],
+                    "Month": month,
+                    "model": model_name,
+                    "PredictedSales": max(0.0, float(prediction)),
+                }
+            )
+
+    return pd.DataFrame(rows)
+
+
 def product_trends(
     monthly: pd.DataFrame, train_months: pd.DatetimeIndex, s: Schema
 ) -> pd.DataFrame:
@@ -361,6 +460,19 @@ def run_modeling(
         s,
         cfg,
     )
+    future_forecast = forecast_future(
+        monthly=monthly,
+        product_metrics=product_metrics,
+        s=s,
+        cfg=cfg,
+        horizon=3,
+    )
+
+    log.info(
+        "Berhasil menghasilkan %d prediksi untuk %d produk.",
+        len(future_forecast),
+        future_forecast[s.product_id].nunique(),
+    )
 
     log.info(
         "model terbaik keseluruhan menurut validasi: %s",
@@ -377,4 +489,5 @@ def run_modeling(
         "model_metrics": results,
         "product_model_metrics": product_metrics,
         "product_trend": product_trends(monthly, month_sets["train"], s),
+        "future_forecast": future_forecast,
     }

@@ -94,6 +94,50 @@ def generate_insights(temp_dir: Path) -> dict[str, Any]:
     ).sort_values(by="Month")
     forecast_change = float(forecast_summary["PredictedSales"].iloc[-1] - forecast_summary["PredictedSales"].iloc[0]) if len(forecast_summary) > 1 else 0.0
     forecast_products = _forecast_product_summary(forecast)
+    forecast_monthly = forecast_summary.copy()
+    first_forecast = float(forecast_monthly["PredictedSales"].iloc[0])
+    last_forecast = float(forecast_monthly["PredictedSales"].iloc[-1])
+    forecast_change_pct = (
+        (last_forecast - first_forecast) / first_forecast * 100
+        if first_forecast != 0
+        else float("nan")
+    )
+    if pd.isna(forecast_change_pct) or abs(forecast_change_pct) < 2:
+        forecast_direction = "broadly stable"
+    elif forecast_change_pct > 0:
+        forecast_direction = "rising"
+    else:
+        forecast_direction = "falling"
+
+    increasing_count = int((forecast_products["ForecastChange"] > 0).sum())
+    decreasing_count = int((forecast_products["ForecastChange"] < 0).sum())
+    stable_count = int((forecast_products["ForecastChange"] == 0).sum())
+    recent_actual = _read(temp_dir, "test.csv")
+    recent_actual["Month"] = pd.to_datetime(recent_actual["Month"])
+    recent_average = float(
+        recent_actual.groupby("Month")["Sales"].sum().mean()
+    )
+    first_vs_recent_pct = (
+        (first_forecast - recent_average) / recent_average * 100
+        if recent_average != 0
+        else float("nan")
+    )
+
+    business_root_causes = [
+        "The forecast direction is driven by the combined product-level forecasts; "
+        f"{increasing_count} products rise, {decreasing_count} fall, and {stable_count} remain flat between the first and last forecast months.",
+        "The historical data contains product-level forecast errors. "
+        "Products with high relative error should be treated as areas of uncertainty, not as proven causes of the forecast movement.",
+        "The forecasting models use historical sales patterns and time order only. "
+        "Promotions, price changes, stock availability, competitors, and market events are not included, so these are important possible explanations to investigate.",
+    ]
+    business_actions = [
+        "Prepare inventory and staffing using the forecast as a planning signal, while keeping a safety buffer for products with high relative error.",
+        "Review the top error products every week. Check stock-outs, promotions, price changes, returns, and unusual orders before changing purchasing plans.",
+        "If the outlook is falling, test targeted promotions or merchandising changes on declining high-value products and measure the result rather than applying a broad discount immediately.",
+        "If the outlook is rising, confirm supplier capacity and inventory availability so demand is not lost through stock-outs.",
+        "Refresh the report when new completed sales are available and compare the forecast with actual sales before making a permanent change to the operating plan.",
+    ]
 
     return {
         "best_strategy": best_strategy,
@@ -107,4 +151,13 @@ def generate_insights(temp_dir: Path) -> dict[str, Any]:
         "error_details": errors,
         "forecast_products": forecast_products,
         "selected_model_distribution": forecast["model"].value_counts().to_dict(),
+        "forecast_monthly": forecast_monthly,
+        "forecast_direction": forecast_direction,
+        "forecast_change_pct": forecast_change_pct,
+        "first_forecast": first_forecast,
+        "last_forecast": last_forecast,
+        "recent_actual_average": recent_average,
+        "first_forecast_vs_recent_pct": first_vs_recent_pct,
+        "business_root_causes": business_root_causes,
+        "business_actions": business_actions,
     }

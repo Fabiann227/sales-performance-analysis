@@ -1,410 +1,188 @@
-# Analisis Kinerja Penjualan Marketplace Online Berbasis Machine Learning
+# Marketplace Sales Performance Analysis
 
-Proyek analisis dan peramalan penjualan menggunakan Python dengan menerapkan metodologi **CRISP-DM (Cross-Industry Standard Process for Data Mining)**.
+This project analyzes historical marketplace sales and evaluates time-series forecasting strategies using the CRISP-DM methodology.
 
-## 1. Gambaran Umum Proyek
+## Project overview
 
-Proyek ini bertujuan untuk menganalisis data historis penjualan dari sebuah marketplace online serta menerapkan berbagai metode machine learning dan statistik untuk mengevaluasi kinerja penjualan dan memprediksi penjualan di masa mendatang.
+- Historical period: January 2024 to December 2025
+- Forecast period: January to March 2026
+- Products: 20
+- Cleaned transactions: 41,954
+- Monthly modeling observations: 480 product-month rows
+- Forecasting strategies: 12
+- Walk-forward validation folds: 3
 
-Tujuan utama proyek:
+The pipeline preserves chronological order throughout the experiment. Random splitting is not used because it could expose future observations during training.
 
-- Menganalisis pola penjualan historis dan kinerja setiap produk.
-- Melakukan pembersihan dan persiapan data transaksi marketplace.
-- Membandingkan 12 model peramalan menggunakan validasi berdasarkan urutan waktu.
-- Mengidentifikasi strategi peramalan dengan performa terbaik.
-- Mengevaluasi hasil prediksi menggunakan data pengujian yang belum pernah digunakan dalam pelatihan.
-- Menghasilkan prediksi penjualan untuk setiap produk.
+## Pipeline execution
 
-**Periode data:** Januari 2024 hingga Desember 2025  
-**Periode peramalan:** Januari hingga Maret 2026  
-**Jumlah produk:** 20 produk  
-**Dataset hasil pembersihan:** 41.954 baris  
-**Dataset peramalan bulanan:** 480 observasi produk-bulan
-
-## 2. Teknologi yang Digunakan
-
-| Teknologi    | Kegunaan                                      |
-| ------------ | --------------------------------------------- |
-| Python       | Bahasa pemrograman utama                      |
-| Pandas       | Manipulasi dan pemrosesan data                |
-| NumPy        | Komputasi numerik                             |
-| Scikit-learn | Algoritma machine learning dan evaluasi model |
-| Matplotlib   | Visualisasi data                              |
-| CSV          | Penyimpanan dataset dan hasil eksperimen      |
-
-## 3. Metodologi Penelitian: CRISP-DM
-
-Proyek ini mengikuti enam tahapan metodologi CRISP-DM.
-
-### 3.1 Business Understanding (Pemahaman Bisnis)
-
-Tahap ini berfokus pada penentuan tujuan analisis kinerja penjualan marketplace serta pengembangan model peramalan untuk mendukung perencanaan dan pengambilan keputusan bisnis.
-
-### 3.2 Data Understanding (Pemahaman Data)
-
-Dataset awal diperoleh dari Kaggle dan terdiri dari empat file utama:
-
-| Dataset         | Deskripsi                       |
-| --------------- | ------------------------------- |
-| `orders.csv`    | Informasi transaksi dan pesanan |
-| `customers.csv` | Informasi pelanggan             |
-| `payments.csv`  | Informasi pembayaran            |
-| `products.csv`  | Informasi produk                |
-
-Analisis menggunakan data dari tahun kalender 2024 dan 2025. Data historis tahun 2026 yang belum lengkap tidak disertakan dalam analisis.
-
-### 3.3 Data Preparation (Persiapan Data)
-
-Tahapan persiapan data meliputi:
-
-1. Membaca seluruh dataset awal.
-2. Mengidentifikasi nilai kosong, duplikasi, dan data yang tidak valid.
-3. Menghapus data pesanan duplikat.
-4. Menghapus baris dengan tanggal, kuantitas, atau diskon yang tidak valid.
-5. Mengisi nilai usia pelanggan yang kosong menggunakan median.
-6. Mengisi informasi kota dan metode pembayaran yang kosong menggunakan nilai `Unknown`.
-7. Menyeragamkan penulisan nama kota.
-8. Menghapus data pelanggan yang tidak memiliki referensi yang valid.
-9. Menggabungkan dataset berdasarkan relasi antar tabel yang telah divalidasi.
-10. Menghitung nilai penjualan setiap transaksi.
-
-Rumus perhitungan penjualan:
-
-```python
-Sales = Quantity * UnitPrice * (1 - Discount)
-```
-
-Hasil akhir proses pembersihan menghasilkan **41.954 baris dan 17 kolom**.
-
-Selanjutnya, data transaksi diagregasikan menjadi data penjualan bulanan untuk setiap produk.
-
-Hasil agregasi terdiri dari:
-
-- 20 produk.
-- 24 bulan.
-- 480 observasi produk-bulan.
-
-Kombinasi produk dan bulan yang tidak memiliki transaksi direpresentasikan sebagai nilai penjualan nol.
-
-Hanya transaksi dengan status `Completed` yang diperhitungkan dalam perhitungan penjualan.
-
-### 3.4 Modeling (Pemodelan)
-
-Target peramalan adalah nilai penjualan bulanan (`Sales`).
-
-Fitur waktu `t` digunakan untuk merepresentasikan indeks bulan secara berurutan.
-
-Sebanyak 12 model dan baseline peramalan diuji:
-
-| No. | Model                 | Konfigurasi              |
-| --: | --------------------- | ------------------------ |
-|   1 | Naive                 | Rata-rata data pelatihan |
-|   2 | Linear Regression     | Model linear             |
-|   3 | Polynomial Regression | Derajat 2                |
-|   4 | Polynomial Regression | Derajat 5                |
-|   5 | Ridge Regression      | Alpha = 0.1              |
-|   6 | Ridge Regression      | Alpha = 1                |
-|   7 | Ridge Regression      | Alpha = 10               |
-|   8 | Lasso Regression      | Alpha = 0.1              |
-|   9 | Lasso Regression      | Alpha = 1                |
-|  10 | Lasso Regression      | Alpha = 10               |
-|  11 | Seasonal Naive        | Baseline musiman         |
-|  12 | Moving Average        | Jendela 3 bulan          |
-
-Model regresi dievaluasi secara terpisah untuk setiap produk.
-
-#### Pembagian Data Berdasarkan Urutan Waktu
-
-Pembagian dataset dilakukan secara kronologis sebagai berikut:
-
-| Dataset    | Periode             |   Durasi |
-| ---------- | ------------------- | -------: |
-| Training   | Jan 2024 - Mei 2025 | 17 bulan |
-| Validation | Jun 2025 - Sep 2025 |  4 bulan |
-| Testing    | Okt 2025 - Des 2025 |  3 bulan |
-
-Pembagian data secara acak tidak digunakan karena urutan waktu harus dipertahankan dalam analisis deret waktu (_time series_).
-
-#### Walk-Forward Validation
-
-Evaluasi model menggunakan pendekatan _expanding window_ dengan tiga fold:
-
-| Fold | Periode Training  | Periode Validation |
-| ---- | ----------------- | ------------------ |
-| 1    | Jan-Des 2024      | Jan-Mar 2025       |
-| 2    | Jan 2024-Mar 2025 | Apr-Jun 2025       |
-| 3    | Jan 2024-Jun 2025 | Jul-Sep 2025       |
-
-Setiap model dievaluasi pada ketiga fold tersebut.
-
-Model dengan nilai rata-rata RMSE terendah dipilih sebagai model dengan performa terbaik.
-
-Untuk pemilihan model per produk, model dengan rata-rata RMSE terendah dari ketiga fold dipilih secara individual untuk setiap produk.
-
-### 3.5 Evaluation (Evaluasi)
-
-Kinerja model dievaluasi menggunakan beberapa metrik:
-
-| Metrik | Kegunaan                                                |
-| ------ | ------------------------------------------------------- |
-| MAE    | Mengukur rata-rata kesalahan absolut prediksi           |
-| MSE    | Mengukur rata-rata kuadrat kesalahan prediksi           |
-| RMSE   | Mengukur akar rata-rata kuadrat kesalahan prediksi      |
-| WAPE   | Mengukur persentase kesalahan absolut berbobot          |
-| R²     | Mengukur kemampuan model dalam menjelaskan variasi data |
-
-Evaluasi akhir membandingkan tiga strategi peramalan:
-
-1. **Global Training Mean Baseline:** Menggunakan rata-rata periode training secara global.
-2. **Best Global ML:** Menggunakan Ridge Regression dengan alpha 10.
-3. **Per-Product Selection:** Menggunakan model terbaik yang dipilih secara individual untuk setiap produk berdasarkan hasil walk-forward validation.
-
-Model akhir dilatih ulang menggunakan data pengembangan dari Januari 2024 hingga September 2025, kemudian dievaluasi menggunakan data pengujian yang tidak digunakan dalam proses pemilihan model, yaitu Oktober hingga Desember 2025.
-
-#### Hasil Evaluasi Akhir
-
-| Strategi              |        MAE |         RMSE |       WAPE |        R² |
-| --------------------- | ---------: | -----------: | ---------: | --------: |
-| Global Training Mean Baseline | **769.89** | **1,101.98** | **13.59%** | **0.858** |
-| Best Global ML        |     818.86 |     1,173.88 |     14.46% |     0.839 |
-| Per-Product Selection |     928.47 |     1,326.27 |     16.39% |     0.794 |
-
-**Temuan utama:** Strategi Global Training Mean Baseline memperoleh performa agregat terbaik pada dataset pengujian akhir dibandingkan Ridge Regression maupun strategi pemilihan model secara individual per produk.
-
-### 3.6 Deployment (Penerapan)
-
-Model peramalan terpilih digunakan untuk menghasilkan 60 prediksi yang mencakup 20 produk selama tiga bulan mendatang:
-
-- Januari 2026.
-- Februari 2026.
-- Maret 2026.
-
-Hasil prediksi disimpan dalam file `temp/future_forecast.csv`.
-
-Prediksi tersebut dihasilkan berdasarkan data historis yang tersedia hingga Desember 2025. Hasil ini merupakan estimasi dari model, bukan data penjualan aktual.
-
-## 4. Instalasi dan Persiapan
-
-### Persyaratan
-
-- Python 3.11 atau versi yang kompatibel.
-- pip.
-- Git (opsional).
-
-### Clone Repository
-
-```bash
-git clone <repository-url>
-cd sales-performance-analysis
-```
-
-### Membuat Virtual Environment
-
-Linux / macOS:
+Install the dependencies:
 
 ```bash
 python -m venv venv
 source venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-### Instalasi Dependencies
-
-```bash
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-## 5. Cara Menggunakan Proyek
-
-File utama untuk menjalankan pipeline adalah `main.py`.
-
-Pipeline mendukung tiga mode eksekusi:
-
-### Menjalankan Data Cleaning
-
-```bash
-python main.py clean
-```
-
-Perintah ini memproses dataset awal dan menghasilkan data bersih yang diperlukan untuk tahap pemodelan.
-
-### Menjalankan Pemodelan dan Evaluasi
-
-```bash
-python main.py model
-```
-
-Perintah ini menjalankan agregasi penjualan bulanan, pelatihan dan evaluasi model, walk-forward validation, pemilihan model terbaik, serta pembuatan prediksi penjualan.
-
-### Menjalankan Seluruh Pipeline
+Run the complete workflow with one command:
 
 ```bash
 python main.py all
 ```
 
-Perintah ini menjalankan seluruh workflow secara berurutan:
+The pipeline performs:
 
-1. Data preparation dan validasi.
-2. Training, walk-forward validation, evaluasi, dan forecasting.
-3. Pembuatan delapan visualisasi.
-4. Analisis insights deterministik berbasis artifact CSV.
-5. Pembuatan laporan HTML lokal.
+1. Data cleaning and relational integration
+2. Monthly aggregation and chronological splitting
+3. Model training and walk-forward validation
+4. Final-test evaluation
+5. Future forecasting
+6. Generation of eight visualizations
+7. Deterministic business insights and error analysis
+8. Local HTML report generation
 
-Laporan utama tersedia di `reports/latest/index.html`.
+The final report is written to:
 
-### Perintah pipeline tambahan
+```text
+reports/latest/index.html
+```
+
+Individual commands are also available:
 
 ```bash
+python main.py clean
+python main.py model
 python main.py visualize
 python main.py insights
 python main.py report
 ```
 
-Perintah tersebut digunakan untuk menjalankan tahap individual setelah artifact dari tahap sebelumnya tersedia. Semua perintah mendukung `--data-dir`, `--out-dir`, dan `--config`; lokasi chart dan laporan dapat diubah dengan `--visualizations-dir` dan `--report-dir`.
+All commands support `--data-dir`, `--out-dir`, and `--config`. Chart and report locations can be changed with `--visualizations-dir` and `--report-dir`.
 
-### Menghasilkan Visualisasi
-
-Setelah seluruh file CSV yang diperlukan tersedia, jalankan:
-
-```bash
-python main.py visualize
-```
-
-Seluruh grafik akan disimpan dalam direktori `visualizations/`. Implementasi modular berada di `salespipe/visualization.py`; `visualize_sales.py` dipertahankan sebagai script analisis lama.
-
-**Catatan:** Script visualisasi membaca hasil CSV yang sudah tersedia. Jalankan pipeline pemodelan terlebih dahulu apabila file hasil pemodelan belum tersedia atau perlu dibuat ulang.
-
-## 6. Struktur Direktori Proyek
+## Architecture
 
 ```text
 sales-performance-analysis/
-│
 ├── datasets/
 │   ├── orders.csv
 │   ├── customers.csv
 │   ├── payments.csv
-│   ├── products.csv
-│   └── clean_final_data.csv
-│
+│   └── products.csv
 ├── salespipe/
 │   ├── __init__.py
 │   ├── cleaning.py
 │   ├── config.py
-│   └── modeling.py
-│
+│   ├── modeling.py
+│   ├── visualization.py
+│   ├── insights.py
+│   └── reporting.py
 ├── temp/
-│   ├── clean_merged.csv
-│   ├── monthly.csv
-│   ├── train.csv
-│   ├── validasi.csv
-│   ├── test.csv
-│   ├── model_metrics.csv
-│   ├── walk_forward_metrics.csv
-│   ├── walk_forward_summary.csv
-│   ├── final_selected_models.csv
-│   ├── final_test_predictions.csv
-│   ├── final_test_metrics.csv
-│   ├── final_test_error_analysis.csv
-│   └── future_forecast.csv
-│
 ├── visualizations/
-│   ├── overall_monthly_sales.png
-│   ├── product_monthly_sales.png
-│   ├── product_sales_comparison.png
-│   ├── model_performance_comparison.png
-│   ├── actual_vs_predicted_sales.png
-│   ├── forecasting_error_contribution.png
-│   ├── overall_future_forecast.png
-│   └── future_forecast_by_product.png
-│
+├── reports/latest/
 ├── main.py
-├── predict.py
-├── validate_forecast.py
-├── visualize_sales.py
-│
-├── analyze_errors.py
-├── analyze_product_metrics.py
-├── analyze_product_models.py
-│
 ├── config.example.json
 ├── requirements.txt
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
-### Fungsi Komponen Utama
+### Module responsibilities
 
-| File / Direktori             | Fungsi                                                              |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `datasets/`                  | Menyimpan dataset awal dan dataset hasil pembersihan                |
-| `salespipe/cleaning.py`      | Membaca, membersihkan, menggabungkan data, dan menghitung penjualan |
-| `salespipe/config.py`        | Mengelola konfigurasi pipeline                                      |
-| `salespipe/modeling.py`      | Agregasi bulanan, pelatihan model, validasi, dan peramalan          |
-| `main.py`                    | Titik masuk utama untuk menjalankan pipeline                        |
-| `predict.py`                 | Pembuatan atau pemeriksaan hasil prediksi                           |
-| `validate_forecast.py`       | Validasi hasil peramalan                                            |
-| `visualize_sales.py`         | Menghasilkan delapan visualisasi                                    |
-| `analyze_errors.py`          | Analisis kesalahan prediksi                                         |
-| `analyze_product_metrics.py` | Analisis metrik evaluasi per produk                                 |
-| `analyze_product_models.py`  | Perbandingan model per produk                                       |
-| `temp/`                      | Menyimpan dataset perantara dan hasil eksperimen                    |
-| `visualizations/`            | Menyimpan grafik hasil analisis                                     |
-| `requirements.txt`           | Daftar dependensi Python                                            |
-| `config.example.json`        | Contoh konfigurasi proyek                                           |
+- `cleaning.py`: validates, cleans, merges, and feature-engineers raw datasets.
+- `config.py`: loads schema, model, and period configuration.
+- `modeling.py`: builds monthly data, trains models, performs validation, evaluates strategies, and forecasts future sales.
+- `visualization.py`: generates the eight analytical charts.
+- `insights.py`: creates reproducible, rule-based findings from generated artifacts.
+- `reporting.py`: creates the local HTML report and its chart assets.
+- `main.py`: orchestrates the complete workflow and command-line interface.
 
-Direktori `temp/` berisi hasil eksperimen dan dataset yang dihasilkan oleh pipeline. File CSV di dalamnya digunakan untuk analisis, evaluasi, dan visualisasi.
+## Data preparation
 
-## 7. Visualisasi yang Dihasilkan
+The cleaning workflow:
 
-Proyek ini menghasilkan delapan visualisasi utama:
+1. Reads the four raw tables.
+2. Validates required columns.
+3. Removes duplicate orders.
+4. Converts dates and numeric fields.
+5. Removes invalid dates, quantities, and discounts.
+6. Imputes missing customer ages with the median.
+7. Normalizes city names and missing categorical values.
+8. Validates and performs relational merges.
+9. Calculates transaction sales:
 
-| No. | Visualisasi                      | Deskripsi                                                         |
-| --: | -------------------------------- | ----------------------------------------------------------------- |
-|   1 | Overall Monthly Sales            | Total penjualan marketplace selama 2024-2025                      |
-|   2 | Monthly Sales by Product         | Tren penjualan bulanan setiap produk                              |
-|   3 | Total Sales by Product           | Perbandingan total penjualan antarproduk                          |
-|   4 | Model Performance Comparison     | Perbandingan rata-rata RMSE dari walk-forward validation          |
-|   5 | Actual vs Predicted Sales        | Perbandingan prediksi dengan penjualan aktual pada data pengujian |
-|   6 | Forecasting Error Contribution   | Produk dengan kontribusi kesalahan prediksi terbesar              |
-|   7 | Overall Future Sales Forecast    | Prediksi agregat penjualan Januari-Maret 2026                     |
-|   8 | Future Sales Forecast by Product | Prediksi penjualan setiap produk beserta model terpilih           |
+```text
+Sales = Quantity × UnitPrice × (1 − Discount)
+```
 
-Seluruh visualisasi dibuat menggunakan Matplotlib dan disimpan dalam format PNG dengan resolusi 300 DPI.
+Only completed transactions are used for monthly sales modeling.
 
-## 8. Keterbatasan Penelitian
+## Modeling methodology
 
-Beberapa keterbatasan yang perlu diperhatikan dalam menginterpretasikan hasil penelitian:
+The target is monthly product sales. The model uses a chronological month index and evaluates 12 regression and forecasting strategies:
 
-- Periode data historis hanya mencakup 24 bulan.
-- Dataset terdiri dari 20 produk.
-- Periode pengujian akhir hanya mencakup tiga bulan.
-- Model peramalan terutama menggunakan informasi urutan waktu dan belum memanfaatkan banyak variabel eksternal sebagai faktor penjelas.
-- Model belum tentu dapat menangkap perubahan pasar yang tidak terduga, promosi, maupun pola musiman.
-- Prediksi masa depan belum diverifikasi menggunakan data penjualan aktual tahun 2026.
+1. Training Mean Baseline
+2. Linear Regression
+3. Polynomial Regression, degree 2
+4. Polynomial Regression, degree 5
+5. Ridge Regression, alpha 0.1
+6. Ridge Regression, alpha 1.0
+7. Ridge Regression, alpha 10.0
+8. Lasso Regression, alpha 0.1
+9. Lasso Regression, alpha 1.0
+10. Lasso Regression, alpha 10.0
+11. Seasonal Naive
+12. Moving Average
 
-Oleh karena itu, hasil penelitian perlu diinterpretasikan sesuai dengan cakupan dataset dan metodologi eksperimen yang digunakan.
+### Chronological split
 
-## 9. Referensi Dataset
+| Dataset | Period | Months |
+|---|---|---:|
+| Training | January 2024 – May 2025 | 17 |
+| Validation | June 2025 – September 2025 | 4 |
+| Testing | October 2025 – December 2025 | 3 |
 
-Dataset sumber:
+### Walk-forward validation
 
-[E-Commerce Sales Data Analysis & EDA](https://www.kaggle.com/datasets/erfan4524/e-commerce-sales-data-analysis-and-eda/data)
+| Fold | Training period | Validation period |
+|---:|---|---|
+| 1 | January–December 2024 | January–March 2025 |
+| 2 | January 2024–March 2025 | April–June 2025 |
+| 3 | January 2024–June 2025 | July–September 2025 |
 
-Sumber: Kaggle.
+Models are selected using validation RMSE. The final test period remains untouched until the final comparison.
 
-## 10. Status Proyek
+## Evaluation
 
-| Tahapan CRISP-DM       | Status                                     |
-| ---------------------- | ------------------------------------------ |
-| Business Understanding | Selesai                                    |
-| Data Understanding     | Selesai                                    |
-| Data Preparation       | Selesai                                    |
-| Modeling               | Selesai                                    |
-| Evaluation             | Selesai untuk eksperimen saat ini          |
-| Deployment             | Pembuatan prediksi dan visualisasi selesai |
+The final evaluation compares:
 
----
+1. **Global Training Mean Baseline**
+2. **Best Global ML**
+3. **Per-Product Selection**
 
-**Judul Proyek:** Analisis Kinerja Penjualan Marketplace Online Berbasis Machine Learning Menggunakan Kerangka CRISP-DM
+Current reference results:
 
-**Tujuan:** Penelitian akademik dan penerapan metode peramalan deret waktu untuk menganalisis kinerja penjualan marketplace menggunakan machine learning dan metode statistik sebagai baseline.
+| Strategy | MAE | RMSE | WAPE | R² |
+|---|---:|---:|---:|---:|
+| Global Training Mean Baseline | 769.89 | 1,101.98 | 13.59% | 0.858 |
+| Best Global ML | 818.86 | 1,173.88 | 14.46% | 0.839 |
+| Per-Product Selection | 928.47 | 1,326.27 | 16.39% | 0.794 |
+
+These values are reference results only. The generated artifacts and report calculate metrics dynamically.
+
+## Generated visualizations
+
+The pipeline creates:
+
+1. Overall monthly sales
+2. Monthly sales trends by product
+3. Total sales by product
+4. Walk-forward model performance comparison
+5. Actual versus predicted sales
+6. Forecasting error contribution
+7. Overall future sales forecast
+8. Future sales forecast by product
+
+## Reproducibility and limitations
+
+The pipeline preserves raw data and writes intermediate CSV artifacts for verification. Business insights are deterministic Python calculations rather than LLM-generated interpretations.
+
+Limitations include the 24-month historical period, the three-month final test period, the 20-product scope, and the limited use of external explanatory variables. Forecasts are analytical estimates and do not represent production deployment.

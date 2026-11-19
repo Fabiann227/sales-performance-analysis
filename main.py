@@ -27,7 +27,7 @@ def cmd_clean(args: argparse.Namespace, cfg) -> None:
     output_path = args.out_dir / CLEAN_FILE
     df.to_csv(output_path, index=False)
 
-    log.info("Dataset temizlendi dan tersimpan: %s", output_path)
+    log.info("Cleaned dataset saved to: %s", output_path)
 
 
 def save_artifacts(
@@ -47,7 +47,7 @@ def save_artifacts(
         output_path = output_dir / f"{name}.csv"
         output_table.to_csv(output_path, index=False)
 
-        log.info("Tersimpan: %s", output_path)
+        log.info("Saved: %s", output_path)
 
 
 def print_model_metrics(artifacts: dict[str, pd.DataFrame]) -> None:
@@ -57,16 +57,16 @@ def print_model_metrics(artifacts: dict[str, pd.DataFrame]) -> None:
     columns = [
         "model",
         "train_RMSE",
-        "validasi_RMSE",
+        "validation_RMSE",
         "test_MAE",
         "test_RMSE",
         "test_R2",
         "train_WAPE",
-        "validasi_WAPE",
+        "validation_WAPE",
         "test_WAPE",
     ]
 
-    print("\n=== Perbandingan Model ===")
+    print("\n=== Model Comparison ===")
     print(metrics[columns].round(3).to_string(index=False))
 
 
@@ -95,7 +95,7 @@ def print_walk_forward_summary(
 
 def print_product_trends(artifacts: dict[str, pd.DataFrame]) -> None:
     """Print the sales trend analysis for each product."""
-    print("\n=== Tren Penjualan per Produk ===")
+    print("\n=== Product Sales Trends ===")
     print(artifacts["product_trend"].round(2).to_string(index=False))
 
 
@@ -105,7 +105,7 @@ def cmd_model(args: argparse.Namespace, cfg) -> None:
 
     if not input_path.exists():
         raise FileNotFoundError(
-            f"{input_path} belum ada. Jalankan 'python main.py clean' dulu."
+            f"{input_path} does not exist. Run 'python main.py clean' first."
         )
 
     df = pd.read_csv(
@@ -116,7 +116,7 @@ def cmd_model(args: argparse.Namespace, cfg) -> None:
         ],
     )
 
-    log.info("Memulai modeling pipeline...")
+    log.info("Starting modeling pipeline...")
 
     artifacts = run_modeling(
         df=df,
@@ -139,7 +139,7 @@ def cmd_model(args: argparse.Namespace, cfg) -> None:
     print_product_trends(artifacts)
 
     log.info(
-        "\nModeling selesai. Seluruh hasil tersimpan di: %s",
+        "\nModeling complete. All results saved to: %s",
         args.out_dir,
     )
 

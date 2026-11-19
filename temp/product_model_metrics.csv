@@ -1,4 +1,4 @@
-ProductID,ProductName,Category,model,train_MAE,train_RMSE,train_WAPE,validasi_MAE,validasi_RMSE,validasi_WAPE,test_MAE,test_RMSE,test_WAPE
+ProductID,ProductName,Category,model,train_MAE,train_RMSE,train_WAPE,validation_MAE,validation_RMSE,validation_WAPE,test_MAE,test_RMSE,test_WAPE
 2001,Wireless Mouse,Electronics,Lasso (a=0.1),373.6149,421.3486,11.4401,297.5705,386.5634,9.0965,93.4364,102.9846,2.9816
 2002,Mechanical Keyboard,Electronics,Lasso (a=0.1),1014.2446,1183.9924,13.5203,873.425,1176.4069,12.3615,922.0737,1123.0526,13.0591
 2003,USB-C Cable,Accessories,Lasso (a=0.1),216.735,261.5499,8.884,134.3605,146.282,5.6298,270.8617,292.2635,11.0046

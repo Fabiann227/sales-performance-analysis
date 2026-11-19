@@ -27,8 +27,8 @@ def read_table(path: Path) -> pd.DataFrame:
 
     if reader is None:
         raise ValueError(
-            f"Format file tidak didukung: {path.suffix} "
-            f"(didukung: {sorted(readers)})"
+            f"Unsupported file format: {path.suffix} "
+            f"(supported: {sorted(readers)})"
         )
 
     return reader(path)
@@ -83,8 +83,8 @@ def load_tables(
 
         if not path.exists():
             raise FileNotFoundError(
-                f"File '{filename}' untuk tabel {name} "
-                f"tidak ditemukan di {data_dir}"
+                f"File '{filename}' for table {name} "
+                f"was not found in {data_dir}"
             )
 
         tables[name] = read_table(path)
@@ -103,9 +103,9 @@ def _validate_columns(
 
         if missing:
             raise ValueError(
-                f"Tabel {name}: kolom {missing} tidak ada. "
-                f"Sesuaikan lewat --config. "
-                f"Kolom tersedia: {list(tables[name].columns)}"
+                f"Table {name}: missing columns {missing}. "
+                f"Adjust the schema through --config. "
+                f"Available columns: {list(tables[name].columns)}"
             )
 
 
@@ -145,7 +145,7 @@ def clean_customers(
     age_median = float(age.median())
 
     if isnan(age_median):
-        raise ValueError("Kolom Age tidak memiliki nilai valid untuk imputasi.")
+        raise ValueError("The Age column has no valid values for imputation.")
 
     df[s.age] = age.fillna(age_median).astype("int64")
 
@@ -171,7 +171,7 @@ def clean_orders(
     df = df.drop_duplicates().copy()
 
     log.info(
-        "orders: duplikat dihapus %d",
+        "orders: duplicates removed %d",
         initial_count - len(df),
     )
 
@@ -279,7 +279,7 @@ def filter_period(
 
         if not partial_years.empty:
             log.info(
-                "periode: tahun tidak lengkap dibuang %s",
+                "period: incomplete years removed %s",
                 partial_years.to_dict(),
             )
 
@@ -294,13 +294,13 @@ def filter_period(
     # 7. Ensure the result is not empty.
     if out.empty:
         raise ValueError(
-            "Tidak ada order tersisa setelah filter periode; "
-            "periksa konfigurasi 'period'."
+            "No orders remain after period filtering; "
+            "check the 'period' configuration."
         )
 
     # 8. Log the filtering result.
     log.info(
-        "periode: %s .. %s, baris di luar periode dihapus %d",
+        "period: %s .. %s, rows outside the period removed %d",
         f"{out[s.order_date].min():%Y-%m-%d}",
         f"{out[s.order_date].max():%Y-%m-%d}",
         len(df) - len(out),
@@ -342,7 +342,7 @@ def merge_tables(
     )
 
     log.info(
-        "merge: baris dengan customer tidak dikenal (orphan) dihapus %d",
+        "merge: rows with unknown customers (orphans) removed %d",
         previous_count - len(df),
     )
 
@@ -363,7 +363,7 @@ def add_sales(
     invalid_price = df[s.unit_price].isna() | (df[s.unit_price] <= 0)
 
     if bool(invalid_price.any()):
-        raise ValueError("UnitPrice mengandung nilai kosong atau tidak valid.")
+        raise ValueError("UnitPrice contains missing or invalid values.")
 
     df[s.sales] = (df[s.quantity] * df[s.unit_price] * (1 - df[s.discount])).round(2)
 
@@ -403,8 +403,8 @@ def clean_and_merge(
             missing[column] = count
 
     if missing:
-        raise ValueError(f"Masih ada missing value setelah cleaning: {missing}")
+        raise ValueError(f"Missing values remain after cleaning: {missing}")
 
-    log.info("hasil cleaning: %s", df.shape)
+    log.info("cleaning result: %s", df.shape)
 
     return df

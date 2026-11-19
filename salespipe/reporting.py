@@ -77,7 +77,7 @@ def generate_report(
     clean = pd.read_csv(temp_dir / "clean_merged.csv")
     forecast = pd.read_csv(temp_dir / "future_forecast.csv")
     train = pd.read_csv(temp_dir / "train.csv")
-    validation = pd.read_csv(temp_dir / "validasi.csv")
+    validation = pd.read_csv(temp_dir / "validation.csv")
     test = pd.read_csv(temp_dir / "test.csv")
     error_details = insights["error_details"]
     forecast_products = insights["forecast_products"]

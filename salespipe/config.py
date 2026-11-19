@@ -1,8 +1,7 @@
-"""Konfigurasi pipeline: nama file, nama kolom (schema), dan parameter model.
+"""Pipeline configuration: file names, schema columns, and model parameters.
 
-Default cocok dengan dataset di folder datasets/. Untuk dataset lain dengan
-struktur serupa tapi nama file/kolom berbeda, cukup buat file JSON override
-(lihat config.example.json) dan berikan lewat --config.
+The defaults match the datasets in the datasets/ folder. For another dataset
+with a similar structure, create a JSON override and pass it with --config.
 """
 
 from __future__ import annotations
@@ -14,51 +13,51 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class Schema:
-    # nama file tiap tabel di folder data
+    # File name for each table in the data directory.
     orders_file: str = "orders.csv"
     customers_file: str = "customers.csv"
     payments_file: str = "payments.csv"
     products_file: str = "products.csv"
 
-    # kunci
+    # Keys.
     order_id: str = "OrderID"
     customer_id: str = "CustomerID"
     product_id: str = "ProductID"
 
-    # kolom orders
+    # Order columns.
     order_date: str = "OrderDate"
     quantity: str = "Quantity"
-    discount: str = "Discount"  # pecahan, mis. 0.1 = diskon 10%
+    discount: str = "Discount"  # Fraction, for example 0.1 = 10% discount.
     payment_method: str = "PaymentMethod"
     status: str = "Status"
 
-    # kolom customers
+    # Customer columns.
     age: str = "Age"
     city: str = "City"
     signup_date: str = "SignupDate"
 
-    # kolom payments
+    # Payment columns.
     payment_status: str = "PaymentStatus"
 
-    # kolom products
+    # Product columns.
     product_name: str = "ProductName"
     category: str = "Category"
     unit_price: str = "UnitPrice"
 
-    # kolom turunan hasil pipeline
+    # Derived pipeline column.
     sales: str = "Sales"
 
-    # koreksi penulisan kota yang diketahui salah (selain title-case otomatis)
+    # Known city spelling corrections in addition to title casing.
     city_aliases: dict[str, str] = field(default_factory=lambda: {"Mashad": "Mashhad"})
 
 
 @dataclass(frozen=True)
 class ModelConfig:
     sales_status: str | None = (
-        "Completed"  # hanya status ini yang dihitung sebagai penjualan; None = semua
+        "Completed"  # Only this status contributes to sales; None means all statuses.
     )
     train_ratio: float = 0.70
-    val_ratio: float = 0.15  # sisanya menjadi test
+    val_ratio: float = 0.15  # The remainder becomes the test set.
     poly_degrees: tuple[int, ...] = (2, 5)
     alphas: tuple[float, ...] = (0.1, 1.0, 10.0)
 
@@ -66,10 +65,10 @@ class ModelConfig:
 @dataclass(frozen=True)
 class PeriodConfig:
     full_years_only: bool = (
-        True  # buang tahun yang datanya tidak lengkap 12 bulan (mis. 2026 baru Jan-Jun)
+        True  # Drop years without all 12 months, such as a partial 2026.
     )
-    start: str | None = None  # batas manual, format "YYYY-MM-DD"; None = tanpa batas
-    end: str | None = None
+    start: str | None = None  # Optional lower bound, format "YYYY-MM-DD".
+    end: str | None = None  # Optional upper bound, format "YYYY-MM-DD".
 
 
 @dataclass(frozen=True)
@@ -88,22 +87,22 @@ def _override[T: Schema | ModelConfig | PeriodConfig](
 
     if unknown:
         raise ValueError(
-            f"Kunci konfigurasi tidak dikenal: {sorted(unknown)}. "
-            f"Yang valid: {sorted(valid)}"
+            f"Unknown configuration keys: {sorted(unknown)}. "
+            f"Valid keys: {sorted(valid)}"
         )
 
     return replace(obj, **values)
 
 
 def load_config(path: str | Path | None) -> Config:
-    """Baca override dari JSON: {"schema": {...}, "model": {...}, "period": {...}}. None = default."""
+    """Load a JSON override with schema, model, and period sections."""
     cfg = Config()
     if path is None:
         return cfg
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     unknown = set(raw) - {"schema", "model", "period"}
     if unknown:
-        raise ValueError(f"Bagian konfigurasi tidak dikenal: {sorted(unknown)}")
+        raise ValueError(f"Unknown configuration sections: {sorted(unknown)}")
     return Config(
         schema=_override(cfg.schema, raw.get("schema", {})),
         model=_override(cfg.model, raw.get("model", {})),

@@ -1,9 +1,8 @@
-"""Regresi tren sales bulanan per produk (materi: Supervised Learning & Regression).
+"""Monthly product sales regression and forecasting.
 
-Target : sales bulanan per produk.
-Fitur  : t = urutan bulan.
-Split  : kronologis per bulan (train/validasi/test), bukan acak, agar data
-         masa depan tidak bocor ke training (data leakage).
+Target: monthly sales by product.
+Feature: t = sequential month index.
+Split: chronological train/validation/test periods to prevent future leakage.
 """
 
 from __future__ import annotations
@@ -25,7 +24,7 @@ log = logging.getLogger(__name__)
 
 FEATURE = ["t"]
 TARGET = "Sales"
-SET_NAMES = ("train", "validasi", "test")
+SET_NAMES = ("train", "validation", "test")
 NAIVE = "Training Mean Baseline"
 
 
@@ -104,12 +103,12 @@ def split_months(
 
     if min(n_train, n_val, n - n_train - n_val) < 1:
         raise ValueError(
-            f"{n} bulan terlalu sedikit untuk split {cfg.train_ratio}/{cfg.val_ratio}"
+            f"{n} months are insufficient for split {cfg.train_ratio}/{cfg.val_ratio}"
         )
 
     return {
         "train": months[:n_train],
-        "validasi": months[n_train : n_train + n_val],
+        "validation": months[n_train : n_train + n_val],
         "test": months[n_train + n_val :],
     }
 
@@ -175,9 +174,9 @@ def predict_seasonal_naive(
 ) -> dict[str, pd.Series]:
     """Predict sales using the corresponding month from the previous year."""
     if seasonal_period < 1:
-        raise ValueError("Seasonal period harus minimal 1.")
+        raise ValueError("The seasonal period must be at least one.")
 
-    historical = pd.concat([sets["train"], sets["validasi"], sets["test"]])
+    historical = pd.concat([sets["train"], sets["validation"], sets["test"]])
 
     historical = historical.set_index([product_col, "t"])[TARGET]
 
@@ -208,7 +207,7 @@ def predict_moving_average(
 ) -> dict[str, pd.Series]:
     """Predict sales using a recursive moving average."""
     if window < 1:
-        raise ValueError("Window harus minimal 1.")
+        raise ValueError("The moving-average window must be at least one.")
 
     predictions = {
         name: pd.Series(index=data.index, dtype=float) for name, data in sets.items()
@@ -224,7 +223,7 @@ def predict_moving_average(
             )
 
         # Forecast validation and test recursively from the training period.
-        for split_name in ("validasi", "test"):
+        for split_name in ("validation", "test"):
             split_data = sets[split_name]
             product_data = cast(
                 pd.DataFrame,
@@ -458,17 +457,17 @@ def compare_models_per_product(
 def best_model(results: pd.DataFrame) -> str:
     """Select the best overall model using validation RMSE."""
     if results.empty:
-        raise ValueError("Tidak ada hasil evaluasi model.")
+        raise ValueError("No model evaluation results are available.")
 
     validation_rmse = cast(
         pd.Series,
-        results["validasi_RMSE"],
+        results["validation_RMSE"],
     )
 
     valid_scores = validation_rmse.dropna()
 
     if valid_scores.empty:
-        raise ValueError("Tidak ada validation RMSE yang valid.")
+        raise ValueError("No valid validation RMSE is available.")
 
     best_idx = valid_scores.idxmin()
 
@@ -485,17 +484,17 @@ def best_ml_model(results: pd.DataFrame) -> str:
     )
 
     if candidates.empty:
-        raise ValueError("Tidak ada model ML yang dapat dipilih.")
+        raise ValueError("No machine-learning model can be selected.")
 
     validation_rmse = cast(
         pd.Series,
-        candidates["validasi_RMSE"],
+        candidates["validation_RMSE"],
     )
 
     valid_scores = validation_rmse.dropna()
 
     if valid_scores.empty:
-        raise ValueError("Tidak ada validation RMSE model ML yang valid.")
+        raise ValueError("No valid validation RMSE is available for ML models.")
 
     best_idx = valid_scores.idxmin()
 
@@ -510,20 +509,20 @@ def best_model_per_product(
     required_columns = {
         product_col,
         "model",
-        "validasi_RMSE",
+        "validation_RMSE",
     }
 
     missing_columns = required_columns.difference(product_metrics.columns)
 
     if missing_columns:
-        raise ValueError(f"Kolom evaluasi tidak ditemukan: {sorted(missing_columns)}")
+        raise ValueError(f"Evaluation columns are missing: {sorted(missing_columns)}")
 
-    valid_metrics = product_metrics.dropna(subset=["validasi_RMSE"])
+    valid_metrics = product_metrics.dropna(subset=["validation_RMSE"])
 
     if valid_metrics.empty:
-        raise ValueError("Tidak ada validation RMSE yang valid.")
+        raise ValueError("No valid validation RMSE is available.")
 
-    best_indices = valid_metrics.groupby(product_col)["validasi_RMSE"].idxmin()
+    best_indices = valid_metrics.groupby(product_col)["validation_RMSE"].idxmin()
 
     return (
         valid_metrics.loc[best_indices].sort_values(product_col).reset_index(drop=True)
@@ -539,10 +538,10 @@ def forecast_future(
 ) -> pd.DataFrame:
     """Forecast future sales using walk-forward-selected product models."""
     if horizon < 1:
-        raise ValueError("Horizon harus minimal 1 bulan.")
+        raise ValueError("The forecast horizon must be at least one month.")
 
     if monthly.empty:
-        raise ValueError("Dataset monthly tidak boleh kosong.")
+        raise ValueError("The monthly dataset cannot be empty.")
 
     model_factories = build_models(cfg)
 
@@ -651,7 +650,7 @@ def forecast_future(
 def product_trends(
     monthly: pd.DataFrame, train_months: pd.DatetimeIndex, s: Schema
 ) -> pd.DataFrame:
-    """Slope Linear Regression per produk (negatif = turun), dari data train dan seluruh data."""
+    """Fit a linear sales slope per product over training and all months."""
     rows = []
     for key, g in monthly.groupby([s.product_id, s.product_name, s.category]):
         pid, name, cat = cast(tuple[object, object, object], key)
@@ -689,7 +688,7 @@ def build_walk_forward_folds(
 ) -> list[dict[str, pd.DataFrame]]:
     """Build expanding-window folds while preserving the final test period."""
     if monthly.empty:
-        raise ValueError("Dataset monthly tidak boleh kosong.")
+        raise ValueError("The monthly dataset cannot be empty.")
 
     if (
         min(
@@ -699,10 +698,10 @@ def build_walk_forward_folds(
         )
         < 1
     ):
-        raise ValueError("Jumlah bulan harus minimal 1.")
+        raise ValueError("Month counts must be at least one.")
 
     if test_months < 1:
-        raise ValueError("Test period harus minimal 1 bulan.")
+        raise ValueError("The test period must be at least one month.")
 
     months = sorted(monthly["Month"].drop_duplicates())
 
@@ -732,7 +731,7 @@ def build_walk_forward_folds(
         folds.append(
             {
                 "train": train_data,
-                "validasi": valid_data,
+                "validation": valid_data,
             }
         )
 
@@ -760,8 +759,8 @@ def evaluate_walk_forward(
         # functions expect train, validation, and test keys.
         sets: dict[str, pd.DataFrame] = {
             "train": fold["train"],
-            "validasi": fold["validasi"],
-            "test": fold["validasi"].iloc[0:0].copy(),
+            "validation": fold["validation"],
+            "test": fold["validation"].iloc[0:0].copy(),
         }
 
         # 1. Evaluate regression models.
@@ -775,7 +774,7 @@ def evaluate_walk_forward(
 
             y_pred = cast(
                 pd.Series,
-                predictions["validasi"],
+                predictions["validation"],
             ).dropna()
 
             if y_pred.empty:
@@ -783,7 +782,7 @@ def evaluate_walk_forward(
 
             y_true = cast(
                 pd.Series,
-                sets["validasi"].loc[y_pred.index, TARGET],
+                sets["validation"].loc[y_pred.index, TARGET],
             )
 
             metrics = regression_metrics(y_true, y_pred)
@@ -810,14 +809,14 @@ def evaluate_walk_forward(
         }
 
         for model_name, predictions in baseline_predictions.items():
-            y_pred = predictions["validasi"].dropna()
+            y_pred = predictions["validation"].dropna()
 
             if y_pred.empty:
                 continue
 
             y_true = cast(
                 pd.Series,
-                sets["validasi"].loc[y_pred.index, TARGET],
+                sets["validation"].loc[y_pred.index, TARGET],
             )
 
             metrics = regression_metrics(y_true, y_pred)
@@ -834,18 +833,18 @@ def evaluate_walk_forward(
         fold_rows_evaluated = len(rows) - fold_rows_before
 
         log.info(
-            "Walk-forward fold %d selesai: %d model dievaluasi.",
+            "Walk-forward fold %d complete: %d models evaluated.",
             fold_number,
             fold_rows_evaluated,
         )
 
     if not rows:
-        raise ValueError("Tidak ada hasil walk-forward evaluation.")
+        raise ValueError("No walk-forward evaluation results are available.")
 
     results = pd.DataFrame(rows).sort_values(["model", "fold"]).reset_index(drop=True)
 
     log.info(
-        "Walk-forward evaluation selesai: %d fold, %d total evaluasi model.",
+        "Walk-forward evaluation complete: %d folds, %d total model evaluations.",
         len(folds),
         len(results),
     )
@@ -864,8 +863,8 @@ def evaluate_walk_forward_per_product(
     for fold_number, fold in enumerate(folds, start=1):
         sets: dict[str, pd.DataFrame] = {
             "train": fold["train"],
-            "validasi": fold["validasi"],
-            "test": fold["validasi"].iloc[0:0].copy(),
+            "validation": fold["validation"],
+            "test": fold["validation"].iloc[0:0].copy(),
         }
 
         # Evaluate regression models.
@@ -875,7 +874,7 @@ def evaluate_walk_forward_per_product(
                 sets["train"],
                 sets,
                 s.product_id,
-            )["validasi"]
+            )["validation"]
             for model_name, make_model in build_models(cfg).items()
         }
 
@@ -884,12 +883,12 @@ def evaluate_walk_forward_per_product(
             "Seasonal Naive": predict_seasonal_naive(
                 sets,
                 s.product_id,
-            )["validasi"],
+            )["validation"],
             "Moving Average": predict_moving_average(
                 sets,
                 s.product_id,
                 window=3,
-            )["validasi"],
+            )["validation"],
         }
 
         all_predictions = {
@@ -898,7 +897,7 @@ def evaluate_walk_forward_per_product(
         }
 
         # Calculate metrics independently for each product.
-        for pid, product_data in sets["validasi"].groupby(s.product_id):
+        for pid, product_data in sets["validation"].groupby(s.product_id):
             product_data = product_data.sort_values("t")
 
             for model_name, predictions in all_predictions.items():
@@ -935,12 +934,12 @@ def evaluate_walk_forward_per_product(
                 )
 
         log.info(
-            "Per-product walk-forward fold %d selesai.",
+            "Per-product walk-forward fold %d complete.",
             fold_number,
         )
 
     if not rows:
-        raise ValueError("Tidak ada hasil per-product walk-forward evaluation.")
+        raise ValueError("No per-product walk-forward evaluation results are available.")
 
     return (
         pd.DataFrame(rows)
@@ -967,7 +966,7 @@ def select_models_per_product(
 
     if missing_columns:
         raise ValueError(
-            f"Kolom walk-forward tidak ditemukan: {sorted(missing_columns)}"
+            f"Walk-forward columns are missing: {sorted(missing_columns)}"
         )
 
     summary = walk_forward_product_metrics.groupby(
@@ -984,7 +983,7 @@ def select_models_per_product(
     summary = summary.loc[summary["folds"] == expected_folds].copy()
 
     if summary.empty:
-        raise ValueError("Tidak ada model dengan evaluasi lengkap.")
+        raise ValueError("No model has complete evaluation results.")
 
     # Select the model with the lowest mean RMSE for each product.
     selected = (
@@ -1090,10 +1089,10 @@ def evaluate_final_test(
     data, and evaluate once on the untouched final test period.
     """
     if monthly.empty:
-        raise ValueError("Dataset monthly tidak boleh kosong.")
+        raise ValueError("The monthly dataset cannot be empty.")
 
     if test_months < 1:
-        raise ValueError("Test period harus minimal 1 bulan.")
+        raise ValueError("The test period must be at least one month.")
 
     months = pd.DatetimeIndex(pd.to_datetime(monthly["Month"].unique())).sort_values()
 
@@ -1108,11 +1107,11 @@ def evaluate_final_test(
     test = monthly.loc[monthly["Month"].isin(final_test_months)].copy()
 
     if development.empty or test.empty:
-        raise ValueError("Development atau final test dataset kosong.")
+        raise ValueError("The development or final test dataset is empty.")
 
     log.info(
-        "Final evaluation: Development %s .. %s (%d bulan), "
-        "Test %s .. %s (%d bulan).",
+        "Final evaluation: development %s .. %s (%d months), "
+        "test %s .. %s (%d months).",
         development_months[0].strftime("%Y-%m"),
         development_months[-1].strftime("%Y-%m"),
         len(development_months),
@@ -1141,7 +1140,7 @@ def evaluate_final_test(
     best_ml = ml_candidates.groupby("model")["RMSE"].mean().dropna().sort_values()
 
     if best_ml.empty:
-        raise ValueError("Tidak ada model ML yang valid.")
+        raise ValueError("No valid machine-learning model is available.")
 
     best_ml_model_name = str(best_ml.index[0])
 
@@ -1209,7 +1208,7 @@ def evaluate_final_test(
     predictions_df = pd.DataFrame(prediction_rows)
 
     if predictions_df.empty:
-        raise ValueError("Final test tidak menghasilkan prediksi.")
+        raise ValueError("The final test did not produce predictions.")
 
     # 5. Calculate overall metrics for each strategy.
     overall_rows = []
@@ -1295,7 +1294,7 @@ def run_modeling(
         split_dates = month_splits[name]
 
         log.info(
-            "%s %3d bulan (%s .. %s), %d baris",
+            "%s %3d months (%s .. %s), %d rows",
             name,
             len(split_dates),
             split_dates[0].strftime("%Y-%m"),
@@ -1318,11 +1317,11 @@ def run_modeling(
         ).sort_values()
 
         valid_months = pd.DatetimeIndex(
-            pd.to_datetime(fold["validasi"]["Month"].unique())
+            pd.to_datetime(fold["validation"]["Month"].unique())
         ).sort_values()
 
         log.info(
-            "Fold %d: Train %s .. %s (%d bulan), " "Validation %s .. %s (%d bulan)",
+            "Fold %d: train %s .. %s (%d months), " "validation %s .. %s (%d months)",
             index,
             train_months[0].strftime("%Y-%m"),
             train_months[-1].strftime("%Y-%m"),
@@ -1386,13 +1385,13 @@ def run_modeling(
     )
 
     if walk_forward_summary.empty:
-        raise ValueError("Walk-forward summary tidak menghasilkan evaluasi.")
+        raise ValueError("The walk-forward summary contains no evaluations.")
 
     # 8. Identify the best model using average walk-forward RMSE.
     valid_walk_forward = walk_forward_summary.dropna(subset=["mean_RMSE"])
 
     if valid_walk_forward.empty:
-        raise ValueError("Tidak ada mean walk-forward RMSE yang valid.")
+        raise ValueError("No valid mean walk-forward RMSE is available.")
 
     best_walk_forward = str(valid_walk_forward.iloc[0]["model"])
 
@@ -1402,17 +1401,17 @@ def run_modeling(
     ]
 
     if ml_candidates.empty:
-        raise ValueError("Tidak ada model ML yang valid dalam walk-forward evaluation.")
+        raise ValueError("No valid ML model is available in walk-forward evaluation.")
 
     best_walk_forward_ml = str(ml_candidates.iloc[0]["model"])
 
     log.info(
-        "Model terbaik menurut Walk-Forward RMSE: %s",
+        "Best model by walk-forward RMSE: %s",
         best_walk_forward,
     )
 
     log.info(
-        "Model ML terbaik menurut Walk-Forward RMSE: %s",
+        "Best ML model by walk-forward RMSE: %s",
         best_walk_forward_ml,
     )
 
@@ -1446,7 +1445,7 @@ def run_modeling(
     )
 
     log.info(
-        "Berhasil menghasilkan %d prediksi untuk %d produk.",
+        "Generated %d predictions for %d products.",
         len(future_forecast),
         future_forecast[s.product_id].nunique(),
     )
@@ -1456,12 +1455,12 @@ def run_modeling(
     ml_best = best_ml_model(results)
 
     log.info(
-        "Model terbaik keseluruhan menurut original validation: %s",
+        "Best overall model by original validation: %s",
         overall_best,
     )
 
     log.info(
-        "Model ML terbaik menurut original validation: %s",
+        "Best ML model by original validation: %s",
         ml_best,
     )
 
@@ -1469,7 +1468,7 @@ def run_modeling(
     return {
         "monthly": monthly,
         "train": sets["train"],
-        "validasi": sets["validasi"],
+        "validation": sets["validation"],
         "test": sets["test"],
         "model_metrics": results,
         "product_model_metrics": product_metrics,

@@ -1,1 +1,1 @@
-"""Pipeline cleaning + modeling sales."""
+"""Modular sales analysis pipeline."""

@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.env
+
+# Generated report and chart cache files can be regenerated with main.py all.
+# Keep the source datasets and analytical CSV artifacts under version control.
+reports/latest/assets/

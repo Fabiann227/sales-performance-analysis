@@ -4,718 +4,718 @@ fold,ProductID,ProductName,Category,model,MAE,RMSE,WAPE
 1,2001,Wireless Mouse,Electronics,Lasso (a=10.0),528.4413,617.4354,16.0821
 1,2001,Wireless Mouse,Electronics,Linear (baseline),550.1675,635.2205,16.7433
 1,2001,Wireless Mouse,Electronics,Moving Average,429.6556,490.0524,13.0757
-1,2001,Wireless Mouse,Electronics,Naive (rata-rata train),366.45,369.001,11.1522
 1,2001,Wireless Mouse,Electronics,Polynomial 2,525.2242,616.5506,15.9842
 1,2001,Wireless Mouse,Electronics,Polynomial 5,806.6916,824.1026,24.5501
 1,2001,Wireless Mouse,Electronics,Ridge (a=0.1),546.3905,632.1103,16.6283
 1,2001,Wireless Mouse,Electronics,Ridge (a=1.0),515.0123,606.5755,15.6734
 1,2001,Wireless Mouse,Electronics,Ridge (a=10.0),427.3857,479.1523,13.0067
 1,2001,Wireless Mouse,Electronics,Seasonal Naive,134.4,173.7831,4.0902
+1,2001,Wireless Mouse,Electronics,Training Mean Baseline,366.45,369.001,11.1522
 1,2002,Mechanical Keyboard,Electronics,Lasso (a=0.1),1333.549,1513.4082,19.7601
 1,2002,Mechanical Keyboard,Electronics,Lasso (a=1.0),1332.7234,1512.078,19.7479
 1,2002,Mechanical Keyboard,Electronics,Lasso (a=10.0),1324.4674,1498.8534,19.6255
 1,2002,Mechanical Keyboard,Electronics,Linear (baseline),1333.6407,1513.5561,19.7614
 1,2002,Mechanical Keyboard,Electronics,Moving Average,951.5469,1128.0401,14.0997
-1,2002,Mechanical Keyboard,Electronics,Naive (rata-rata train),1231.5611,1360.8165,18.2489
 1,2002,Mechanical Keyboard,Electronics,Polynomial 2,1126.3292,1194.2721,16.6896
 1,2002,Mechanical Keyboard,Electronics,Polynomial 5,39333.295,47349.9585,582.8277
 1,2002,Mechanical Keyboard,Electronics,Ridge (a=0.1),1332.7971,1512.1967,19.7489
 1,2002,Mechanical Keyboard,Electronics,Ridge (a=1.0),1325.7884,1500.96,19.6451
 1,2002,Mechanical Keyboard,Electronics,Ridge (a=10.0),1287.2409,1441.0513,19.0739
 1,2002,Mechanical Keyboard,Electronics,Seasonal Naive,992.0,1155.822,14.6991
+1,2002,Mechanical Keyboard,Electronics,Training Mean Baseline,1231.5611,1360.8165,18.2489
 1,2003,USB-C Cable,Accessories,Lasso (a=0.1),288.0599,340.2138,10.6653
 1,2003,USB-C Cable,Accessories,Lasso (a=1.0),290.0153,341.9547,10.7377
 1,2003,USB-C Cable,Accessories,Lasso (a=10.0),300.375,351.2183,11.1213
 1,2003,USB-C Cable,Accessories,Linear (baseline),287.8427,340.0205,10.6573
 1,2003,USB-C Cable,Accessories,Moving Average,237.2611,273.7252,8.7845
-1,2003,USB-C Cable,Accessories,Naive (rata-rata train),300.375,351.2183,11.1213
 1,2003,USB-C Cable,Accessories,Polynomial 2,294.033,345.9586,10.8865
 1,2003,USB-C Cable,Accessories,Polynomial 5,2445.8879,2768.9898,90.5583
 1,2003,USB-C Cable,Accessories,Ridge (a=0.1),287.9462,340.1126,10.6611
 1,2003,USB-C Cable,Accessories,Ridge (a=1.0),288.8067,340.8784,10.693
 1,2003,USB-C Cable,Accessories,Ridge (a=10.0),293.5392,345.0983,10.8682
 1,2003,USB-C Cable,Accessories,Seasonal Naive,329.1,378.2951,12.1848
+1,2003,USB-C Cable,Accessories,Training Mean Baseline,300.375,351.2183,11.1213
 1,2004,Power Bank,Electronics,Lasso (a=0.1),642.4713,655.889,10.9307
 1,2004,Power Bank,Electronics,Lasso (a=1.0),640.5159,653.9471,10.8975
 1,2004,Power Bank,Electronics,Lasso (a=10.0),620.9623,634.5371,10.5648
 1,2004,Power Bank,Electronics,Linear (baseline),642.6885,656.1048,10.9344
 1,2004,Power Bank,Electronics,Moving Average,586.7469,591.8467,9.9827
-1,2004,Power Bank,Electronics,Naive (rata-rata train),93.9167,104.6738,1.5979
 1,2004,Power Bank,Electronics,Polynomial 2,871.6221,889.7974,14.8294
 1,2004,Power Bank,Electronics,Polynomial 5,4063.9569,5160.8018,69.1424
 1,2004,Power Bank,Electronics,Ridge (a=0.1),637.2854,650.7393,10.8425
 1,2004,Power Bank,Electronics,Ridge (a=1.0),592.3984,606.2129,10.0788
 1,2004,Power Bank,Electronics,Ridge (a=10.0),345.5195,364.0834,5.8785
 1,2004,Power Bank,Electronics,Seasonal Naive,724.5,782.0379,12.3263
+1,2004,Power Bank,Electronics,Training Mean Baseline,93.9167,104.6738,1.5979
 1,2005,Laptop Stand,Accessories,Lasso (a=0.1),504.7911,599.999,15.5015
 1,2005,Laptop Stand,Accessories,Lasso (a=1.0),502.8358,598.4306,15.4415
 1,2005,Laptop Stand,Accessories,Lasso (a=10.0),483.2822,582.8805,14.841
 1,2005,Laptop Stand,Accessories,Linear (baseline),505.0084,600.1734,15.5082
 1,2005,Laptop Stand,Accessories,Moving Average,680.4519,748.7333,20.8958
-1,2005,Laptop Stand,Accessories,Naive (rata-rata train),461.65,565.976,14.1767
 1,2005,Laptop Stand,Accessories,Polynomial 2,690.0906,749.3529,21.1918
 1,2005,Laptop Stand,Accessories,Polynomial 5,2491.1042,3502.65,76.4987
 1,2005,Laptop Stand,Accessories,Ridge (a=0.1),504.6501,599.8857,15.4972
 1,2005,Laptop Stand,Accessories,Ridge (a=1.0),501.6731,597.4993,15.4058
 1,2005,Laptop Stand,Accessories,Ridge (a=10.0),485.3,584.4737,14.903
 1,2005,Laptop Stand,Accessories,Seasonal Naive,480.2,583.9354,14.7463
+1,2005,Laptop Stand,Accessories,Training Mean Baseline,461.65,565.976,14.1767
 1,2006,Webcam,Electronics,Lasso (a=0.1),1275.738,1458.9383,28.3699
 1,2006,Webcam,Electronics,Lasso (a=1.0),1273.7826,1457.1294,28.3264
 1,2006,Webcam,Electronics,Lasso (a=10.0),1254.229,1439.0623,27.8916
 1,2006,Webcam,Electronics,Linear (baseline),1275.9552,1459.1394,28.3747
 1,2006,Webcam,Electronics,Moving Average,1163.2296,1355.8438,25.8679
-1,2006,Webcam,Electronics,Naive (rata-rata train),798.4,896.2107,17.7548
 1,2006,Webcam,Electronics,Polynomial 2,1461.5836,1645.5616,32.5027
 1,2006,Webcam,Electronics,Polynomial 5,8570.3189,10192.4039,190.5871
 1,2006,Webcam,Electronics,Ridge (a=0.1),1270.5936,1454.18,28.2555
 1,2006,Webcam,Electronics,Ridge (a=1.0),1226.051,1413.1017,27.265
 1,2006,Webcam,Electronics,Ridge (a=10.0),981.0665,1191.9818,21.817
 1,2006,Webcam,Electronics,Seasonal Naive,1256.0,1261.7382,27.931
+1,2006,Webcam,Electronics,Training Mean Baseline,798.4,896.2107,17.7548
 1,2007,Headphones,Electronics,Lasso (a=0.1),1158.1435,1445.2621,10.0884
 1,2007,Headphones,Electronics,Lasso (a=1.0),1158.7953,1445.7848,10.094
 1,2007,Headphones,Electronics,Lasso (a=10.0),1165.3132,1451.1481,10.1508
 1,2007,Headphones,Electronics,Linear (baseline),1158.0711,1445.2042,10.0877
 1,2007,Headphones,Electronics,Moving Average,1324.3056,1755.28,11.5358
-1,2007,Headphones,Electronics,Naive (rata-rata train),1448.9583,1879.2245,12.6216
 1,2007,Headphones,Electronics,Polynomial 2,1960.7536,2621.8832,17.0797
 1,2007,Headphones,Electronics,Polynomial 5,27356.368,33807.7449,238.2959
 1,2007,Headphones,Electronics,Ridge (a=0.1),1160.4751,1447.1434,10.1087
 1,2007,Headphones,Electronics,Ridge (a=1.0),1180.447,1464.5445,10.2826
 1,2007,Headphones,Electronics,Ridge (a=10.0),1290.2926,1597.9412,11.2395
 1,2007,Headphones,Electronics,Seasonal Naive,2133.75,2194.6494,18.5867
+1,2007,Headphones,Electronics,Training Mean Baseline,1448.9583,1879.2245,12.6216
 1,2008,Phone Case,Accessories,Lasso (a=0.1),439.2537,511.1743,10.518
 1,2008,Phone Case,Accessories,Lasso (a=1.0),438.7758,511.7393,10.5066
 1,2008,Phone Case,Accessories,Lasso (a=10.0),433.996,517.7667,10.3921
 1,2008,Phone Case,Accessories,Linear (baseline),439.3068,511.112,10.5193
 1,2008,Phone Case,Accessories,Moving Average,373.4284,464.1741,8.9418
-1,2008,Phone Case,Accessories,Naive (rata-rata train),423.4222,533.4403,10.1389
 1,2008,Phone Case,Accessories,Polynomial 2,436.512,523.0075,10.4524
 1,2008,Phone Case,Accessories,Polynomial 5,5370.9923,6099.923,128.6096
 1,2008,Phone Case,Accessories,Ridge (a=0.1),439.1756,511.2662,10.5162
 1,2008,Phone Case,Accessories,Ridge (a=1.0),438.0849,512.5682,10.49
 1,2008,Phone Case,Accessories,Ridge (a=10.0),432.0866,520.3629,10.3464
 1,2008,Phone Case,Accessories,Seasonal Naive,340.6667,365.6864,8.1573
+1,2008,Phone Case,Accessories,Training Mean Baseline,423.4222,533.4403,10.1389
 1,2009,Smart Watch,Wearables,Lasso (a=0.1),835.129,1326.8063,11.4873
 1,2009,Smart Watch,Wearables,Lasso (a=1.0),835.9546,1327.8649,11.4987
 1,2009,Smart Watch,Wearables,Lasso (a=10.0),844.2106,1338.5639,11.6123
 1,2009,Smart Watch,Wearables,Linear (baseline),835.0373,1326.6888,11.4861
 1,2009,Smart Watch,Wearables,Moving Average,1241.1852,1704.175,17.0727
-1,2009,Smart Watch,Wearables,Naive (rata-rata train),1723.0,2063.8452,23.7001
 1,2009,Smart Watch,Wearables,Polynomial 2,955.8272,1164.5851,13.1476
 1,2009,Smart Watch,Wearables,Polynomial 5,2394.8462,2797.0528,32.9415
 1,2009,Smart Watch,Wearables,Ridge (a=0.1),838.5797,1331.2446,11.5348
 1,2009,Smart Watch,Wearables,Ridge (a=1.0),868.0088,1370.5169,11.9396
 1,2009,Smart Watch,Wearables,Ridge (a=10.0),1169.2683,1624.0779,16.0835
 1,2009,Smart Watch,Wearables,Seasonal Naive,1894.0,2118.4532,26.0523
+1,2009,Smart Watch,Wearables,Training Mean Baseline,1723.0,2063.8452,23.7001
 1,2010,Fitness Band,Wearables,Lasso (a=0.1),1145.1834,1151.0125,19.0644
 1,2010,Fitness Band,Wearables,Lasso (a=1.0),1143.228,1149.0571,19.0319
 1,2010,Fitness Band,Wearables,Lasso (a=10.0),1123.6744,1129.5054,18.7063
 1,2010,Fitness Band,Wearables,Linear (baseline),1145.4006,1151.2297,19.068
 1,2010,Fitness Band,Wearables,Moving Average,1047.9877,1085.7993,17.4463
-1,2010,Fitness Band,Wearables,Naive (rata-rata train),609.5833,618.1427,10.148
 1,2010,Fitness Band,Wearables,Polynomial 2,1523.2647,1534.4634,25.3585
 1,2010,Fitness Band,Wearables,Polynomial 5,11607.0,14556.9687,193.2273
 1,2010,Fitness Band,Wearables,Ridge (a=0.1),1140.9724,1146.8015,18.9943
 1,2010,Fitness Band,Wearables,Ridge (a=1.0),1104.1839,1110.0209,18.3819
 1,2010,Fitness Band,Wearables,Ridge (a=10.0),901.8473,908.0549,15.0135
 1,2010,Fitness Band,Wearables,Seasonal Naive,387.75,469.6922,6.4551
+1,2010,Fitness Band,Wearables,Training Mean Baseline,609.5833,618.1427,10.148
 1,2011,Desk Lamp,Home Office,Lasso (a=0.1),644.0252,782.6177,17.3573
 1,2011,Desk Lamp,Home Office,Lasso (a=1.0),642.0698,781.1114,17.3046
 1,2011,Desk Lamp,Home Office,Lasso (a=10.0),622.5162,766.1641,16.7776
 1,2011,Desk Lamp,Home Office,Linear (baseline),644.2424,782.7851,17.3632
 1,2011,Desk Lamp,Home Office,Moving Average,435.279,696.539,11.7313
-1,2011,Desk Lamp,Home Office,Naive (rata-rata train),555.6889,556.2549,14.9765
 1,2011,Desk Lamp,Home Office,Polynomial 2,735.8608,849.4745,19.8324
 1,2011,Desk Lamp,Home Office,Polynomial 5,5106.359,6582.73,137.6229
 1,2011,Desk Lamp,Home Office,Ridge (a=0.1),637.3589,777.491,17.1776
 1,2011,Desk Lamp,Home Office,Ridge (a=1.0),580.1725,734.5584,15.6364
 1,2011,Desk Lamp,Home Office,Ridge (a=10.0),363.8674,548.4837,9.8067
 1,2011,Desk Lamp,Home Office,Seasonal Naive,750.9333,889.904,20.2386
+1,2011,Desk Lamp,Home Office,Training Mean Baseline,555.6889,556.2549,14.9765
 1,2012,Office Chair,Home Office,Lasso (a=0.1),4449.5904,4678.2787,48.5181
 1,2012,Office Chair,Home Office,Lasso (a=1.0),4447.6351,4676.42,48.4967
 1,2012,Office Chair,Home Office,Lasso (a=10.0),4428.0815,4657.8379,48.2835
 1,2012,Office Chair,Home Office,Linear (baseline),4449.8077,4678.4853,48.5204
 1,2012,Office Chair,Home Office,Moving Average,3715.0,3860.7008,40.5081
-1,2012,Office Chair,Home Office,Naive (rata-rata train),2328.75,2752.14,25.3925
 1,2012,Office Chair,Home Office,Polynomial 2,6161.5497,6348.2466,67.1851
 1,2012,Office Chair,Home Office,Polynomial 5,4579.2378,4994.9326,49.9317
 1,2012,Office Chair,Home Office,Ridge (a=0.1),4432.2783,4661.8254,48.3293
 1,2012,Office Chair,Home Office,Ridge (a=1.0),4286.6494,4523.7062,46.7414
 1,2012,Office Chair,Home Office,Ridge (a=10.0),3485.6906,3775.346,38.0077
 1,2012,Office Chair,Home Office,Seasonal Naive,2010.0,2529.8593,21.9169
+1,2012,Office Chair,Home Office,Training Mean Baseline,2328.75,2752.14,25.3925
 1,2013,Notebook,Stationery,Lasso (a=0.1),292.5016,387.1654,13.7409
 1,2013,Notebook,Stationery,Lasso (a=1.0),293.1534,386.5382,13.7715
 1,2013,Notebook,Stationery,Lasso (a=10.0),299.6713,380.7689,14.0777
 1,2013,Notebook,Stationery,Linear (baseline),292.4292,387.2357,13.7375
 1,2013,Notebook,Stationery,Moving Average,309.5815,394.1735,14.5432
-1,2013,Notebook,Stationery,Naive (rata-rata train),343.7972,367.9207,16.1506
 1,2013,Notebook,Stationery,Polynomial 2,336.2171,489.1329,15.7945
 1,2013,Notebook,Stationery,Polynomial 5,468.7153,604.8687,22.0189
 1,2013,Notebook,Stationery,Ridge (a=0.1),292.8537,386.8255,13.7574
 1,2013,Notebook,Stationery,Ridge (a=1.0),296.3806,383.5665,13.9231
 1,2013,Notebook,Stationery,Ridge (a=10.0),315.7783,370.6262,14.8343
 1,2013,Notebook,Stationery,Seasonal Naive,296.9167,366.8629,13.9483
+1,2013,Notebook,Stationery,Training Mean Baseline,343.7972,367.9207,16.1506
 1,2014,Backpack,Accessories,Lasso (a=0.1),454.6223,541.6239,7.0979
 1,2014,Backpack,Accessories,Lasso (a=1.0),455.1003,543.0162,7.1054
 1,2014,Backpack,Accessories,Lasso (a=10.0),459.8801,557.1297,7.18
 1,2014,Backpack,Accessories,Linear (baseline),454.5692,541.4695,7.0971
 1,2014,Backpack,Accessories,Moving Average,422.3852,462.368,6.5946
-1,2014,Backpack,Accessories,Naive (rata-rata train),902.475,948.4681,14.0902
 1,2014,Backpack,Accessories,Polynomial 2,589.361,780.5912,9.2016
 1,2014,Backpack,Accessories,Polynomial 5,15795.3458,18631.8366,246.6096
 1,2014,Backpack,Accessories,Ridge (a=0.1),455.5432,544.3096,7.1123
 1,2014,Backpack,Accessories,Ridge (a=1.0),463.6351,568.4489,7.2386
 1,2014,Backpack,Accessories,Ridge (a=10.0),639.4911,714.4997,9.9842
 1,2014,Backpack,Accessories,Seasonal Naive,872.9,1125.7103,13.6284
+1,2014,Backpack,Accessories,Training Mean Baseline,902.475,948.4681,14.0902
 1,2015,Bluetooth Speaker,Electronics,Lasso (a=0.1),1184.9315,1675.2723,18.937
 1,2015,Bluetooth Speaker,Electronics,Lasso (a=1.0),1184.4535,1674.2769,18.9293
 1,2015,Bluetooth Speaker,Electronics,Lasso (a=10.0),1179.6738,1664.4179,18.853
 1,2015,Bluetooth Speaker,Electronics,Linear (baseline),1184.9846,1675.3831,18.9378
 1,2015,Bluetooth Speaker,Electronics,Moving Average,1079.9457,1469.5597,17.2592
-1,2015,Bluetooth Speaker,Electronics,Naive (rata-rata train),1116.0167,1551.0245,17.8356
 1,2015,Bluetooth Speaker,Electronics,Polynomial 2,1210.5226,1802.8699,19.346
 1,2015,Bluetooth Speaker,Electronics,Polynomial 5,25477.1523,30559.7585,407.1632
 1,2015,Bluetooth Speaker,Electronics,Ridge (a=0.1),1184.4146,1674.196,18.9287
 1,2015,Bluetooth Speaker,Electronics,Ridge (a=1.0),1179.6794,1664.4294,18.8531
 1,2015,Bluetooth Speaker,Electronics,Ridge (a=10.0),1153.6355,1613.8649,18.4368
 1,2015,Bluetooth Speaker,Electronics,Seasonal Naive,1481.9,1978.1168,23.683
+1,2015,Bluetooth Speaker,Electronics,Training Mean Baseline,1116.0167,1551.0245,17.8356
 1,2016,Monitor,Electronics,Lasso (a=0.1),225.2244,270.5491,30.0139
 1,2016,Monitor,Electronics,Lasso (a=1.0),224.5726,270.4103,29.9271
 1,2016,Monitor,Electronics,Lasso (a=10.0),222.5708,270.073,29.6603
 1,2016,Monitor,Electronics,Linear (baseline),225.2968,270.5655,30.0236
 1,2016,Monitor,Electronics,Moving Average,215.6907,254.5662,28.7434
-1,2016,Monitor,Electronics,Naive (rata-rata train),222.5708,270.073,29.6603
 1,2016,Monitor,Electronics,Polynomial 2,229.4968,270.8295,30.5833
 1,2016,Monitor,Electronics,Polynomial 5,539.7453,618.2928,71.9277
 1,2016,Monitor,Electronics,Ridge (a=0.1),225.2743,270.5604,30.0206
 1,2016,Monitor,Electronics,Ridge (a=1.0),225.0871,270.5187,29.9956
 1,2016,Monitor,Electronics,Ridge (a=10.0),224.0577,270.3107,29.8584
 1,2016,Monitor,Electronics,Seasonal Naive,304.85,316.5136,40.625
+1,2016,Monitor,Electronics,Training Mean Baseline,222.5708,270.073,29.6603
 1,2017,HDMI Cable,Accessories,Lasso (a=0.1),319.9475,388.2986,13.5684
 1,2017,HDMI Cable,Accessories,Lasso (a=1.0),317.9921,386.7444,13.4855
 1,2017,HDMI Cable,Accessories,Lasso (a=10.0),298.4385,371.4174,12.6562
 1,2017,HDMI Cable,Accessories,Linear (baseline),320.1647,388.4715,13.5776
 1,2017,HDMI Cable,Accessories,Moving Average,277.5463,315.8584,11.7702
-1,2017,HDMI Cable,Accessories,Naive (rata-rata train),238.2875,271.5458,10.1053
 1,2017,HDMI Cable,Accessories,Polynomial 2,275.2614,350.1603,11.6733
 1,2017,HDMI Cable,Accessories,Polynomial 5,8268.5154,9625.9442,350.653
 1,2017,HDMI Cable,Accessories,Ridge (a=0.1),318.7206,387.323,13.5164
 1,2017,HDMI Cable,Accessories,Ridge (a=1.0),306.7235,377.8625,13.0076
 1,2017,HDMI Cable,Accessories,Ridge (a=10.0),261.5856,328.8947,11.0934
 1,2017,HDMI Cable,Accessories,Seasonal Naive,107.0667,142.4808,4.5405
+1,2017,HDMI Cable,Accessories,Training Mean Baseline,238.2875,271.5458,10.1053
 1,2018,Microphone,Electronics,Lasso (a=0.1),672.4067,800.3919,10.4638
 1,2018,Microphone,Electronics,Lasso (a=1.0),671.7549,800.7147,10.4537
 1,2018,Microphone,Electronics,Lasso (a=10.0),665.237,804.2004,10.3523
 1,2018,Microphone,Electronics,Linear (baseline),672.4791,800.3563,10.465
 1,2018,Microphone,Electronics,Moving Average,620.3951,881.9964,9.6545
-1,2018,Microphone,Electronics,Naive (rata-rata train),981.0417,1247.7691,15.2668
 1,2018,Microphone,Electronics,Polynomial 2,1093.7028,1332.2937,17.02
 1,2018,Microphone,Electronics,Polynomial 5,9704.2459,11764.435,151.0153
 1,2018,Microphone,Electronics,Ridge (a=0.1),670.1899,801.509,10.4293
 1,2018,Microphone,Electronics,Ridge (a=1.0),651.172,813.2937,10.1334
 1,2018,Microphone,Electronics,Ridge (a=10.0),646.8834,940.1396,10.0667
 1,2018,Microphone,Electronics,Seasonal Naive,2119.3333,2150.7492,32.9806
+1,2018,Microphone,Electronics,Training Mean Baseline,981.0417,1247.7691,15.2668
 1,2019,Tablet,Electronics,Lasso (a=0.1),1572.442,1795.7936,15.4085
 1,2019,Tablet,Electronics,Lasso (a=1.0),1572.92,1796.711,15.4132
 1,2019,Tablet,Electronics,Lasso (a=10.0),1577.6997,1805.9772,15.4601
 1,2019,Tablet,Electronics,Linear (baseline),1572.3889,1795.6918,15.408
 1,2019,Tablet,Electronics,Moving Average,1796.5679,1891.4192,17.6048
-1,2019,Tablet,Electronics,Naive (rata-rata train),1614.8889,1883.54,15.8245
 1,2019,Tablet,Electronics,Polynomial 2,2934.5628,3219.4177,28.7561
 1,2019,Tablet,Electronics,Polynomial 5,34478.2879,41606.2951,337.8568
 1,2019,Tablet,Electronics,Ridge (a=0.1),1572.7401,1796.3656,15.4115
 1,2019,Tablet,Electronics,Ridge (a=1.0),1575.6581,1801.9988,15.4401
 1,2019,Tablet,Electronics,Ridge (a=10.0),1591.7071,1834.0777,15.5973
 1,2019,Tablet,Electronics,Seasonal Naive,4108.0,4160.7447,40.2548
+1,2019,Tablet,Electronics,Training Mean Baseline,1614.8889,1883.54,15.8245
 1,2020,Gaming Controller,Gaming,Lasso (a=0.1),1105.4947,1167.6292,21.2467
 1,2020,Gaming Controller,Gaming,Lasso (a=1.0),1107.45,1169.5005,21.2843
 1,2020,Gaming Controller,Gaming,Lasso (a=10.0),1127.0036,1188.2299,21.6601
 1,2020,Gaming Controller,Gaming,Linear (baseline),1105.2774,1167.4213,21.2425
 1,2020,Gaming Controller,Gaming,Moving Average,1523.6617,1583.923,29.2835
-1,2020,Gaming Controller,Gaming,Naive (rata-rata train),1320.3333,1374.824,25.3757
 1,2020,Gaming Controller,Gaming,Polynomial 2,2439.0216,2512.1336,46.876
 1,2020,Gaming Controller,Gaming,Polynomial 5,12134.8457,13612.2777,233.2219
 1,2020,Gaming Controller,Gaming,Ridge (a=0.1),1107.0547,1169.1221,21.2767
 1,2020,Gaming Controller,Gaming,Ridge (a=1.0),1121.8202,1183.2619,21.5605
 1,2020,Gaming Controller,Gaming,Ridge (a=10.0),1203.0301,1261.3237,23.1213
 1,2020,Gaming Controller,Gaming,Seasonal Naive,1709.0667,2090.5844,32.8469
+1,2020,Gaming Controller,Gaming,Training Mean Baseline,1320.3333,1374.824,25.3757
 2,2001,Wireless Mouse,Electronics,Lasso (a=0.1),762.006,866.631,25.5201
 2,2001,Wireless Mouse,Electronics,Lasso (a=1.0),761.5199,865.3958,25.5039
 2,2001,Wireless Mouse,Electronics,Lasso (a=10.0),756.6594,853.1741,25.3411
 2,2001,Wireless Mouse,Electronics,Linear (baseline),762.06,866.7684,25.522
 2,2001,Wireless Mouse,Electronics,Moving Average,632.5667,669.1383,21.1851
-2,2001,Wireless Mouse,Electronics,Naive (rata-rata train),697.44,727.2708,23.3578
 2,2001,Wireless Mouse,Electronics,Polynomial 2,713.0897,733.5622,23.8819
 2,2001,Wireless Mouse,Electronics,Polynomial 5,5706.5046,6306.3682,191.1151
 2,2001,Wireless Mouse,Electronics,Ridge (a=0.1),761.6321,865.6805,25.5076
 2,2001,Wireless Mouse,Electronics,Ridge (a=1.0),758.0212,856.5743,25.3867
 2,2001,Wireless Mouse,Electronics,Ridge (a=10.0),736.212,804.5551,24.6563
 2,2001,Wireless Mouse,Electronics,Seasonal Naive,777.6,787.5406,26.0424
+2,2001,Wireless Mouse,Electronics,Training Mean Baseline,697.44,727.2708,23.3578
 2,2002,Mechanical Keyboard,Electronics,Lasso (a=0.1),1472.0929,1568.9838,18.3963
 2,2002,Mechanical Keyboard,Electronics,Lasso (a=1.0),1471.6069,1567.9,18.3902
 2,2002,Mechanical Keyboard,Electronics,Lasso (a=10.0),1466.7463,1557.146,18.3294
 2,2002,Mechanical Keyboard,Electronics,Linear (baseline),1472.1469,1569.1043,18.3969
 2,2002,Mechanical Keyboard,Electronics,Moving Average,1673.1963,1959.0912,20.9094
-2,2002,Mechanical Keyboard,Electronics,Naive (rata-rata train),1389.9711,1409.9211,17.37
 2,2002,Mechanical Keyboard,Electronics,Polynomial 2,2811.1174,2943.2369,35.1296
 2,2002,Mechanical Keyboard,Electronics,Polynomial 5,3494.8016,3538.5349,43.6734
 2,2002,Mechanical Keyboard,Electronics,Ridge (a=0.1),1471.6027,1567.8908,18.3901
 2,2002,Mechanical Keyboard,Electronics,Ridge (a=1.0),1467.011,1557.7275,18.3327
 2,2002,Mechanical Keyboard,Electronics,Ridge (a=10.0),1439.2766,1499.3644,17.9862
 2,2002,Mechanical Keyboard,Electronics,Seasonal Naive,1228.6333,1368.552,15.3538
+2,2002,Mechanical Keyboard,Electronics,Training Mean Baseline,1389.9711,1409.9211,17.37
 2,2003,USB-C Cable,Accessories,Lasso (a=0.1),312.8497,340.7462,13.3714
 2,2003,USB-C Cable,Accessories,Lasso (a=1.0),310.9749,339.025,13.2912
 2,2003,USB-C Cable,Accessories,Lasso (a=10.0),292.2271,321.9127,12.4899
 2,2003,USB-C Cable,Accessories,Linear (baseline),313.058,340.9375,13.3803
 2,2003,USB-C Cable,Accessories,Moving Average,401.1333,420.9616,17.1446
-2,2003,USB-C Cable,Accessories,Naive (rata-rata train),120.9,181.9429,5.1673
 2,2003,USB-C Cable,Accessories,Polynomial 2,610.575,628.8538,26.0963
 2,2003,USB-C Cable,Accessories,Polynomial 5,513.4969,583.0957,21.9471
 2,2003,USB-C Cable,Accessories,Ridge (a=0.1),311.7855,339.7689,13.3259
 2,2003,USB-C Cable,Accessories,Ridge (a=1.0),301.0482,329.941,12.867
 2,2003,USB-C Cable,Accessories,Ridge (a=10.0),236.1948,272.1203,10.0951
 2,2003,USB-C Cable,Accessories,Seasonal Naive,149.55,180.155,6.3918
+2,2003,USB-C Cable,Accessories,Training Mean Baseline,120.9,181.9429,5.1673
 2,2004,Power Bank,Electronics,Lasso (a=0.1),489.9125,581.8021,8.2057
 2,2004,Power Bank,Electronics,Lasso (a=1.0),488.0377,580.2001,8.1743
 2,2004,Power Bank,Electronics,Lasso (a=10.0),469.2899,564.2756,7.8603
 2,2004,Power Bank,Electronics,Linear (baseline),490.1208,581.9802,8.2092
 2,2004,Power Bank,Electronics,Moving Average,302.3179,304.6777,5.0636
-2,2004,Power Bank,Electronics,Naive (rata-rata train),313.4056,317.4751,5.2493
 2,2004,Power Bank,Electronics,Polynomial 2,290.4348,301.426,4.8646
 2,2004,Power Bank,Electronics,Polynomial 5,3125.2105,4037.746,52.3449
 2,2004,Power Bank,Electronics,Ridge (a=0.1),487.4305,579.6816,8.1641
 2,2004,Power Bank,Electronics,Ridge (a=1.0),464.731,560.4305,7.7839
 2,2004,Power Bank,Electronics,Ridge (a=10.0),394.6531,451.2248,6.6101
 2,2004,Power Bank,Electronics,Seasonal Naive,556.5,648.9756,9.321
+2,2004,Power Bank,Electronics,Training Mean Baseline,313.4056,317.4751,5.2493
 2,2005,Laptop Stand,Accessories,Lasso (a=0.1),545.0818,550.0141,15.1045
 2,2005,Laptop Stand,Accessories,Lasso (a=1.0),544.318,549.1893,15.0834
 2,2005,Laptop Stand,Accessories,Lasso (a=10.0),536.68,541.2315,14.8717
 2,2005,Laptop Stand,Accessories,Linear (baseline),545.1667,550.1061,15.1069
 2,2005,Laptop Stand,Accessories,Moving Average,514.5259,545.3183,14.2578
-2,2005,Laptop Stand,Accessories,Naive (rata-rata train),454.16,494.3436,12.585
 2,2005,Laptop Stand,Accessories,Polynomial 2,665.7251,705.2611,18.4476
 2,2005,Laptop Stand,Accessories,Polynomial 5,1127.8908,1335.717,31.2545
 2,2005,Laptop Stand,Accessories,Ridge (a=0.1),544.564,549.4543,15.0902
 2,2005,Laptop Stand,Accessories,Ridge (a=1.0),539.4787,544.0853,14.9493
 2,2005,Laptop Stand,Accessories,Ridge (a=10.0),508.764,516.9585,14.0981
 2,2005,Laptop Stand,Accessories,Seasonal Naive,419.0667,559.3311,11.6126
+2,2005,Laptop Stand,Accessories,Training Mean Baseline,454.16,494.3436,12.585
 2,2006,Webcam,Electronics,Lasso (a=0.1),776.3807,903.2907,15.8471
 2,2006,Webcam,Electronics,Lasso (a=1.0),776.8667,903.3024,15.857
 2,2006,Webcam,Electronics,Lasso (a=10.0),779.7867,903.4553,15.9166
 2,2006,Webcam,Electronics,Linear (baseline),776.3267,903.2897,15.846
 2,2006,Webcam,Electronics,Moving Average,1051.9407,1185.3109,21.4717
-2,2006,Webcam,Electronics,Naive (rata-rata train),779.7867,903.4553,15.9166
 2,2006,Webcam,Electronics,Polynomial 2,1351.8509,1682.3836,27.5933
 2,2006,Webcam,Electronics,Polynomial 5,2499.9231,2776.1968,51.0272
 2,2006,Webcam,Electronics,Ridge (a=0.1),776.3496,903.2901,15.8465
 2,2006,Webcam,Electronics,Ridge (a=1.0),776.5429,903.2942,15.8504
 2,2006,Webcam,Electronics,Ridge (a=10.0),777.7107,903.3321,15.8742
 2,2006,Webcam,Electronics,Seasonal Naive,1111.2,1161.3066,22.6813
+2,2006,Webcam,Electronics,Training Mean Baseline,779.7867,903.4553,15.9166
 2,2007,Headphones,Electronics,Lasso (a=0.1),784.7262,911.0887,6.3457
 2,2007,Headphones,Electronics,Lasso (a=1.0),785.49,912.2598,6.3519
 2,2007,Headphones,Electronics,Lasso (a=10.0),793.1281,924.1,6.4137
 2,2007,Headphones,Electronics,Linear (baseline),784.6414,910.9587,6.345
 2,2007,Headphones,Electronics,Moving Average,723.7037,983.3739,5.8522
-2,2007,Headphones,Electronics,Naive (rata-rata train),1817.75,1987.455,14.6993
 2,2007,Headphones,Electronics,Polynomial 2,839.5943,985.9003,6.7894
 2,2007,Headphones,Electronics,Polynomial 5,8856.7925,9906.0225,71.6207
 2,2007,Headphones,Electronics,Ridge (a=0.1),788.1046,916.2864,6.373
 2,2007,Headphones,Electronics,Ridge (a=1.0),817.3252,963.0789,6.6093
 2,2007,Headphones,Electronics,Ridge (a=10.0),1047.5991,1295.8481,8.4714
 2,2007,Headphones,Electronics,Seasonal Naive,1702.5,2186.5062,13.7673
+2,2007,Headphones,Electronics,Training Mean Baseline,1817.75,1987.455,14.6993
 2,2008,Phone Case,Accessories,Lasso (a=0.1),349.765,426.4618,9.0519
 2,2008,Phone Case,Accessories,Lasso (a=1.0),347.8902,424.8679,9.0034
 2,2008,Phone Case,Accessories,Lasso (a=10.0),329.1424,409.0643,8.5182
 2,2008,Phone Case,Accessories,Linear (baseline),349.9733,426.639,9.0573
 2,2008,Phone Case,Accessories,Moving Average,444.2926,546.7863,11.4983
-2,2008,Phone Case,Accessories,Naive (rata-rata train),245.8711,296.4717,6.3631
 2,2008,Phone Case,Accessories,Polynomial 2,618.9634,682.2463,16.0187
 2,2008,Phone Case,Accessories,Polynomial 5,4506.8489,5082.7573,116.6369
 2,2008,Phone Case,Accessories,Ridge (a=0.1),348.8504,425.6839,9.0282
 2,2008,Phone Case,Accessories,Ridge (a=1.0),339.3758,417.6596,8.783
 2,2008,Phone Case,Accessories,Ridge (a=10.0),282.1493,370.6936,7.302
 2,2008,Phone Case,Accessories,Seasonal Naive,165.6667,234.3199,4.2874
+2,2008,Phone Case,Accessories,Training Mean Baseline,245.8711,296.4717,6.3631
 2,2009,Smart Watch,Wearables,Lasso (a=0.1),1670.946,1709.33,21.9688
 2,2009,Smart Watch,Wearables,Lasso (a=1.0),1670.4599,1708.7985,21.9624
 2,2009,Smart Watch,Wearables,Lasso (a=10.0),1665.5994,1703.5884,21.8985
 2,2009,Smart Watch,Wearables,Linear (baseline),1671.0,1709.3892,21.9695
 2,2009,Smart Watch,Wearables,Moving Average,1844.1481,1902.755,24.246
-2,2009,Smart Watch,Wearables,Naive (rata-rata train),1376.8,2007.0291,18.1015
 2,2009,Smart Watch,Wearables,Polynomial 2,1779.6697,2011.7674,23.3982
 2,2009,Smart Watch,Wearables,Polynomial 5,2826.0244,2958.2127,37.1552
 2,2009,Smart Watch,Wearables,Ridge (a=0.1),1668.1934,1706.345,21.9326
 2,2009,Smart Watch,Wearables,Ridge (a=1.0),1644.5125,1683.2376,21.6213
 2,2009,Smart Watch,Wearables,Ridge (a=10.0),1501.48,1648.6024,19.7407
 2,2009,Smart Watch,Wearables,Seasonal Naive,1928.0,1988.1348,25.3484
+2,2009,Smart Watch,Wearables,Training Mean Baseline,1376.8,2007.0291,18.1015
 2,2010,Fitness Band,Wearables,Lasso (a=0.1),638.3346,800.3431,11.1098
 2,2010,Fitness Band,Wearables,Lasso (a=1.0),638.9595,800.7174,11.1207
 2,2010,Fitness Band,Wearables,Lasso (a=10.0),645.2088,804.6932,11.2295
 2,2010,Fitness Band,Wearables,Linear (baseline),638.2652,800.3018,11.1086
 2,2010,Fitness Band,Wearables,Moving Average,766.0617,823.0044,13.3329
-2,2010,Fitness Band,Wearables,Naive (rata-rata train),646.25,805.3964,11.2476
 2,2010,Fitness Band,Wearables,Polynomial 2,1025.828,1075.8324,17.8539
 2,2010,Fitness Band,Wearables,Polynomial 5,2610.0674,3285.4632,45.4267
 2,2010,Fitness Band,Wearables,Ridge (a=0.1),638.3181,800.3333,11.1096
 2,2010,Fitness Band,Wearables,Ridge (a=1.0),638.7642,800.6,11.1173
 2,2010,Fitness Band,Wearables,Ridge (a=10.0),641.4591,802.257,11.1642
 2,2010,Fitness Band,Wearables,Seasonal Naive,278.6667,337.2461,4.85
+2,2010,Fitness Band,Wearables,Training Mean Baseline,646.25,805.3964,11.2476
 2,2011,Desk Lamp,Home Office,Lasso (a=0.1),1065.6203,1108.9318,24.9505
 2,2011,Desk Lamp,Home Office,Lasso (a=1.0),1063.7455,1107.0909,24.9066
 2,2011,Desk Lamp,Home Office,Lasso (a=10.0),1044.9976,1088.6889,24.4677
 2,2011,Desk Lamp,Home Office,Linear (baseline),1065.8286,1109.1364,24.9554
 2,2011,Desk Lamp,Home Office,Moving Average,714.4889,803.896,16.7291
-2,2011,Desk Lamp,Home Office,Naive (rata-rata train),409.6,484.6184,9.5904
 2,2011,Desk Lamp,Home Office,Polynomial 2,738.929,779.4748,17.3013
 2,2011,Desk Lamp,Home Office,Polynomial 5,5768.736,6628.3573,135.0697
 2,2011,Desk Lamp,Home Office,Ridge (a=0.1),1061.4827,1104.8691,24.8536
 2,2011,Desk Lamp,Home Office,Ridge (a=1.0),1024.8143,1068.8944,23.9951
 2,2011,Desk Lamp,Home Office,Ridge (a=10.0),803.3371,853.1406,18.8094
 2,2011,Desk Lamp,Home Office,Seasonal Naive,460.2667,605.0701,10.7767
+2,2011,Desk Lamp,Home Office,Training Mean Baseline,409.6,484.6184,9.5904
 2,2012,Office Chair,Home Office,Lasso (a=0.1),2181.0913,3186.4786,17.5357
 2,2012,Office Chair,Home Office,Lasso (a=1.0),2180.4663,3185.5195,17.5307
 2,2012,Office Chair,Home Office,Lasso (a=10.0),2176.2756,3175.974,17.497
 2,2012,Office Chair,Home Office,Linear (baseline),2181.1607,3186.5853,17.5363
 2,2012,Office Chair,Home Office,Moving Average,3148.6667,4365.1739,25.3149
-2,2012,Office Chair,Home Office,Naive (rata-rata train),2178.0,3172.6074,17.5109
 2,2012,Office Chair,Home Office,Polynomial 2,4346.7949,5525.7285,34.9477
 2,2012,Office Chair,Home Office,Polynomial 5,6914.8028,8681.6673,55.5942
 2,2012,Office Chair,Home Office,Ridge (a=0.1),2181.1,3186.4921,17.5358
 2,2012,Office Chair,Home Office,Ridge (a=1.0),2180.5882,3185.7064,17.5317
 2,2012,Office Chair,Home Office,Ridge (a=10.0),2177.4964,3180.9728,17.5068
 2,2012,Office Chair,Home Office,Seasonal Naive,3087.0,3916.0964,24.8191
+2,2012,Office Chair,Home Office,Training Mean Baseline,2178.0,3172.6074,17.5109
 2,2013,Notebook,Stationery,Lasso (a=0.1),80.0164,101.6363,3.4774
 2,2013,Notebook,Stationery,Lasso (a=1.0),80.5024,102.992,3.4986
 2,2013,Notebook,Stationery,Lasso (a=10.0),96.6572,117.3513,4.2006
 2,2013,Notebook,Stationery,Linear (baseline),79.9624,101.4867,3.4751
 2,2013,Notebook,Stationery,Moving Average,154.4019,198.267,6.7102
-2,2013,Notebook,Stationery,Naive (rata-rata train),189.35,199.5728,8.229
 2,2013,Notebook,Stationery,Polynomial 2,76.9897,88.8337,3.3459
 2,2013,Notebook,Stationery,Polynomial 5,1516.6684,1786.9877,65.913
 2,2013,Notebook,Stationery,Ridge (a=0.1),80.1573,102.0276,3.4836
 2,2013,Notebook,Stationery,Ridge (a=1.0),82.9215,106.6949,3.6037
 2,2013,Notebook,Stationery,Ridge (a=10.0),121.2358,137.815,5.2688
 2,2013,Notebook,Stationery,Seasonal Naive,299.8333,370.8489,13.0305
+2,2013,Notebook,Stationery,Training Mean Baseline,189.35,199.5728,8.229
 2,2014,Backpack,Accessories,Lasso (a=0.1),874.0742,946.3219,15.5948
 2,2014,Backpack,Accessories,Lasso (a=1.0),872.1994,944.5275,15.5614
 2,2014,Backpack,Accessories,Lasso (a=10.0),853.4515,926.6029,15.2269
 2,2014,Backpack,Accessories,Linear (baseline),874.2825,946.5213,15.5985
 2,2014,Backpack,Accessories,Moving Average,716.2556,752.8439,12.7791
-2,2014,Backpack,Accessories,Naive (rata-rata train),245.56,303.7956,4.3812
 2,2014,Backpack,Accessories,Polynomial 2,1494.7434,1577.6459,26.6685
 2,2014,Backpack,Accessories,Polynomial 5,777.1569,880.9861,13.8657
 2,2014,Backpack,Accessories,Ridge (a=0.1),869.0099,941.4756,15.5045
 2,2014,Backpack,Accessories,Ridge (a=1.0),824.5223,899.0162,14.7107
 2,2014,Backpack,Accessories,Ridge (a=10.0),555.8175,648.9039,9.9166
 2,2014,Backpack,Accessories,Seasonal Naive,927.5,979.7027,16.548
+2,2014,Backpack,Accessories,Training Mean Baseline,245.56,303.7956,4.3812
 2,2015,Bluetooth Speaker,Electronics,Lasso (a=0.1),1274.6297,1338.3289,17.2431
 2,2015,Bluetooth Speaker,Electronics,Lasso (a=1.0),1273.8659,1337.0913,17.2328
 2,2015,Bluetooth Speaker,Electronics,Lasso (a=10.0),1266.2279,1324.7987,17.1295
 2,2015,Bluetooth Speaker,Electronics,Linear (baseline),1274.7146,1338.4665,17.2443
 2,2015,Bluetooth Speaker,Electronics,Moving Average,1310.084,1507.1854,17.7228
-2,2015,Bluetooth Speaker,Electronics,Naive (rata-rata train),1213.2311,1244.0144,16.4125
 2,2015,Bluetooth Speaker,Electronics,Polynomial 2,1515.3719,1717.0219,20.4999
 2,2015,Bluetooth Speaker,Electronics,Polynomial 5,13239.8534,15475.2457,179.1081
 2,2015,Bluetooth Speaker,Electronics,Ridge (a=0.1),1274.3074,1337.8065,17.2388
 2,2015,Bluetooth Speaker,Electronics,Ridge (a=1.0),1270.8718,1332.2545,17.1923
 2,2015,Bluetooth Speaker,Electronics,Ridge (a=10.0),1250.1212,1299.3896,16.9116
 2,2015,Bluetooth Speaker,Electronics,Seasonal Naive,1343.6667,1472.9831,18.1771
+2,2015,Bluetooth Speaker,Electronics,Training Mean Baseline,1213.2311,1244.0144,16.4125
 2,2016,Monitor,Electronics,Lasso (a=0.1),175.2306,200.8361,20.0103
 2,2016,Monitor,Electronics,Lasso (a=1.0),175.21,200.79,20.008
 2,2016,Monitor,Electronics,Lasso (a=10.0),175.21,200.79,20.008
 2,2016,Monitor,Electronics,Linear (baseline),175.3,200.9917,20.0183
 2,2016,Monitor,Electronics,Moving Average,177.2296,203.8278,20.2386
-2,2016,Monitor,Electronics,Naive (rata-rata train),175.21,200.79,20.008
 2,2016,Monitor,Electronics,Polynomial 2,187.3952,229.6472,21.3995
 2,2016,Monitor,Electronics,Polynomial 5,1552.1294,1792.0286,177.2444
 2,2016,Monitor,Electronics,Ridge (a=0.1),175.2994,200.9904,20.0182
 2,2016,Monitor,Electronics,Ridge (a=1.0),175.2944,200.9791,20.0176
 2,2016,Monitor,Electronics,Ridge (a=10.0),175.264,200.911,20.0142
 2,2016,Monitor,Electronics,Seasonal Naive,115.5,120.1688,13.1894
+2,2016,Monitor,Electronics,Training Mean Baseline,175.21,200.79,20.008
 2,2017,HDMI Cable,Accessories,Lasso (a=0.1),162.1257,190.0653,6.5072
 2,2017,HDMI Cable,Accessories,Lasso (a=1.0),161.6397,190.0152,6.4876
 2,2017,HDMI Cable,Accessories,Lasso (a=10.0),156.7791,190.5399,6.2926
 2,2017,HDMI Cable,Accessories,Linear (baseline),162.1797,190.072,6.5093
 2,2017,HDMI Cable,Accessories,Moving Average,165.6043,183.6483,6.6468
-2,2017,HDMI Cable,Accessories,Naive (rata-rata train),157.8744,191.7805,6.3365
 2,2017,HDMI Cable,Accessories,Polynomial 2,228.5118,317.5351,9.1717
 2,2017,HDMI Cable,Accessories,Polynomial 5,365.0512,402.416,14.6519
 2,2017,HDMI Cable,Accessories,Ridge (a=0.1),162.1242,190.0651,6.5071
 2,2017,HDMI Cable,Accessories,Ridge (a=1.0),161.6555,190.0166,6.4883
 2,2017,HDMI Cable,Accessories,Ridge (a=10.0),158.8247,190.0922,6.3747
 2,2017,HDMI Cable,Accessories,Seasonal Naive,262.1667,288.5891,10.5224
+2,2017,HDMI Cable,Accessories,Training Mean Baseline,157.8744,191.7805,6.3365
 2,2018,Microphone,Electronics,Lasso (a=0.1),993.472,1087.9491,13.9252
 2,2018,Microphone,Electronics,Lasso (a=1.0),991.5973,1086.1684,13.8989
 2,2018,Microphone,Electronics,Lasso (a=10.0),972.8494,1068.3807,13.6362
 2,2018,Microphone,Electronics,Linear (baseline),993.6804,1088.147,13.9281
 2,2018,Microphone,Electronics,Moving Average,701.4074,755.7968,9.8314
-2,2018,Microphone,Electronics,Naive (rata-rata train),329.6111,355.5015,4.6201
 2,2018,Microphone,Electronics,Polynomial 2,594.6948,690.4152,8.3357
 2,2018,Microphone,Electronics,Polynomial 5,8420.0675,10007.5592,118.0218
 2,2018,Microphone,Electronics,Ridge (a=0.1),986.5931,1081.4171,13.8288
 2,2018,Microphone,Electronics,Ridge (a=1.0),926.7941,1024.8413,12.9906
 2,2018,Microphone,Electronics,Ridge (a=10.0),565.6082,695.6004,7.928
 2,2018,Microphone,Electronics,Seasonal Naive,633.25,927.0749,8.8761
+2,2018,Microphone,Electronics,Training Mean Baseline,329.6111,355.5015,4.6201
 2,2019,Tablet,Electronics,Lasso (a=0.1),2269.8183,2517.4745,27.367
 2,2019,Tablet,Electronics,Lasso (a=1.0),2269.1933,2516.2255,27.3595
 2,2019,Tablet,Electronics,Lasso (a=10.0),2262.944,2503.7793,27.2841
 2,2019,Tablet,Electronics,Linear (baseline),2269.8877,2517.6133,27.3678
 2,2019,Tablet,Electronics,Moving Average,2127.6667,2478.6629,25.6531
-2,2019,Tablet,Electronics,Naive (rata-rata train),2042.1556,2125.1669,24.6221
 2,2019,Tablet,Electronics,Polynomial 2,2091.1014,2216.2149,25.2122
 2,2019,Tablet,Electronics,Polynomial 5,22544.0281,27098.9279,271.8113
 2,2019,Tablet,Electronics,Ridge (a=0.1),2268.3795,2514.6002,27.3496
 2,2019,Tablet,Electronics,Ridge (a=1.0),2255.6544,2489.3623,27.1962
 2,2019,Tablet,Electronics,Ridge (a=10.0),2178.7948,2344.4863,26.2695
 2,2019,Tablet,Electronics,Seasonal Naive,2015.0,2148.1754,24.2947
+2,2019,Tablet,Electronics,Training Mean Baseline,2042.1556,2125.1669,24.6221
 2,2020,Gaming Controller,Gaming,Lasso (a=0.1),1318.7954,1756.9891,20.9175
 2,2020,Gaming Controller,Gaming,Lasso (a=1.0),1318.0316,1755.9354,20.9054
 2,2020,Gaming Controller,Gaming,Lasso (a=10.0),1310.3936,1745.4751,20.7843
 2,2020,Gaming Controller,Gaming,Linear (baseline),1318.8802,1757.1062,20.9189
 2,2020,Gaming Controller,Gaming,Moving Average,1334.2691,1821.9601,21.163
-2,2020,Gaming Controller,Gaming,Naive (rata-rata train),1323.7333,1457.4358,20.9959
 2,2020,Gaming Controller,Gaming,Polynomial 2,1508.1719,1995.1593,23.9213
 2,2020,Gaming Controller,Gaming,Polynomial 5,10549.2693,12140.3409,167.323
 2,2020,Gaming Controller,Gaming,Ridge (a=0.1),1316.4356,1753.7381,20.8801
 2,2020,Gaming Controller,Gaming,Ridge (a=1.0),1295.8086,1725.8953,20.5529
 2,2020,Gaming Controller,Gaming,Ridge (a=10.0),1171.2215,1582.2264,18.5769
 2,2020,Gaming Controller,Gaming,Seasonal Naive,1757.8,1878.6151,27.8806
+2,2020,Gaming Controller,Gaming,Training Mean Baseline,1323.7333,1457.4358,20.9959
 3,2001,Wireless Mouse,Electronics,Lasso (a=0.1),234.7837,310.8668,7.6226
 3,2001,Wireless Mouse,Electronics,Lasso (a=1.0),232.9622,309.5526,7.5635
 3,2001,Wireless Mouse,Electronics,Lasso (a=10.0),221.2333,298.8913,7.1827
 3,2001,Wireless Mouse,Electronics,Linear (baseline),234.9861,311.0132,7.6292
 3,2001,Wireless Mouse,Electronics,Moving Average,168.0556,172.5125,5.4562
-3,2001,Wireless Mouse,Electronics,Naive (rata-rata train),221.2333,298.8913,7.1827
 3,2001,Wireless Mouse,Electronics,Polynomial 2,335.0817,360.313,10.8789
 3,2001,Wireless Mouse,Electronics,Polynomial 5,5494.8147,6208.7451,178.3973
 3,2001,Wireless Mouse,Electronics,Ridge (a=0.1),234.8917,310.9449,7.6261
 3,2001,Wireless Mouse,Electronics,Ridge (a=1.0),234.0868,310.3634,7.6
 3,2001,Wireless Mouse,Electronics,Ridge (a=10.0),228.8839,306.629,7.4311
 3,2001,Wireless Mouse,Electronics,Seasonal Naive,387.3,389.9348,12.5743
+3,2001,Wireless Mouse,Electronics,Training Mean Baseline,221.2333,298.8913,7.1827
 3,2002,Mechanical Keyboard,Electronics,Lasso (a=0.1),756.1585,875.0797,10.3095
 3,2002,Mechanical Keyboard,Electronics,Lasso (a=1.0),756.65,874.6277,10.3162
 3,2002,Mechanical Keyboard,Electronics,Lasso (a=10.0),761.5651,870.3053,10.3832
 3,2002,Mechanical Keyboard,Electronics,Linear (baseline),756.1039,875.1302,10.3087
 3,2002,Mechanical Keyboard,Electronics,Moving Average,526.1198,714.156,7.1731
-3,2002,Mechanical Keyboard,Electronics,Naive (rata-rata train),773.3352,861.4427,10.5437
 3,2002,Mechanical Keyboard,Electronics,Polynomial 2,845.3333,856.8468,11.5253
 3,2002,Mechanical Keyboard,Electronics,Polynomial 5,8736.1717,9861.1241,119.109
 3,2002,Mechanical Keyboard,Electronics,Ridge (a=0.1),756.1991,875.0422,10.31
 3,2002,Mechanical Keyboard,Electronics,Ridge (a=1.0),757.0108,874.2981,10.3211
 3,2002,Mechanical Keyboard,Electronics,Ridge (a=10.0),762.2579,869.7252,10.3926
 3,2002,Mechanical Keyboard,Electronics,Seasonal Naive,1519.0,1650.2155,20.7101
+3,2002,Mechanical Keyboard,Electronics,Training Mean Baseline,773.3352,861.4427,10.5437
 3,2003,USB-C Cable,Accessories,Lasso (a=0.1),147.8529,153.1229,6.2547
 3,2003,USB-C Cable,Accessories,Lasso (a=1.0),146.0314,151.3385,6.1777
 3,2003,USB-C Cable,Accessories,Lasso (a=10.0),127.8167,133.5569,5.4071
 3,2003,USB-C Cable,Accessories,Linear (baseline),148.0553,153.3213,6.2633
 3,2003,USB-C Cable,Accessories,Moving Average,31.8556,42.6291,1.3476
-3,2003,USB-C Cable,Accessories,Naive (rata-rata train),76.6,84.6793,3.2405
 3,2003,USB-C Cable,Accessories,Polynomial 2,78.5236,84.6882,3.3219
 3,2003,USB-C Cable,Accessories,Polynomial 5,534.6874,563.3845,22.6193
 3,2003,USB-C Cable,Accessories,Ridge (a=0.1),147.6605,152.9344,6.2466
 3,2003,USB-C Cable,Accessories,Ridge (a=1.0),144.2945,149.6377,6.1042
 3,2003,USB-C Cable,Accessories,Ridge (a=10.0),122.5355,128.4269,5.1837
 3,2003,USB-C Cable,Accessories,Seasonal Naive,228.6,243.7225,9.6707
+3,2003,USB-C Cable,Accessories,Training Mean Baseline,76.6,84.6793,3.2405
 3,2004,Power Bank,Electronics,Lasso (a=0.1),520.9225,630.1079,9.0587
 3,2004,Power Bank,Electronics,Lasso (a=1.0),521.6453,629.9654,9.0713
 3,2004,Power Bank,Electronics,Lasso (a=10.0),528.8734,628.8311,9.197
 3,2004,Power Bank,Electronics,Linear (baseline),520.8422,630.124,9.0573
 3,2004,Power Bank,Electronics,Moving Average,642.2284,664.5753,11.1682
-3,2004,Power Bank,Electronics,Naive (rata-rata train),612.338,653.6829,10.6484
 3,2004,Power Bank,Electronics,Polynomial 2,836.2848,900.4722,14.5428
 3,2004,Power Bank,Electronics,Polynomial 5,3569.8396,4225.8171,62.0788
 3,2004,Power Bank,Electronics,Ridge (a=0.1),521.3477,630.0235,9.0661
 3,2004,Power Bank,Electronics,Ridge (a=1.0),525.6578,629.2705,9.1411
 3,2004,Power Bank,Electronics,Ridge (a=10.0),553.5193,628.9505,9.6256
 3,2004,Power Bank,Electronics,Seasonal Naive,534.9167,582.8674,9.3021
+3,2004,Power Bank,Electronics,Training Mean Baseline,612.338,653.6829,10.6484
 3,2005,Laptop Stand,Accessories,Lasso (a=0.1),174.6074,288.5326,4.7718
 3,2005,Laptop Stand,Accessories,Lasso (a=1.0),172.7859,287.5337,4.722
 3,2005,Laptop Stand,Accessories,Lasso (a=10.0),166.8998,278.0086,4.5612
 3,2005,Laptop Stand,Accessories,Linear (baseline),174.8098,288.6441,4.7774
 3,2005,Laptop Stand,Accessories,Moving Average,338.2123,340.4456,9.243
-3,2005,Laptop Stand,Accessories,Naive (rata-rata train),213.163,241.9684,5.8255
 3,2005,Laptop Stand,Accessories,Polynomial 2,230.024,257.5064,6.2863
 3,2005,Laptop Stand,Accessories,Polynomial 5,3197.3755,3721.9905,87.3807
 3,2005,Laptop Stand,Accessories,Ridge (a=0.1),174.0442,288.2229,4.7564
 3,2005,Laptop Stand,Accessories,Ridge (a=1.0),170.3931,284.6906,4.6567
 3,2005,Laptop Stand,Accessories,Ridge (a=10.0),177.8147,264.6417,4.8595
 3,2005,Laptop Stand,Accessories,Seasonal Naive,181.5333,182.07,4.9611
+3,2005,Laptop Stand,Accessories,Training Mean Baseline,213.163,241.9684,5.8255
 3,2006,Webcam,Electronics,Lasso (a=0.1),217.9243,288.7139,4.4664
 3,2006,Webcam,Electronics,Lasso (a=1.0),217.4328,289.4361,4.4563
 3,2006,Webcam,Electronics,Lasso (a=10.0),216.6667,292.6297,4.4406
 3,2006,Webcam,Electronics,Linear (baseline),217.9789,288.6342,4.4675
 3,2006,Webcam,Electronics,Moving Average,473.2741,556.6935,9.6998
-3,2006,Webcam,Electronics,Naive (rata-rata train),216.6667,292.6297,4.4406
 3,2006,Webcam,Electronics,Polynomial 2,376.9102,418.2712,7.7248
 3,2006,Webcam,Electronics,Polynomial 5,13851.1367,15971.0838,283.8813
 3,2006,Webcam,Electronics,Ridge (a=0.1),217.9643,288.6555,4.4672
 3,2006,Webcam,Electronics,Ridge (a=1.0),217.8397,288.8375,4.4647
 3,2006,Webcam,Electronics,Ridge (a=10.0),217.0341,290.0292,4.4481
 3,2006,Webcam,Electronics,Seasonal Naive,321.6,386.5267,6.5912
+3,2006,Webcam,Electronics,Training Mean Baseline,216.6667,292.6297,4.4406
 3,2007,Headphones,Electronics,Lasso (a=0.1),2111.7261,2211.3415,20.0782
 3,2007,Headphones,Electronics,Lasso (a=1.0),2109.9047,2209.6349,20.0609
 3,2007,Headphones,Electronics,Lasso (a=10.0),2091.69,2192.5797,19.8877
 3,2007,Headphones,Electronics,Linear (baseline),2111.9285,2211.5312,20.0801
 3,2007,Headphones,Electronics,Moving Average,2021.8981,2122.907,19.2241
-3,2007,Headphones,Electronics,Naive (rata-rata train),612.8472,838.1714,5.8269
 3,2007,Headphones,Electronics,Polynomial 2,2551.5551,2619.0582,24.2601
 3,2007,Headphones,Electronics,Polynomial 5,3855.9888,4526.6734,36.6626
 3,2007,Headphones,Electronics,Ridge (a=0.1),2102.1055,2202.3298,19.9867
 3,2007,Headphones,Electronics,Ridge (a=1.0),2018.3512,2124.1132,19.1904
 3,2007,Headphones,Electronics,Ridge (a=10.0),1476.9392,1632.4416,14.0427
 3,2007,Headphones,Electronics,Seasonal Naive,1466.25,1734.2267,13.9411
+3,2007,Headphones,Electronics,Training Mean Baseline,612.8472,838.1714,5.8269
 3,2008,Phone Case,Accessories,Lasso (a=0.1),233.8845,301.6576,5.5576
 3,2008,Phone Case,Accessories,Lasso (a=1.0),234.6073,302.7543,5.5747
 3,2008,Phone Case,Accessories,Lasso (a=10.0),241.5519,313.6381,5.7398
 3,2008,Phone Case,Accessories,Linear (baseline),233.8042,301.5362,5.5557
 3,2008,Phone Case,Accessories,Moving Average,380.0741,452.0976,9.0313
-3,2008,Phone Case,Accessories,Naive (rata-rata train),241.5519,313.6381,5.7398
 3,2008,Phone Case,Accessories,Polynomial 2,332.6209,420.6685,7.9037
 3,2008,Phone Case,Accessories,Polynomial 5,3501.3671,3917.2048,83.1995
 3,2008,Phone Case,Accessories,Ridge (a=0.1),233.847,301.6009,5.5567
 3,2008,Phone Case,Accessories,Ridge (a=1.0),234.2119,302.1536,5.5653
 3,2008,Phone Case,Accessories,Ridge (a=10.0),236.5712,305.7693,5.6214
 3,2008,Phone Case,Accessories,Seasonal Naive,118.7667,130.4763,2.8221
+3,2008,Phone Case,Accessories,Training Mean Baseline,241.5519,313.6381,5.7398
 3,2009,Smart Watch,Wearables,Lasso (a=0.1),1705.7811,2099.1228,20.068
 3,2009,Smart Watch,Wearables,Lasso (a=1.0),1703.9596,2097.6578,20.0466
 3,2009,Smart Watch,Wearables,Lasso (a=10.0),1696.5817,2083.0387,19.9598
 3,2009,Smart Watch,Wearables,Linear (baseline),1705.9835,2099.2856,20.0704
 3,2009,Smart Watch,Wearables,Moving Average,1635.6296,1814.3459,19.2427
-3,2009,Smart Watch,Wearables,Naive (rata-rata train),1143.1111,1253.6897,13.4484
 3,2009,Smart Watch,Wearables,Polynomial 2,2051.0857,2383.7499,24.1304
 3,2009,Smart Watch,Wearables,Polynomial 5,14535.9316,16233.4657,171.011
 3,2009,Smart Watch,Wearables,Ridge (a=0.1),1700.2327,2091.8228,20.0027
 3,2009,Smart Watch,Wearables,Ridge (a=1.0),1673.8427,2028.814,19.6923
 3,2009,Smart Watch,Wearables,Ridge (a=10.0),1503.2504,1655.8935,17.6853
 3,2009,Smart Watch,Wearables,Seasonal Naive,2090.0,2574.578,24.5882
+3,2009,Smart Watch,Wearables,Training Mean Baseline,1143.1111,1253.6897,13.4484
 3,2010,Fitness Band,Wearables,Lasso (a=0.1),888.7924,1034.1811,14.3177
 3,2010,Fitness Band,Wearables,Lasso (a=1.0),889.2839,1035.0308,14.3256
 3,2010,Fitness Band,Wearables,Lasso (a=10.0),894.199,1043.6661,14.4048
 3,2010,Fitness Band,Wearables,Linear (baseline),888.7378,1034.0868,14.3168
 3,2010,Fitness Band,Wearables,Moving Average,910.5895,1023.4012,14.6688
-3,2010,Fitness Band,Wearables,Naive (rata-rata train),916.0046,1084.8615,14.756
 3,2010,Fitness Band,Wearables,Polynomial 2,817.5226,971.3655,13.1696
 3,2010,Fitness Band,Wearables,Polynomial 5,5773.7066,6109.6749,93.0093
 3,2010,Fitness Band,Wearables,Ridge (a=0.1),888.8885,1034.3469,14.3192
 3,2010,Fitness Band,Wearables,Ridge (a=1.0),890.1729,1036.5742,14.3399
 3,2010,Fitness Band,Wearables,Ridge (a=10.0),898.476,1051.3809,14.4737
 3,2010,Fitness Band,Wearables,Seasonal Naive,788.3333,852.4675,12.6994
+3,2010,Fitness Band,Wearables,Training Mean Baseline,916.0046,1084.8615,14.756
 3,2011,Desk Lamp,Home Office,Lasso (a=0.1),386.1281,422.5111,11.0888
 3,2011,Desk Lamp,Home Office,Lasso (a=1.0),386.7353,423.3945,11.1063
 3,2011,Desk Lamp,Home Office,Lasso (a=10.0),392.8069,432.553,11.2806
 3,2011,Desk Lamp,Home Office,Linear (baseline),386.0607,422.4134,11.0869
 3,2011,Desk Lamp,Home Office,Moving Average,856.0198,910.5375,24.5832
-3,2011,Desk Lamp,Home Office,Naive (rata-rata train),463.4667,572.2105,13.3098
 3,2011,Desk Lamp,Home Office,Polynomial 2,1243.7416,1290.7987,35.7178
 3,2011,Desk Lamp,Home Office,Polynomial 5,2024.1265,2090.3681,58.1289
 3,2011,Desk Lamp,Home Office,Ridge (a=0.1),386.4883,423.0344,11.0992
 3,2011,Desk Lamp,Home Office,Ridge (a=1.0),390.1347,428.4503,11.2039
 3,2011,Desk Lamp,Home Office,Ridge (a=10.0),413.7057,468.176,11.8808
 3,2011,Desk Lamp,Home Office,Seasonal Naive,437.8667,465.0572,12.5747
+3,2011,Desk Lamp,Home Office,Training Mean Baseline,463.4667,572.2105,13.3098
 3,2012,Office Chair,Home Office,Lasso (a=0.1),2885.8397,3207.9835,29.4263
 3,2012,Office Chair,Home Office,Lasso (a=1.0),2885.2325,3206.725,29.4201
 3,2012,Office Chair,Home Office,Lasso (a=10.0),2879.1609,3194.1693,29.3582
 3,2012,Office Chair,Home Office,Linear (baseline),2885.9071,3208.1234,29.427
 3,2012,Office Chair,Home Office,Moving Average,3351.3333,4067.2196,34.1729
-3,2012,Office Chair,Home Office,Naive (rata-rata train),2625.0,2727.1485,26.7666
 3,2012,Office Chair,Home Office,Polynomial 2,2944.5573,3328.8031,30.0251
 3,2012,Office Chair,Home Office,Polynomial 5,30635.1962,33686.4513,312.3809
 3,2012,Office Chair,Home Office,Ridge (a=0.1),2884.4656,3205.1361,29.4123
 3,2012,Office Chair,Home Office,Ridge (a=1.0),2872.1752,3179.7917,29.287
 3,2012,Office Chair,Home Office,Ridge (a=10.0),2792.726,3021.755,28.4769
 3,2012,Office Chair,Home Office,Seasonal Naive,3231.0,3604.3361,32.9459
+3,2012,Office Chair,Home Office,Training Mean Baseline,2625.0,2727.1485,26.7666
 3,2013,Notebook,Stationery,Lasso (a=0.1),112.805,148.824,5.1324
 3,2013,Notebook,Stationery,Lasso (a=1.0),110.9835,147.3677,5.0496
 3,2013,Notebook,Stationery,Lasso (a=10.0),92.7689,133.3084,4.2208
 3,2013,Notebook,Stationery,Linear (baseline),113.0074,148.9863,5.1416
 3,2013,Notebook,Stationery,Moving Average,97.4599,122.8028,4.4343
-3,2013,Notebook,Stationery,Naive (rata-rata train),99.1083,101.9778,4.5093
 3,2013,Notebook,Stationery,Polynomial 2,169.2872,200.4299,7.7023
 3,2013,Notebook,Stationery,Polynomial 5,1180.7268,1404.5007,53.7211
 3,2013,Notebook,Stationery,Ridge (a=0.1),112.081,148.2442,5.0995
 3,2013,Notebook,Stationery,Ridge (a=1.0),104.1829,142.0064,4.7401
 3,2013,Notebook,Stationery,Ridge (a=10.0),70.0235,107.1927,3.186
 3,2013,Notebook,Stationery,Seasonal Naive,55.5333,76.9321,2.5267
+3,2013,Notebook,Stationery,Training Mean Baseline,99.1083,101.9778,4.5093
 3,2014,Backpack,Accessories,Lasso (a=0.1),1085.7598,1230.9608,21.4238
 3,2014,Backpack,Accessories,Lasso (a=1.0),1083.9384,1229.4213,21.3879
 3,2014,Backpack,Accessories,Lasso (a=10.0),1065.7237,1214.07,21.0285
 3,2014,Backpack,Accessories,Linear (baseline),1085.9622,1231.132,21.4278
 3,2014,Backpack,Accessories,Moving Average,717.3444,820.4782,14.1544
-3,2014,Backpack,Accessories,Naive (rata-rata train),714.0,862.45,14.0884
 3,2014,Backpack,Accessories,Polynomial 2,776.5425,944.542,15.3225
 3,2014,Backpack,Accessories,Polynomial 5,610.7576,673.1473,12.0513
 3,2014,Backpack,Accessories,Ridge (a=0.1),1083.2884,1228.8722,21.3751
 3,2014,Backpack,Accessories,Ridge (a=1.0),1060.4905,1209.6744,20.9252
 3,2014,Backpack,Accessories,Ridge (a=10.0),913.1186,1088.9993,18.0173
 3,2014,Backpack,Accessories,Seasonal Naive,296.1,420.0087,5.8425
+3,2014,Backpack,Accessories,Training Mean Baseline,714.0,862.45,14.0884
 3,2015,Bluetooth Speaker,Electronics,Lasso (a=0.1),955.8896,1026.3142,11.8496
 3,2015,Bluetooth Speaker,Electronics,Lasso (a=1.0),957.711,1028.0259,11.8722
 3,2015,Bluetooth Speaker,Electronics,Lasso (a=10.0),975.9257,1045.164,12.098
 3,2015,Bluetooth Speaker,Electronics,Linear (baseline),955.6872,1026.1241,11.8471
 3,2015,Bluetooth Speaker,Electronics,Moving Average,381.2963,437.5763,4.7267
-3,2015,Bluetooth Speaker,Electronics,Naive (rata-rata train),1218.6444,1276.5368,15.1069
 3,2015,Bluetooth Speaker,Electronics,Polynomial 2,355.5802,506.8022,4.4079
 3,2015,Bluetooth Speaker,Electronics,Polynomial 5,3601.5154,3896.5222,44.646
 3,2015,Bluetooth Speaker,Electronics,Ridge (a=0.1),957.14,1027.4892,11.8651
 3,2015,Bluetooth Speaker,Electronics,Ridge (a=1.0),969.527,1039.1392,12.0187
 3,2015,Bluetooth Speaker,Electronics,Ridge (a=10.0),1049.6005,1114.8512,13.0113
 3,2015,Bluetooth Speaker,Electronics,Seasonal Naive,880.6333,1246.8887,10.9167
+3,2015,Bluetooth Speaker,Electronics,Training Mean Baseline,1218.6444,1276.5368,15.1069
 3,2016,Monitor,Electronics,Lasso (a=0.1),86.0927,102.4042,11.6412
 3,2016,Monitor,Electronics,Lasso (a=1.0),84.2712,100.8795,11.3949
 3,2016,Monitor,Electronics,Lasso (a=10.0),74.2855,86.2802,10.0447
 3,2016,Monitor,Electronics,Linear (baseline),86.295,102.5743,11.6686
 3,2016,Monitor,Electronics,Moving Average,140.8167,159.0581,19.0409
-3,2016,Monitor,Electronics,Naive (rata-rata train),56.6417,57.3811,7.6589
 3,2016,Monitor,Electronics,Polynomial 2,184.7862,194.0087,24.9863
 3,2016,Monitor,Electronics,Polynomial 5,762.7672,827.2953,103.1394
 3,2016,Monitor,Electronics,Ridge (a=0.1),85.8908,102.2348,11.6139
 3,2016,Monitor,Electronics,Ridge (a=1.0),82.444,99.3602,11.1479
 3,2016,Monitor,Electronics,Ridge (a=10.0),72.321,81.8725,9.779
 3,2016,Monitor,Electronics,Seasonal Naive,113.4,136.3869,15.3336
+3,2016,Monitor,Electronics,Training Mean Baseline,56.6417,57.3811,7.6589
 3,2017,HDMI Cable,Accessories,Lasso (a=0.1),129.5919,166.7189,4.9173
 3,2017,HDMI Cable,Accessories,Lasso (a=1.0),130.0834,167.9703,4.936
 3,2017,HDMI Cable,Accessories,Lasso (a=10.0),142.8389,181.0231,5.42
 3,2017,HDMI Cable,Accessories,Linear (baseline),129.5373,166.5806,4.9153
 3,2017,HDMI Cable,Accessories,Moving Average,160.1519,184.1328,6.0769
-3,2017,HDMI Cable,Accessories,Naive (rata-rata train),158.1861,192.6804,6.0023
 3,2017,HDMI Cable,Accessories,Polynomial 2,229.5482,246.9433,8.7101
 3,2017,HDMI Cable,Accessories,Polynomial 5,479.2618,599.0278,18.1854
 3,2017,HDMI Cable,Accessories,Ridge (a=0.1),129.5904,166.715,4.9173
 3,2017,HDMI Cable,Accessories,Ridge (a=1.0),130.0427,167.8662,4.9344
 3,2017,HDMI Cable,Accessories,Ridge (a=10.0),135.3096,175.5146,5.1343
 3,2017,HDMI Cable,Accessories,Seasonal Naive,149.05,166.8719,5.6557
+3,2017,HDMI Cable,Accessories,Training Mean Baseline,158.1861,192.6804,6.0023
 3,2018,Microphone,Electronics,Lasso (a=0.1),2579.2494,2738.6192,28.5413
 3,2018,Microphone,Electronics,Lasso (a=1.0),2577.4279,2736.9349,28.5211
 3,2018,Microphone,Electronics,Lasso (a=10.0),2559.2132,2720.1015,28.3195
 3,2018,Microphone,Electronics,Linear (baseline),2579.4518,2738.8064,28.5435
 3,2018,Microphone,Electronics,Moving Average,1794.8117,2067.087,19.8609
-3,2018,Microphone,Electronics,Naive (rata-rata train),1838.8333,2073.939,20.348
 3,2018,Microphone,Electronics,Polynomial 2,1508.1754,1850.3909,16.689
 3,2018,Microphone,Electronics,Polynomial 5,2317.3523,2417.0282,25.6432
 3,2018,Microphone,Electronics,Ridge (a=0.1),2575.3599,2735.0228,28.4982
 3,2018,Microphone,Electronics,Ridge (a=1.0),2540.4718,2702.8009,28.1122
 3,2018,Microphone,Electronics,Ridge (a=10.0),2314.9452,2496.3103,25.6165
 3,2018,Microphone,Electronics,Seasonal Naive,1685.8333,1724.8334,18.655
+3,2018,Microphone,Electronics,Training Mean Baseline,1838.8333,2073.939,20.348
 3,2019,Tablet,Electronics,Lasso (a=0.1),1538.9829,1756.288,20.2595
 3,2019,Tablet,Electronics,Lasso (a=1.0),1540.8044,1757.8192,20.2835
 3,2019,Tablet,Electronics,Lasso (a=10.0),1556.3889,1770.9432,20.4887
 3,2019,Tablet,Electronics,Linear (baseline),1538.7805,1756.1179,20.2569
 3,2019,Tablet,Electronics,Moving Average,1224.8889,1328.6125,16.1247
-3,2019,Tablet,Electronics,Naive (rata-rata train),1556.3889,1770.9432,20.4887
 3,2019,Tablet,Electronics,Polynomial 2,1055.6452,1135.9549,13.8968
 3,2019,Tablet,Electronics,Polynomial 5,4669.6588,5293.1231,61.4725
 3,2019,Tablet,Electronics,Ridge (a=0.1),1538.8778,1756.1997,20.2582
 3,2019,Tablet,Electronics,Ridge (a=1.0),1539.7073,1756.8969,20.2691
 3,2019,Tablet,Electronics,Ridge (a=10.0),1545.0692,1761.4067,20.3397
 3,2019,Tablet,Electronics,Seasonal Naive,1976.0,2595.2072,26.0125
+3,2019,Tablet,Electronics,Training Mean Baseline,1556.3889,1770.9432,20.4887
 3,2020,Gaming Controller,Gaming,Lasso (a=0.1),1141.8105,1729.2535,16.6995
 3,2020,Gaming Controller,Gaming,Lasso (a=1.0),1139.989,1727.9605,16.6728
 3,2020,Gaming Controller,Gaming,Lasso (a=10.0),1121.7743,1715.0845,16.4064
 3,2020,Gaming Controller,Gaming,Linear (baseline),1142.0129,1729.3972,16.7024
 3,2020,Gaming Controller,Gaming,Moving Average,1181.3951,1466.8433,17.2784
-3,2020,Gaming Controller,Gaming,Naive (rata-rata train),997.5852,1384.0299,14.5901
 3,2020,Gaming Controller,Gaming,Polynomial 2,942.9936,1307.0533,13.7917
 3,2020,Gaming Controller,Gaming,Polynomial 5,2186.0251,3312.2539,31.9716
 3,2020,Gaming Controller,Gaming,Ridge (a=0.1),1138.855,1727.1561,16.6563
 3,2020,Gaming Controller,Gaming,Ridge (a=1.0),1111.9303,1708.1667,16.2625
 3,2020,Gaming Controller,Gaming,Ridge (a=10.0),951.8271,1591.0149,13.9209
 3,2020,Gaming Controller,Gaming,Seasonal Naive,1840.5333,2131.8244,26.9186
+3,2020,Gaming Controller,Gaming,Training Mean Baseline,997.5852,1384.0299,14.5901

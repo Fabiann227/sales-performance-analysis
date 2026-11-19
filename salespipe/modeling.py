@@ -26,7 +26,7 @@ log = logging.getLogger(__name__)
 FEATURE = ["t"]
 TARGET = "Sales"
 SET_NAMES = ("train", "validasi", "test")
-NAIVE = "Naive (rata-rata train)"
+NAIVE = "Training Mean Baseline"
 
 
 # Modeling functions
@@ -532,22 +532,17 @@ def best_model_per_product(
 
 def forecast_future(
     monthly: pd.DataFrame,
-    product_metrics: pd.DataFrame,
+    selected_models: pd.DataFrame,
     s: Schema,
     cfg: ModelConfig,
     horizon: int = 3,
 ) -> pd.DataFrame:
-    """Forecast future monthly sales using the best model per product."""
+    """Forecast future sales using walk-forward-selected product models."""
     if horizon < 1:
         raise ValueError("Horizon harus minimal 1 bulan.")
 
     if monthly.empty:
         raise ValueError("Dataset monthly tidak boleh kosong.")
-
-    selected_models = best_model_per_product(
-        product_metrics,
-        s.product_id,
-    )
 
     model_factories = build_models(cfg)
 
@@ -677,7 +672,11 @@ def product_trends(
             }
         )
     out = pd.DataFrame(rows).sort_values("slope_train")
-    out["trend_train"] = np.where(out["slope_train"] < 0, "turun", "naik/stabil")
+    out["trend_train"] = np.where(
+        out["slope_train"] < 0,
+        "negative estimated slope",
+        "positive estimated slope",
+    )
     return out
 
 
@@ -1152,7 +1151,7 @@ def evaluate_final_test(
 
     # 3. Define the three strategies to compare.
     strategies = {
-        "Global Naive": NAIVE,
+        "Global Training Mean Baseline": NAIVE,
         "Best Global ML": best_ml_model_name,
         "Per-Product Selection": None,
     }
@@ -1440,7 +1439,7 @@ def run_modeling(
     # 11. Generate future forecasts using the best model per product.
     future_forecast = forecast_future(
         monthly=monthly,
-        product_metrics=product_metrics,
+        selected_models=final_evaluation["final_selected_models"],
         s=s,
         cfg=cfg,
         horizon=3,

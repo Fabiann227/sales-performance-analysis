@@ -19,43 +19,43 @@ Best Global ML,2017,HDMI Cable,Ridge (a=10.0),151.5318,30078.818,173.4325,5.9605
 Best Global ML,2018,Microphone,Ridge (a=10.0),1188.95,1865107.2043,1365.6893,13.5168,-3.033
 Best Global ML,2019,Tablet,Ridge (a=10.0),1775.3084,3607526.0331,1899.3488,17.2791,-6.8014
 Best Global ML,2020,Gaming Controller,Ridge (a=10.0),1043.0886,2132269.3903,1460.2292,14.2826,-1.0452
-Global Naive,2001,Wireless Mouse,Naive (rata-rata train),140.9571,28222.3451,167.9951,4.498,-1.6842
-Global Naive,2002,Mechanical Keyboard,Naive (rata-rata train),739.9651,567028.2221,753.0128,10.48,-0.2917
-Global Naive,2003,USB-C Cable,Naive (rata-rata train),226.1857,75450.9876,274.6834,9.1895,-0.0136
-Global Naive,2004,Power Bank,Naive (rata-rata train),501.3611,320972.2292,566.5441,8.9566,-0.3276
-Global Naive,2005,Laptop Stand,Naive (rata-rata train),486.9778,275432.2756,524.8164,12.2551,-0.7657
-Global Naive,2006,Webcam,Naive (rata-rata train),346.5143,179919.8302,424.1696,7.499,-2.0063
-Global Naive,2007,Headphones,Naive (rata-rata train),1723.75,3075285.9375,1753.6493,16.4873,-0.0412
-Global Naive,2008,Phone Case,Naive (rata-rata train),602.8444,534809.0467,731.3064,14.643,-0.0106
-Global Naive,2009,Smart Watch,Naive (rata-rata train),2381.9048,6162357.2245,2482.4096,27.4666,-0.0061
-Global Naive,2010,Fitness Band,Naive (rata-rata train),609.1032,381314.7287,617.5069,10.4461,-0.094
-Global Naive,2011,Desk Lamp,Naive (rata-rata train),194.6921,73526.5785,271.1578,5.273,-0.692
-Global Naive,2012,Office Chair,Naive (rata-rata train),1831.2857,4715721.3673,2171.5712,19.8449,-2.4621
-Global Naive,2013,Notebook,Naive (rata-rata train),232.2611,61887.7375,248.7725,10.8143,-0.0002
-Global Naive,2014,Backpack,Naive (rata-rata train),696.4667,718071.0,847.3907,12.3535,-0.004
-Global Naive,2015,Bluetooth Speaker,Naive (rata-rata train),726.427,580491.7446,761.9001,10.4285,-0.0055
-Global Naive,2016,Monitor,Naive (rata-rata train),176.7667,38360.23,195.8577,22.9359,-0.0104
-Global Naive,2017,HDMI Cable,Naive (rata-rata train),146.2738,30207.6274,173.8034,5.7536,-0.0635
-Global Naive,2018,Microphone,Naive (rata-rata train),1335.3095,2245515.7466,1498.5045,15.1807,-3.8555
-Global Naive,2019,Tablet,Naive (rata-rata train),1343.9524,2268629.5578,1506.1971,13.0807,-3.906
-Global Naive,2020,Gaming Controller,Naive (rata-rata train),954.7524,1954133.0956,1397.9031,13.0731,-0.8743
+Global Training Mean Baseline,2001,Wireless Mouse,Training Mean Baseline,140.9571,28222.3451,167.9951,4.498,-1.6842
+Global Training Mean Baseline,2002,Mechanical Keyboard,Training Mean Baseline,739.9651,567028.2221,753.0128,10.48,-0.2917
+Global Training Mean Baseline,2003,USB-C Cable,Training Mean Baseline,226.1857,75450.9876,274.6834,9.1895,-0.0136
+Global Training Mean Baseline,2004,Power Bank,Training Mean Baseline,501.3611,320972.2292,566.5441,8.9566,-0.3276
+Global Training Mean Baseline,2005,Laptop Stand,Training Mean Baseline,486.9778,275432.2756,524.8164,12.2551,-0.7657
+Global Training Mean Baseline,2006,Webcam,Training Mean Baseline,346.5143,179919.8302,424.1696,7.499,-2.0063
+Global Training Mean Baseline,2007,Headphones,Training Mean Baseline,1723.75,3075285.9375,1753.6493,16.4873,-0.0412
+Global Training Mean Baseline,2008,Phone Case,Training Mean Baseline,602.8444,534809.0467,731.3064,14.643,-0.0106
+Global Training Mean Baseline,2009,Smart Watch,Training Mean Baseline,2381.9048,6162357.2245,2482.4096,27.4666,-0.0061
+Global Training Mean Baseline,2010,Fitness Band,Training Mean Baseline,609.1032,381314.7287,617.5069,10.4461,-0.094
+Global Training Mean Baseline,2011,Desk Lamp,Training Mean Baseline,194.6921,73526.5785,271.1578,5.273,-0.692
+Global Training Mean Baseline,2012,Office Chair,Training Mean Baseline,1831.2857,4715721.3673,2171.5712,19.8449,-2.4621
+Global Training Mean Baseline,2013,Notebook,Training Mean Baseline,232.2611,61887.7375,248.7725,10.8143,-0.0002
+Global Training Mean Baseline,2014,Backpack,Training Mean Baseline,696.4667,718071.0,847.3907,12.3535,-0.004
+Global Training Mean Baseline,2015,Bluetooth Speaker,Training Mean Baseline,726.427,580491.7446,761.9001,10.4285,-0.0055
+Global Training Mean Baseline,2016,Monitor,Training Mean Baseline,176.7667,38360.23,195.8577,22.9359,-0.0104
+Global Training Mean Baseline,2017,HDMI Cable,Training Mean Baseline,146.2738,30207.6274,173.8034,5.7536,-0.0635
+Global Training Mean Baseline,2018,Microphone,Training Mean Baseline,1335.3095,2245515.7466,1498.5045,15.1807,-3.8555
+Global Training Mean Baseline,2019,Tablet,Training Mean Baseline,1343.9524,2268629.5578,1506.1971,13.0807,-3.906
+Global Training Mean Baseline,2020,Gaming Controller,Training Mean Baseline,954.7524,1954133.0956,1397.9031,13.0731,-0.8743
 Per-Product Selection,2001,Wireless Mouse,Moving Average,63.9778,5596.117,74.8072,2.0415,0.4678
-Per-Product Selection,2002,Mechanical Keyboard,Naive (rata-rata train),739.9651,567028.2221,753.0128,10.48,-0.2917
-Per-Product Selection,2003,USB-C Cable,Naive (rata-rata train),226.1857,75450.9876,274.6834,9.1895,-0.0136
-Per-Product Selection,2004,Power Bank,Naive (rata-rata train),501.3611,320972.2292,566.5441,8.9566,-0.3276
-Per-Product Selection,2005,Laptop Stand,Naive (rata-rata train),486.9778,275432.2756,524.8164,12.2551,-0.7657
-Per-Product Selection,2006,Webcam,Naive (rata-rata train),346.5143,179919.8302,424.1696,7.499,-2.0063
+Per-Product Selection,2002,Mechanical Keyboard,Training Mean Baseline,739.9651,567028.2221,753.0128,10.48,-0.2917
+Per-Product Selection,2003,USB-C Cable,Training Mean Baseline,226.1857,75450.9876,274.6834,9.1895,-0.0136
+Per-Product Selection,2004,Power Bank,Training Mean Baseline,501.3611,320972.2292,566.5441,8.9566,-0.3276
+Per-Product Selection,2005,Laptop Stand,Training Mean Baseline,486.9778,275432.2756,524.8164,12.2551,-0.7657
+Per-Product Selection,2006,Webcam,Training Mean Baseline,346.5143,179919.8302,424.1696,7.499,-2.0063
 Per-Product Selection,2007,Headphones,Ridge (a=10.0),2030.0821,4394787.1402,2096.3748,19.4173,-0.4879
 Per-Product Selection,2008,Phone Case,Seasonal Naive,989.1,1377955.2967,1173.8634,24.0252,-1.6038
 Per-Product Selection,2009,Smart Watch,Ridge (a=10.0),2609.8344,6902851.8914,2627.3279,30.095,-0.127
 Per-Product Selection,2010,Fitness Band,Seasonal Naive,1137.5833,2744131.2708,1656.542,19.5095,-6.8727
-Per-Product Selection,2011,Desk Lamp,Naive (rata-rata train),194.6921,73526.5785,271.1578,5.273,-0.692
-Per-Product Selection,2012,Office Chair,Naive (rata-rata train),1831.2857,4715721.3673,2171.5712,19.8449,-2.4621
+Per-Product Selection,2011,Desk Lamp,Training Mean Baseline,194.6921,73526.5785,271.1578,5.273,-0.692
+Per-Product Selection,2012,Office Chair,Training Mean Baseline,1831.2857,4715721.3673,2171.5712,19.8449,-2.4621
 Per-Product Selection,2013,Notebook,Ridge (a=10.0),258.7687,69184.7371,263.0299,12.0486,-0.1181
 Per-Product Selection,2014,Backpack,Moving Average,672.9852,710118.8486,842.6855,11.937,0.0071
 Per-Product Selection,2015,Bluetooth Speaker,Moving Average,1151.3716,1813457.6021,1346.6468,16.5289,-2.1413
-Per-Product Selection,2016,Monitor,Naive (rata-rata train),176.7667,38360.23,195.8577,22.9359,-0.0104
+Per-Product Selection,2016,Monitor,Training Mean Baseline,176.7667,38360.23,195.8577,22.9359,-0.0104
 Per-Product Selection,2017,HDMI Cable,Seasonal Naive,433.4,287105.3717,535.8221,17.0477,-9.1075
-Per-Product Selection,2018,Microphone,Naive (rata-rata train),1335.3095,2245515.7466,1498.5045,15.1807,-3.8555
+Per-Product Selection,2018,Microphone,Training Mean Baseline,1335.3095,2245515.7466,1498.5045,15.1807,-3.8555
 Per-Product Selection,2019,Tablet,Moving Average,2428.4321,6428457.3146,2535.4403,23.6359,-12.9017
-Per-Product Selection,2020,Gaming Controller,Naive (rata-rata train),954.7524,1954133.0956,1397.9031,13.0731,-0.8743
+Per-Product Selection,2020,Gaming Controller,Training Mean Baseline,954.7524,1954133.0956,1397.9031,13.0731,-0.8743

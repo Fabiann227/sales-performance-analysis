@@ -155,7 +155,7 @@ Kinerja model dievaluasi menggunakan beberapa metrik:
 
 Evaluasi akhir membandingkan tiga strategi peramalan:
 
-1. **Global Naive:** Menggunakan baseline Naive secara global.
+1. **Global Training Mean Baseline:** Menggunakan rata-rata periode training secara global.
 2. **Best Global ML:** Menggunakan Ridge Regression dengan alpha 10.
 3. **Per-Product Selection:** Menggunakan model terbaik yang dipilih secara individual untuk setiap produk berdasarkan hasil walk-forward validation.
 
@@ -165,11 +165,11 @@ Model akhir dilatih ulang menggunakan data pengembangan dari Januari 2024 hingga
 
 | Strategi              |        MAE |         RMSE |       WAPE |        R² |
 | --------------------- | ---------: | -----------: | ---------: | --------: |
-| Global Naive          | **769.89** | **1,101.98** | **13.59%** | **0.858** |
+| Global Training Mean Baseline | **769.89** | **1,101.98** | **13.59%** | **0.858** |
 | Best Global ML        |     818.86 |     1,173.88 |     14.46% |     0.839 |
 | Per-Product Selection |     928.47 |     1,326.27 |     16.39% |     0.794 |
 
-**Temuan utama:** Strategi Global Naive memperoleh performa agregat terbaik pada dataset pengujian akhir dibandingkan Ridge Regression maupun strategi pemilihan model secara individual per produk.
+**Temuan utama:** Strategi Global Training Mean Baseline memperoleh performa agregat terbaik pada dataset pengujian akhir dibandingkan Ridge Regression maupun strategi pemilihan model secara individual per produk.
 
 ### 3.6 Deployment (Penerapan)
 
@@ -242,17 +242,35 @@ Perintah ini menjalankan agregasi penjualan bulanan, pelatihan dan evaluasi mode
 python main.py all
 ```
 
-Perintah ini menjalankan proses data cleaning dan pemodelan secara berurutan.
+Perintah ini menjalankan seluruh workflow secara berurutan:
+
+1. Data preparation dan validasi.
+2. Training, walk-forward validation, evaluasi, dan forecasting.
+3. Pembuatan delapan visualisasi.
+4. Analisis insights deterministik berbasis artifact CSV.
+5. Pembuatan laporan HTML lokal.
+
+Laporan utama tersedia di `reports/latest/index.html`.
+
+### Perintah pipeline tambahan
+
+```bash
+python main.py visualize
+python main.py insights
+python main.py report
+```
+
+Perintah tersebut digunakan untuk menjalankan tahap individual setelah artifact dari tahap sebelumnya tersedia. Semua perintah mendukung `--data-dir`, `--out-dir`, dan `--config`; lokasi chart dan laporan dapat diubah dengan `--visualizations-dir` dan `--report-dir`.
 
 ### Menghasilkan Visualisasi
 
 Setelah seluruh file CSV yang diperlukan tersedia, jalankan:
 
 ```bash
-python visualize_sales.py
+python main.py visualize
 ```
 
-Seluruh grafik akan disimpan dalam direktori `visualizations/`.
+Seluruh grafik akan disimpan dalam direktori `visualizations/`. Implementasi modular berada di `salespipe/visualization.py`; `visualize_sales.py` dipertahankan sebagai script analisis lama.
 
 **Catatan:** Script visualisasi membaca hasil CSV yang sudah tersedia. Jalankan pipeline pemodelan terlebih dahulu apabila file hasil pemodelan belum tersedia atau perlu dibuat ulang.
 

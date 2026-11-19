@@ -1,4 +1,4 @@
-"""Entry point: python main.py {clean,model,all} [--data-dir DIR] [--out-dir DIR] [--config FILE]"""
+"""Entry point for the modular sales analysis pipeline."""
 
 import argparse
 import logging
@@ -8,7 +8,10 @@ import pandas as pd
 
 from salespipe.cleaning import clean_and_merge
 from salespipe.config import load_config
+from salespipe.insights import generate_insights
 from salespipe.modeling import run_modeling
+from salespipe.reporting import generate_report
+from salespipe.visualization import generate_visualizations
 
 log = logging.getLogger(__name__)
 
@@ -141,12 +144,66 @@ def cmd_model(args: argparse.Namespace, cfg) -> None:
     )
 
 
+def cmd_visualize(args: argparse.Namespace) -> list[Path]:
+    """Generate all eight charts from the modeling artifacts."""
+    paths = generate_visualizations(args.out_dir, args.visualizations_dir)
+    log.info("Generated %d visualizations in %s", len(paths), args.visualizations_dir)
+    return paths
+
+
+def cmd_insights(args: argparse.Namespace) -> dict:
+    """Generate deterministic derived analysis artifacts and findings."""
+    insights = generate_insights(args.out_dir)
+    log.info("Business insights generated from %s", args.out_dir)
+    return insights
+
+
+def cmd_report(args: argparse.Namespace, insights: dict | None = None) -> Path:
+    """Generate the local HTML report."""
+    if insights is None:
+        insights = cmd_insights(args)
+    report_path = generate_report(
+        temp_dir=args.out_dir,
+        visualization_dir=args.visualizations_dir,
+        report_dir=args.report_dir,
+        insights=insights,
+    )
+    log.info("Report generated: %s", report_path)
+    return report_path
+
+
+def run_all(args: argparse.Namespace, cfg) -> Path:
+    """Run the complete workflow in dependency order."""
+    print("[1/5] Data Preparation ...............", end=" ", flush=True)
+    cmd_clean(args, cfg)
+    print("DONE")
+
+    print("[2/5] Model Training & Evaluation ...", end=" ", flush=True)
+    cmd_model(args, cfg)
+    print("DONE")
+
+    print("[3/5] Visualization ..................", end=" ", flush=True)
+    cmd_visualize(args)
+    print("DONE")
+
+    print("[4/5] Business Insights ..............", end=" ", flush=True)
+    insights = cmd_insights(args)
+    print("DONE")
+
+    print("[5/5] Report Generation ..............", end=" ", flush=True)
+    report_path = cmd_report(args, insights)
+    print("DONE")
+    print("\nPipeline completed successfully.")
+    print(f"\nReport: {report_path}")
+    return report_path
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
 
     parser.add_argument(
         "command",
-        choices=["clean", "model", "all"],
+        choices=["clean", "model", "visualize", "insights", "report", "all"],
         help="Pipeline command to execute.",
     )
 
@@ -171,6 +228,20 @@ def main() -> None:
         help="JSON configuration override.",
     )
 
+    parser.add_argument(
+        "--visualizations-dir",
+        type=Path,
+        default=Path("visualizations"),
+        help="Folder for generated PNG charts.",
+    )
+
+    parser.add_argument(
+        "--report-dir",
+        type=Path,
+        default=Path("reports/latest"),
+        help="Folder for the generated HTML report.",
+    )
+
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -180,11 +251,24 @@ def main() -> None:
 
     cfg = load_config(args.config)
 
-    if args.command in ("clean", "all"):
+    if args.command == "all":
+        run_all(args, cfg)
+        return
+
+    if args.command == "clean":
         cmd_clean(args, cfg)
 
-    if args.command in ("model", "all"):
+    if args.command == "model":
         cmd_model(args, cfg)
+
+    if args.command == "visualize":
+        cmd_visualize(args)
+
+    if args.command == "insights":
+        cmd_insights(args)
+
+    if args.command == "report":
+        cmd_report(args)
 
 
 if __name__ == "__main__":

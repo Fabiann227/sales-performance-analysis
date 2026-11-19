@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Performance Analysis</title><style>
+body{font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55;color:#172033;background:#f4f7fb;margin:0}main{max-width:1180px;margin:auto;padding:36px}header{background:#12233f;color:white;padding:48px 36px;margin:-36px -36px 30px}h1{margin:0 0 8px;font-size:2.4rem}h2{margin-top:42px;border-bottom:2px solid #dce5f2;padding-bottom:8px}h3{color:#245b96}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}.card{background:white;border-radius:10px;padding:20px;box-shadow:0 2px 10px #17203312}.card strong{display:block;font-size:1.55rem;color:#1769aa}.card span{color:#52657e}.data-table{border-collapse:collapse;width:100%;background:white;font-size:.88rem}.data-table th,.data-table td{padding:8px 10px;border-bottom:1px solid #e4eaf2;text-align:left;white-space:nowrap}.data-table th{background:#eaf1f8}figure{background:white;padding:14px;border-radius:10px;margin:18px 0;box-shadow:0 2px 10px #17203312}figure img{max-width:100%;height:auto;display:block;margin:auto}figcaption{text-align:center;color:#52657e;margin-top:8px}.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:18px}.note{border-left:4px solid #2b79b9;background:#eaf4fb;padding:12px 16px}.definition{background:#fffaf0;border-left:4px solid #e0a52b;padding:12px 16px}footer{color:#65758a;border-top:1px solid #dce5f2;margin-top:48px;padding-top:18px}
+@media print{@page{size:A4;margin:16mm 13mm}body{background:white;color:#111;font-size:10pt}main{max-width:none;padding:0}header{margin:0 0 18px;padding:24px;background:#12233f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}h1{font-size:22pt}h2{font-size:15pt;margin-top:26px;break-after:avoid;page-break-after:avoid}h3{break-after:avoid;page-break-after:avoid}.cards{grid-template-columns:repeat(4,1fr);gap:8px}.card{box-shadow:none;border:1px solid #d6dee8;padding:10px;break-inside:avoid;page-break-inside:avoid}.card strong{font-size:13pt}.chart-grid{display:block}figure{box-shadow:none;border:1px solid #d6dee8;break-inside:avoid;page-break-inside:avoid;margin:12px 0 18px;padding:8px}figure img{max-height:210mm;width:auto;max-width:100%}figcaption{font-size:9pt}.data-table{font-size:8pt;table-layout:auto;break-inside:auto}.data-table thead{display:table-header-group}.data-table tr{break-inside:avoid;page-break-inside:avoid}.data-table th,.data-table td{white-space:normal;padding:5px 6px}section{break-inside:auto}.note,.definition{break-inside:avoid;page-break-inside:avoid}footer{font-size:8pt}}
+</style></head><body><main><header><h1>Sales Performance Analysis</h1><p>CRISP-DM analytical report · Generated from reproducible local pipeline artifacts</p></header>
+<section><h2>1. Executive Summary</h2><div class="cards"><div class="card"><strong>41,954</strong><span>Cleaned transactions</span></div><div class="card"><strong>20</strong><span>Products</span></div><div class="card"><strong>Jan 2024 – Dec 2025</strong><span>Historical period</span></div><div class="card"><strong>13.59%</strong><span>Final-test WAPE</span></div></div><p class="note"><b>Measured result:</b> Global Training Mean Baseline achieved the lowest final-test RMSE. The strongest walk-forward model was <b>Training Mean Baseline</b>. The final-test WAPE for the selected strategy was <b>13.59%</b>.</p><p>The cleaned dataset contains 41,954 transactions across 20 products from January 2024 through December 2025. Future estimates cover January 2026 through March 2026. Forecast changes describe movement between forecast months and are not observed historical growth.</p></section>
+<section><h2>2. Business Understanding</h2><p>The project evaluates marketplace sales performance and compares chronological forecasting strategies to support evidence-based planning. The analytical questions are how sales evolve over time, which products contribute most to performance and error, and which forecasting approach performs best on an untouched future period.</p></section>
+<section><h2>3. Data Understanding</h2><p>The integrated data contains 41,954 cleaned transactions from January 2024 to December 2025 and 20 products. The modeling table contains 480 product-month observations; zero-sales product-month combinations are retained.</p><h3>Historical sales</h3><div class="chart-grid"><figure><img src="assets/overall_monthly_sales.png" alt="Overall monthly sales"><figcaption>Overall monthly sales</figcaption></figure><figure><img src="assets/product_sales_comparison.png" alt="Total sales by product"><figcaption>Total sales by product</figcaption></figure><figure><img src="assets/product_monthly_sales.png" alt="Monthly sales trends by product"><figcaption>Monthly sales trends by product</figcaption></figure></div></section>
+<section><h2>4. Data Preparation</h2><p>Raw tables were validated, duplicate orders removed, dates and numeric fields coerced, invalid quantity/discount rows excluded, customer ages imputed with the median, missing categorical values filled with <code>Unknown</code>, tables relationally merged, and transaction sales calculated as Quantity × UnitPrice × (1 − Discount).</p></section>
+<section><h2>5. Modeling Methodology</h2><p><b>Chronological split:</b> training covers January 2024 to May 2025, validation covers June 2025 to September 2025, and testing covers October 2025 to December 2025. Chronological splitting is required because a random split can place future observations in the training data, producing optimistic estimates and temporal leakage. Models are selected using validation RMSE; the final test period remains separate and is used only for the final comparison.</p><h3>Expanding-window walk-forward validation</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Fold</th>
+      <th>Training period</th>
+      <th>Validation period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Jan 2024 – Dec 2024</td>
+      <td>Jan 2025 – Mar 2025</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jan 2024 – Mar 2025</td>
+      <td>Apr 2025 – Jun 2025</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Jan 2024 – Jun 2025</td>
+      <td>Jul 2025 – Sep 2025</td>
+    </tr>
+  </tbody>
+</table><p>Each fold expands the training window while moving the validation window forward. This tests whether model performance is stable across multiple historical origins instead of relying on one validation window.</p></section>
+<section><h2>6. Model Evaluation</h2><p>Lower MAE, RMSE, and WAPE are better; higher R² is better. Walk-forward metrics measure repeated validation performance used for model selection. Final-test metrics measure one held-out period after selection. Global strategies apply one model across products, whereas per-product selection allows each product to use its own walk-forward winner.</p><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>strategy</th>
+      <th>models_used</th>
+      <th>MAE</th>
+      <th>MSE</th>
+      <th>RMSE</th>
+      <th>WAPE</th>
+      <th>R2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Global Training Mean Baseline</td>
+      <td>1</td>
+      <td>769.89</td>
+      <td>1214366.88</td>
+      <td>1101.98</td>
+      <td>13.59</td>
+      <td>0.86</td>
+    </tr>
+    <tr>
+      <td>Best Global ML</td>
+      <td>1</td>
+      <td>818.86</td>
+      <td>1377998.69</td>
+      <td>1173.88</td>
+      <td>14.46</td>
+      <td>0.84</td>
+    </tr>
+    <tr>
+      <td>Per-Product Selection</td>
+      <td>4</td>
+      <td>928.47</td>
+      <td>1758985.31</td>
+      <td>1326.27</td>
+      <td>16.39</td>
+      <td>0.79</td>
+    </tr>
+  </tbody>
+</table><div class="definition"><b>Observed result:</b> The Training Mean Baseline outperformed the evaluated regression models on aggregate final-test metrics and also led the walk-forward summary. This is a result of the observed data and evaluation design; the artifacts do not establish a causal reason why a constant training-period mean was more accurate.</div><div class="chart-grid"><figure><img src="assets/model_performance_comparison.png" alt="Walk-forward model performance"><figcaption>Walk-forward model performance</figcaption></figure><figure><img src="assets/actual_vs_predicted_sales.png" alt="Actual versus predicted sales"><figcaption>Actual versus predicted sales</figcaption></figure></div></section>
+<section><h2>7. Sales Performance Analysis</h2><p>Product slopes are fitted linear summaries over the training period. A positive or negative estimated slope describes the direction of the fitted line only. It is not evidence of a statistically significant trend. The low product-level R² values indicate that the linear time feature explains only a small portion of observed sales variation.</p><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>avg_monthly_sales</th>
+      <th>slope_train</th>
+      <th>R2_all</th>
+      <th>trend_train</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Office Chair</td>
+      <td>10830.38</td>
+      <td>-24.84</td>
+      <td>0.02</td>
+      <td>negative estimated slope</td>
+    </tr>
+    <tr>
+      <td>Headphones</td>
+      <td>10760.16</td>
+      <td>164.25</td>
+      <td>0.06</td>
+      <td>positive estimated slope</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>9098.38</td>
+      <td>32.72</td>
+      <td>0.00</td>
+      <td>positive estimated slope</td>
+    </tr>
+    <tr>
+      <td>Smart Watch</td>
+      <td>8502.50</td>
+      <td>-118.15</td>
+      <td>0.08</td>
+      <td>negative estimated slope</td>
+    </tr>
+    <tr>
+      <td>Microphone</td>
+      <td>7627.69</td>
+      <td>-92.42</td>
+      <td>0.07</td>
+      <td>negative estimated slope</td>
+    </tr>
+    <tr>
+      <td>Mechanical Keyboard</td>
+      <td>7373.87</td>
+      <td>33.11</td>
+      <td>0.00</td>
+      <td>positive estimated slope</td>
+    </tr>
+    <tr>
+      <td>Bluetooth Speaker</td>
+      <td>7015.22</td>
+      <td>3.41</td>
+      <td>0.06</td>
+      <td>positive estimated slope</td>
+    </tr>
+    <tr>
+      <td>Gaming Controller</td>
+      <td>6467.79</td>
+      <td>-52.10</td>
+      <td>0.01</td>
+      <td>negative estimated slope</td>
+    </tr>
+    <tr>
+      <td>Power Bank</td>
+      <td>5843.91</td>
+      <td>-33.58</td>
+      <td>0.08</td>
+      <td>negative estimated slope</td>
+    </tr>
+    <tr>
+      <td>Fitness Band</td>
+      <td>5672.56</td>
+      <td>10.80</td>
+      <td>0.04</td>
+      <td>positive estimated slope</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>8. Future Forecasting</h2><p>The pipeline generated 60 forecasts for 20 products from January 2026 through March 2026, using historical data ending December 2025. The selected product models below are the walk-forward-selected models used to generate the forecast artifact.</p><h3>Selected model and forecast summary by product</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>model</th>
+      <th>ForecastTotal</th>
+      <th>ForecastChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Backpack</td>
+      <td>Moving Average</td>
+      <td>17354.09</td>
+      <td>101.42</td>
+    </tr>
+    <tr>
+      <td>Bluetooth Speaker</td>
+      <td>Moving Average</td>
+      <td>21069.14</td>
+      <td>-53.49</td>
+    </tr>
+    <tr>
+      <td>Desk Lamp</td>
+      <td>Training Mean Baseline</td>
+      <td>11532.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Fitness Band</td>
+      <td>Seasonal Naive</td>
+      <td>18020.75</td>
+      <td>-11.00</td>
+    </tr>
+    <tr>
+      <td>Gaming Controller</td>
+      <td>Training Mean Baseline</td>
+      <td>19403.38</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Seasonal Naive</td>
+      <td>7074.10</td>
+      <td>292.60</td>
+    </tr>
+    <tr>
+      <td>Headphones</td>
+      <td>Ridge (a=10.0)</td>
+      <td>33778.88</td>
+      <td>74.00</td>
+    </tr>
+    <tr>
+      <td>Laptop Stand</td>
+      <td>Training Mean Baseline</td>
+      <td>11013.80</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Mechanical Keyboard</td>
+      <td>Training Mean Baseline</td>
+      <td>22121.60</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Microphone</td>
+      <td>Training Mean Baseline</td>
+      <td>22883.06</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Monitor</td>
+      <td>Training Mean Baseline</td>
+      <td>2259.86</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Notebook</td>
+      <td>Ridge (a=10.0)</td>
+      <td>6685.62</td>
+      <td>11.54</td>
+    </tr>
+    <tr>
+      <td>Office Chair</td>
+      <td>Training Mean Baseline</td>
+      <td>32491.12</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Phone Case</td>
+      <td>Seasonal Naive</td>
+      <td>12528.60</td>
+      <td>1071.00</td>
+    </tr>
+    <tr>
+      <td>Power Bank</td>
+      <td>Training Mean Baseline</td>
+      <td>17531.72</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Smart Watch</td>
+      <td>Ridge (a=10.0)</td>
+      <td>23588.61</td>
+      <td>-94.76</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>Moving Average</td>
+      <td>30754.15</td>
+      <td>-174.30</td>
+    </tr>
+    <tr>
+      <td>USB-C Cable</td>
+      <td>Training Mean Baseline</td>
+      <td>7300.46</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Webcam</td>
+      <td>Training Mean Baseline</td>
+      <td>14772.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Wireless Mouse</td>
+      <td>Moving Average</td>
+      <td>9405.60</td>
+      <td>-18.30</td>
+    </tr>
+  </tbody>
+</table><h3>Highest forecasted sales</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>model</th>
+      <th>ForecastTotal</th>
+      <th>FirstForecastSales</th>
+      <th>LastForecastSales</th>
+      <th>ForecastChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Headphones</td>
+      <td>Ridge (a=10.0)</td>
+      <td>33778.88</td>
+      <td>11222.63</td>
+      <td>11296.62</td>
+      <td>74.00</td>
+    </tr>
+    <tr>
+      <td>Office Chair</td>
+      <td>Training Mean Baseline</td>
+      <td>32491.12</td>
+      <td>10830.38</td>
+      <td>10830.38</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>Moving Average</td>
+      <td>30754.15</td>
+      <td>10274.33</td>
+      <td>10100.04</td>
+      <td>-174.30</td>
+    </tr>
+    <tr>
+      <td>Smart Watch</td>
+      <td>Ridge (a=10.0)</td>
+      <td>23588.61</td>
+      <td>7910.25</td>
+      <td>7815.49</td>
+      <td>-94.76</td>
+    </tr>
+    <tr>
+      <td>Microphone</td>
+      <td>Training Mean Baseline</td>
+      <td>22883.06</td>
+      <td>7627.69</td>
+      <td>7627.69</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table><h3>Lowest forecasted sales</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>model</th>
+      <th>ForecastTotal</th>
+      <th>FirstForecastSales</th>
+      <th>LastForecastSales</th>
+      <th>ForecastChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Monitor</td>
+      <td>Training Mean Baseline</td>
+      <td>2259.86</td>
+      <td>753.29</td>
+      <td>753.29</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Notebook</td>
+      <td>Ridge (a=10.0)</td>
+      <td>6685.62</td>
+      <td>2222.77</td>
+      <td>2234.31</td>
+      <td>11.54</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Seasonal Naive</td>
+      <td>7074.10</td>
+      <td>2350.15</td>
+      <td>2642.75</td>
+      <td>292.60</td>
+    </tr>
+    <tr>
+      <td>USB-C Cable</td>
+      <td>Training Mean Baseline</td>
+      <td>7300.46</td>
+      <td>2433.49</td>
+      <td>2433.49</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>Wireless Mouse</td>
+      <td>Moving Average</td>
+      <td>9405.60</td>
+      <td>3133.80</td>
+      <td>3115.50</td>
+      <td>-18.30</td>
+    </tr>
+  </tbody>
+</table><h3>Largest forecast-month increases</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>model</th>
+      <th>ForecastTotal</th>
+      <th>FirstForecastSales</th>
+      <th>LastForecastSales</th>
+      <th>ForecastChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Phone Case</td>
+      <td>Seasonal Naive</td>
+      <td>12528.60</td>
+      <td>3822.70</td>
+      <td>4893.70</td>
+      <td>1071.00</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Seasonal Naive</td>
+      <td>7074.10</td>
+      <td>2350.15</td>
+      <td>2642.75</td>
+      <td>292.60</td>
+    </tr>
+    <tr>
+      <td>Backpack</td>
+      <td>Moving Average</td>
+      <td>17354.09</td>
+      <td>5637.80</td>
+      <td>5739.22</td>
+      <td>101.42</td>
+    </tr>
+    <tr>
+      <td>Headphones</td>
+      <td>Ridge (a=10.0)</td>
+      <td>33778.88</td>
+      <td>11222.63</td>
+      <td>11296.62</td>
+      <td>74.00</td>
+    </tr>
+    <tr>
+      <td>Notebook</td>
+      <td>Ridge (a=10.0)</td>
+      <td>6685.62</td>
+      <td>2222.77</td>
+      <td>2234.31</td>
+      <td>11.54</td>
+    </tr>
+  </tbody>
+</table><h3>Largest forecast-month decreases</h3><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>model</th>
+      <th>ForecastTotal</th>
+      <th>FirstForecastSales</th>
+      <th>LastForecastSales</th>
+      <th>ForecastChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tablet</td>
+      <td>Moving Average</td>
+      <td>30754.15</td>
+      <td>10274.33</td>
+      <td>10100.04</td>
+      <td>-174.30</td>
+    </tr>
+    <tr>
+      <td>Smart Watch</td>
+      <td>Ridge (a=10.0)</td>
+      <td>23588.61</td>
+      <td>7910.25</td>
+      <td>7815.49</td>
+      <td>-94.76</td>
+    </tr>
+    <tr>
+      <td>Bluetooth Speaker</td>
+      <td>Moving Average</td>
+      <td>21069.14</td>
+      <td>6965.80</td>
+      <td>6912.31</td>
+      <td>-53.49</td>
+    </tr>
+    <tr>
+      <td>Wireless Mouse</td>
+      <td>Moving Average</td>
+      <td>9405.60</td>
+      <td>3133.80</td>
+      <td>3115.50</td>
+      <td>-18.30</td>
+    </tr>
+    <tr>
+      <td>Fitness Band</td>
+      <td>Seasonal Naive</td>
+      <td>18020.75</td>
+      <td>5940.00</td>
+      <td>5929.00</td>
+      <td>-11.00</td>
+    </tr>
+  </tbody>
+</table><div class="chart-grid"><figure><img src="assets/overall_future_forecast.png" alt="Overall future forecast"><figcaption>Overall future forecast</figcaption></figure><figure><img src="assets/future_forecast_by_product.png" alt="Future forecast by product"><figcaption>Future forecast by product</figcaption></figure></div></section>
+<section><h2>9. Forecasting Error Analysis</h2><p>For the best final-test strategy, total absolute error is the sum of absolute errors for a product, MAE is the average absolute error per test observation, and RMSE penalizes larger errors more strongly. Error contribution is a product's share of the strategy's total absolute error. Relative absolute error is defined as total absolute error divided by total actual sales, expressed as a percentage; it is unavailable when actual sales are zero.</p><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductName</th>
+      <th>TotalAbsoluteError</th>
+      <th>MeanAbsoluteError</th>
+      <th>RMSE</th>
+      <th>ErrorContribution</th>
+      <th>RelativeAbsoluteErrorPct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smart Watch</td>
+      <td>7145.71</td>
+      <td>2381.90</td>
+      <td>2482.41</td>
+      <td>15.47</td>
+      <td>27.47</td>
+    </tr>
+    <tr>
+      <td>Monitor</td>
+      <td>530.30</td>
+      <td>176.77</td>
+      <td>195.86</td>
+      <td>1.15</td>
+      <td>22.94</td>
+    </tr>
+    <tr>
+      <td>Office Chair</td>
+      <td>5493.86</td>
+      <td>1831.29</td>
+      <td>2171.57</td>
+      <td>11.89</td>
+      <td>19.84</td>
+    </tr>
+    <tr>
+      <td>Headphones</td>
+      <td>5171.25</td>
+      <td>1723.75</td>
+      <td>1753.65</td>
+      <td>11.19</td>
+      <td>16.49</td>
+    </tr>
+    <tr>
+      <td>Microphone</td>
+      <td>4005.93</td>
+      <td>1335.31</td>
+      <td>1498.50</td>
+      <td>8.67</td>
+      <td>15.18</td>
+    </tr>
+    <tr>
+      <td>Phone Case</td>
+      <td>1808.53</td>
+      <td>602.84</td>
+      <td>731.31</td>
+      <td>3.92</td>
+      <td>14.64</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>4031.86</td>
+      <td>1343.95</td>
+      <td>1506.20</td>
+      <td>8.73</td>
+      <td>13.08</td>
+    </tr>
+    <tr>
+      <td>Gaming Controller</td>
+      <td>2864.26</td>
+      <td>954.75</td>
+      <td>1397.90</td>
+      <td>6.20</td>
+      <td>13.07</td>
+    </tr>
+    <tr>
+      <td>Backpack</td>
+      <td>2089.40</td>
+      <td>696.47</td>
+      <td>847.39</td>
+      <td>4.52</td>
+      <td>12.35</td>
+    </tr>
+    <tr>
+      <td>Laptop Stand</td>
+      <td>1460.93</td>
+      <td>486.98</td>
+      <td>524.82</td>
+      <td>3.16</td>
+      <td>12.26</td>
+    </tr>
+  </tbody>
+</table><p>Absolute error contribution is not the same as relative accuracy. A high-volume product can contribute substantial absolute error while having a moderate relative error. Therefore, the largest contributors should not automatically be classified as the least predictable products.</p><div class="chart-grid"><figure><img src="assets/forecasting_error_contribution.png" alt="Forecasting error contribution"><figcaption>Forecasting error contribution</figcaption></figure></div></section>
+<section><h2>10. Business Insights and Recommendations</h2><h3>Measured findings</h3><ul><li>Best walk-forward model: Training Mean Baseline.</li><li>Best final-test strategy: Global Training Mean Baseline, with WAPE of 13.59%.</li><li>Products with positive estimated training slopes: Monitor, Bluetooth Speaker, USB-C Cable, Fitness Band, Phone Case, Notebook, Tablet, Mechanical Keyboard, Backpack, Headphones.</li><li>Products with negative estimated training slopes: Smart Watch, Microphone, Gaming Controller, Desk Lamp, Power Bank, Office Chair, Webcam, Laptop Stand, Wireless Mouse, HDMI Cable.</li><li>Largest absolute-error contributors under the best strategy: Smart Watch, Office Chair, Headphones, Tablet, Microphone.</li></ul><h3>Recommendations</h3><ul><li>Use Global Training Mean Baseline as the aggregate reference strategy for the evaluated final-test horizon.</li><li>Treat positive and negative fitted slopes as descriptive summaries rather than statistically established trends.</li><li>Review products with high relative error separately from products with high absolute error before using forecasts for planning.</li><li>Refresh the analysis when new completed transactions are available and re-evaluate the strategy chronologically.</li></ul></section>
+<section><h2>11. Conclusion and Limitations</h2><p>The pipeline provides a reproducible view of historical sales, chronological model validation, final-test evaluation, product-level model selection, and future estimates. The historical period is limited to 24 months, the final test period to three months, and the models primarily use time-index features rather than external drivers. Forecast generation is an analytical output and does not represent production deployment.</p></section>
+<footer>Generated locally by <code>python main.py all</code>. Source artifacts remain available in the configured temporary output directory.</footer></main></body></html>

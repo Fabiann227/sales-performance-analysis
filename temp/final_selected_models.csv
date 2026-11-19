@@ -1,21 +1,21 @@
 ProductID,ProductName,Category,model,mean_RMSE,folds
 2001,Wireless Mouse,Electronics,Moving Average,443.9011,3
-2002,Mechanical Keyboard,Electronics,Naive (rata-rata train),1210.7268,3
-2003,USB-C Cable,Accessories,Naive (rata-rata train),205.9468,3
-2004,Power Bank,Electronics,Naive (rata-rata train),358.6106,3
-2005,Laptop Stand,Accessories,Naive (rata-rata train),434.096,3
-2006,Webcam,Electronics,Naive (rata-rata train),697.4319,3
+2002,Mechanical Keyboard,Electronics,Training Mean Baseline,1210.7268,3
+2003,USB-C Cable,Accessories,Training Mean Baseline,205.9468,3
+2004,Power Bank,Electronics,Training Mean Baseline,358.6106,3
+2005,Laptop Stand,Accessories,Training Mean Baseline,434.096,3
+2006,Webcam,Electronics,Training Mean Baseline,697.4319,3
 2007,Headphones,Electronics,Ridge (a=10.0),1508.7436,3
 2008,Phone Case,Accessories,Seasonal Naive,243.4942,3
 2009,Smart Watch,Wearables,Ridge (a=10.0),1642.858,3
 2010,Fitness Band,Wearables,Seasonal Naive,553.1353,3
-2011,Desk Lamp,Home Office,Naive (rata-rata train),537.6946,3
-2012,Office Chair,Home Office,Naive (rata-rata train),2883.9653,3
+2011,Desk Lamp,Home Office,Training Mean Baseline,537.6946,3
+2012,Office Chair,Home Office,Training Mean Baseline,2883.9653,3
 2013,Notebook,Stationery,Ridge (a=10.0),205.2113,3
 2014,Backpack,Accessories,Moving Average,678.5634,3
 2015,Bluetooth Speaker,Electronics,Moving Average,1138.1071,3
-2016,Monitor,Electronics,Naive (rata-rata train),176.0814,3
+2016,Monitor,Electronics,Training Mean Baseline,176.0814,3
 2017,HDMI Cable,Accessories,Seasonal Naive,199.3139,3
-2018,Microphone,Electronics,Naive (rata-rata train),1225.7365,3
+2018,Microphone,Electronics,Training Mean Baseline,1225.7365,3
 2019,Tablet,Electronics,Moving Average,1899.5649,3
-2020,Gaming Controller,Gaming,Naive (rata-rata train),1405.4299,3
+2020,Gaming Controller,Gaming,Training Mean Baseline,1405.4299,3

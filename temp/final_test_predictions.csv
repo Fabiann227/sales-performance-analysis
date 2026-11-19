@@ -1,64 +1,64 @@
 strategy,ProductID,ProductName,Category,Month,model,ActualSales,PredictedSales
-Global Naive,2001,Wireless Mouse,Electronics,2025-10-01,Naive (rata-rata train),3066.3,3266.8714
-Global Naive,2001,Wireless Mouse,Electronics,2025-11-01,Naive (rata-rata train),3278.7,3266.8714
-Global Naive,2001,Wireless Mouse,Electronics,2025-12-01,Naive (rata-rata train),3056.4,3266.8714
-Global Naive,2002,Mechanical Keyboard,Electronics,2025-10-01,Naive (rata-rata train),6686.7,7418.5952
-Global Naive,2002,Mechanical Keyboard,Electronics,2025-11-01,Naive (rata-rata train),7991.8,7418.5952
-Global Naive,2002,Mechanical Keyboard,Electronics,2025-12-01,Naive (rata-rata train),6503.8,7418.5952
-Global Naive,2003,USB-C Cable,Accessories,2025-10-01,Naive (rata-rata train),2816.55,2429.5071
-Global Naive,2003,USB-C Cable,Accessories,2025-11-01,Naive (rata-rata train),2414.25,2429.5071
-Global Naive,2003,USB-C Cable,Accessories,2025-12-01,Naive (rata-rata train),2153.25,2429.5071
-Global Naive,2004,Power Bank,Electronics,2025-10-01,Naive (rata-rata train),6209.0,5879.0833
-Global Naive,2004,Power Bank,Electronics,2025-11-01,Naive (rata-rata train),5579.0,5879.0833
-Global Naive,2004,Power Bank,Electronics,2025-12-01,Naive (rata-rata train),5005.0,5879.0833
-Global Naive,2005,Laptop Stand,Accessories,2025-10-01,Naive (rata-rata train),3416.0,3628.0667
-Global Naive,2005,Laptop Stand,Accessories,2025-11-01,Naive (rata-rata train),4225.2,3628.0667
-Global Naive,2005,Laptop Stand,Accessories,2025-12-01,Naive (rata-rata train),4279.8,3628.0667
-Global Naive,2006,Webcam,Electronics,2025-10-01,Naive (rata-rata train),4886.4,4967.3143
-Global Naive,2006,Webcam,Electronics,2025-11-01,Naive (rata-rata train),4680.0,4967.3143
-Global Naive,2006,Webcam,Electronics,2025-12-01,Naive (rata-rata train),4296.0,4967.3143
-Global Naive,2007,Headphones,Electronics,2025-10-01,Naive (rata-rata train),12866.25,10803.75
-Global Naive,2007,Headphones,Electronics,2025-11-01,Naive (rata-rata train),8985.0,10803.75
-Global Naive,2007,Headphones,Electronics,2025-12-01,Naive (rata-rata train),9513.75,10803.75
-Global Naive,2008,Phone Case,Accessories,2025-10-01,Naive (rata-rata train),5030.2,4042.0667
-Global Naive,2008,Phone Case,Accessories,2025-11-01,Naive (rata-rata train),4070.5,4042.0667
-Global Naive,2008,Phone Case,Accessories,2025-12-01,Naive (rata-rata train),3250.1,4042.0667
-Global Naive,2009,Smart Watch,Wearables,2025-10-01,Naive (rata-rata train),10764.0,8478.2857
-Global Naive,2009,Smart Watch,Wearables,2025-11-01,Naive (rata-rata train),10056.0,8478.2857
-Global Naive,2009,Smart Watch,Wearables,2025-12-01,Naive (rata-rata train),5196.0,8478.2857
-Global Naive,2010,Fitness Band,Wearables,2025-10-01,Naive (rata-rata train),6121.5,5649.9405
-Global Naive,2010,Fitness Band,Wearables,2025-11-01,Naive (rata-rata train),6363.5,5649.9405
-Global Naive,2010,Fitness Band,Wearables,2025-12-01,Naive (rata-rata train),5007.75,5649.9405
-Global Naive,2011,Desk Lamp,Home Office,2025-10-01,Naive (rata-rata train),3406.4,3865.6762
-Global Naive,2011,Desk Lamp,Home Office,2025-11-01,Naive (rata-rata train),3897.6,3865.6762
-Global Naive,2011,Desk Lamp,Home Office,2025-12-01,Naive (rata-rata train),3772.8,3865.6762
-Global Naive,2012,Office Chair,Home Office,2025-10-01,Naive (rata-rata train),7749.0,11059.2857
-Global Naive,2012,Office Chair,Home Office,2025-11-01,Naive (rata-rata train),9333.0,11059.2857
-Global Naive,2012,Office Chair,Home Office,2025-12-01,Naive (rata-rata train),10602.0,11059.2857
-Global Naive,2013,Notebook,Stationery,2025-10-01,Naive (rata-rata train),2025.8,2151.0333
-Global Naive,2013,Notebook,Stationery,2025-11-01,Naive (rata-rata train),1922.9,2151.0333
-Global Naive,2013,Notebook,Stationery,2025-12-01,Naive (rata-rata train),2494.45,2151.0333
-Global Naive,2014,Backpack,Accessories,2025-10-01,Naive (rata-rata train),4620.0,5584.0
-Global Naive,2014,Backpack,Accessories,2025-11-01,Naive (rata-rata train),6690.6,5584.0
-Global Naive,2014,Backpack,Accessories,2025-12-01,Naive (rata-rata train),5602.8,5584.0
-Global Naive,2015,Bluetooth Speaker,Electronics,2025-10-01,Naive (rata-rata train),6290.1,7022.281
-Global Naive,2015,Bluetooth Speaker,Electronics,2025-11-01,Naive (rata-rata train),8027.2,7022.281
-Global Naive,2015,Bluetooth Speaker,Electronics,2025-12-01,Naive (rata-rata train),6580.1,7022.281
-Global Naive,2016,Monitor,Electronics,2025-10-01,Naive (rata-rata train),619.5,750.8
-Global Naive,2016,Monitor,Electronics,2025-11-01,Naive (rata-rata train),1045.8,750.8
-Global Naive,2016,Monitor,Electronics,2025-12-01,Naive (rata-rata train),646.8,750.8
-Global Naive,2017,HDMI Cable,Accessories,2025-10-01,Naive (rata-rata train),2756.05,2499.8286
-Global Naive,2017,HDMI Cable,Accessories,2025-11-01,Naive (rata-rata train),2526.7,2499.8286
-Global Naive,2017,HDMI Cable,Accessories,2025-12-01,Naive (rata-rata train),2344.1,2499.8286
-Global Naive,2018,Microphone,Electronics,2025-10-01,Naive (rata-rata train),8393.75,7460.7738
-Global Naive,2018,Microphone,Electronics,2025-11-01,Naive (rata-rata train),8240.75,7460.7738
-Global Naive,2018,Microphone,Electronics,2025-12-01,Naive (rata-rata train),9753.75,7460.7738
-Global Naive,2019,Tablet,Electronics,2025-10-01,Naive (rata-rata train),9958.0,8930.381
-Global Naive,2019,Tablet,Electronics,2025-11-01,Naive (rata-rata train),11219.0,8930.381
-Global Naive,2019,Tablet,Electronics,2025-12-01,Naive (rata-rata train),9646.0,8930.381
-Global Naive,2020,Gaming Controller,Gaming,2025-10-01,Naive (rata-rata train),6422.6,6348.4476
-Global Naive,2020,Gaming Controller,Gaming,2025-11-01,Naive (rata-rata train),8734.6,6348.4476
-Global Naive,2020,Gaming Controller,Gaming,2025-12-01,Naive (rata-rata train),6752.4,6348.4476
+Global Training Mean Baseline,2001,Wireless Mouse,Electronics,2025-10-01,Training Mean Baseline,3066.3,3266.8714
+Global Training Mean Baseline,2001,Wireless Mouse,Electronics,2025-11-01,Training Mean Baseline,3278.7,3266.8714
+Global Training Mean Baseline,2001,Wireless Mouse,Electronics,2025-12-01,Training Mean Baseline,3056.4,3266.8714
+Global Training Mean Baseline,2002,Mechanical Keyboard,Electronics,2025-10-01,Training Mean Baseline,6686.7,7418.5952
+Global Training Mean Baseline,2002,Mechanical Keyboard,Electronics,2025-11-01,Training Mean Baseline,7991.8,7418.5952
+Global Training Mean Baseline,2002,Mechanical Keyboard,Electronics,2025-12-01,Training Mean Baseline,6503.8,7418.5952
+Global Training Mean Baseline,2003,USB-C Cable,Accessories,2025-10-01,Training Mean Baseline,2816.55,2429.5071
+Global Training Mean Baseline,2003,USB-C Cable,Accessories,2025-11-01,Training Mean Baseline,2414.25,2429.5071
+Global Training Mean Baseline,2003,USB-C Cable,Accessories,2025-12-01,Training Mean Baseline,2153.25,2429.5071
+Global Training Mean Baseline,2004,Power Bank,Electronics,2025-10-01,Training Mean Baseline,6209.0,5879.0833
+Global Training Mean Baseline,2004,Power Bank,Electronics,2025-11-01,Training Mean Baseline,5579.0,5879.0833
+Global Training Mean Baseline,2004,Power Bank,Electronics,2025-12-01,Training Mean Baseline,5005.0,5879.0833
+Global Training Mean Baseline,2005,Laptop Stand,Accessories,2025-10-01,Training Mean Baseline,3416.0,3628.0667
+Global Training Mean Baseline,2005,Laptop Stand,Accessories,2025-11-01,Training Mean Baseline,4225.2,3628.0667
+Global Training Mean Baseline,2005,Laptop Stand,Accessories,2025-12-01,Training Mean Baseline,4279.8,3628.0667
+Global Training Mean Baseline,2006,Webcam,Electronics,2025-10-01,Training Mean Baseline,4886.4,4967.3143
+Global Training Mean Baseline,2006,Webcam,Electronics,2025-11-01,Training Mean Baseline,4680.0,4967.3143
+Global Training Mean Baseline,2006,Webcam,Electronics,2025-12-01,Training Mean Baseline,4296.0,4967.3143
+Global Training Mean Baseline,2007,Headphones,Electronics,2025-10-01,Training Mean Baseline,12866.25,10803.75
+Global Training Mean Baseline,2007,Headphones,Electronics,2025-11-01,Training Mean Baseline,8985.0,10803.75
+Global Training Mean Baseline,2007,Headphones,Electronics,2025-12-01,Training Mean Baseline,9513.75,10803.75
+Global Training Mean Baseline,2008,Phone Case,Accessories,2025-10-01,Training Mean Baseline,5030.2,4042.0667
+Global Training Mean Baseline,2008,Phone Case,Accessories,2025-11-01,Training Mean Baseline,4070.5,4042.0667
+Global Training Mean Baseline,2008,Phone Case,Accessories,2025-12-01,Training Mean Baseline,3250.1,4042.0667
+Global Training Mean Baseline,2009,Smart Watch,Wearables,2025-10-01,Training Mean Baseline,10764.0,8478.2857
+Global Training Mean Baseline,2009,Smart Watch,Wearables,2025-11-01,Training Mean Baseline,10056.0,8478.2857
+Global Training Mean Baseline,2009,Smart Watch,Wearables,2025-12-01,Training Mean Baseline,5196.0,8478.2857
+Global Training Mean Baseline,2010,Fitness Band,Wearables,2025-10-01,Training Mean Baseline,6121.5,5649.9405
+Global Training Mean Baseline,2010,Fitness Band,Wearables,2025-11-01,Training Mean Baseline,6363.5,5649.9405
+Global Training Mean Baseline,2010,Fitness Band,Wearables,2025-12-01,Training Mean Baseline,5007.75,5649.9405
+Global Training Mean Baseline,2011,Desk Lamp,Home Office,2025-10-01,Training Mean Baseline,3406.4,3865.6762
+Global Training Mean Baseline,2011,Desk Lamp,Home Office,2025-11-01,Training Mean Baseline,3897.6,3865.6762
+Global Training Mean Baseline,2011,Desk Lamp,Home Office,2025-12-01,Training Mean Baseline,3772.8,3865.6762
+Global Training Mean Baseline,2012,Office Chair,Home Office,2025-10-01,Training Mean Baseline,7749.0,11059.2857
+Global Training Mean Baseline,2012,Office Chair,Home Office,2025-11-01,Training Mean Baseline,9333.0,11059.2857
+Global Training Mean Baseline,2012,Office Chair,Home Office,2025-12-01,Training Mean Baseline,10602.0,11059.2857
+Global Training Mean Baseline,2013,Notebook,Stationery,2025-10-01,Training Mean Baseline,2025.8,2151.0333
+Global Training Mean Baseline,2013,Notebook,Stationery,2025-11-01,Training Mean Baseline,1922.9,2151.0333
+Global Training Mean Baseline,2013,Notebook,Stationery,2025-12-01,Training Mean Baseline,2494.45,2151.0333
+Global Training Mean Baseline,2014,Backpack,Accessories,2025-10-01,Training Mean Baseline,4620.0,5584.0
+Global Training Mean Baseline,2014,Backpack,Accessories,2025-11-01,Training Mean Baseline,6690.6,5584.0
+Global Training Mean Baseline,2014,Backpack,Accessories,2025-12-01,Training Mean Baseline,5602.8,5584.0
+Global Training Mean Baseline,2015,Bluetooth Speaker,Electronics,2025-10-01,Training Mean Baseline,6290.1,7022.281
+Global Training Mean Baseline,2015,Bluetooth Speaker,Electronics,2025-11-01,Training Mean Baseline,8027.2,7022.281
+Global Training Mean Baseline,2015,Bluetooth Speaker,Electronics,2025-12-01,Training Mean Baseline,6580.1,7022.281
+Global Training Mean Baseline,2016,Monitor,Electronics,2025-10-01,Training Mean Baseline,619.5,750.8
+Global Training Mean Baseline,2016,Monitor,Electronics,2025-11-01,Training Mean Baseline,1045.8,750.8
+Global Training Mean Baseline,2016,Monitor,Electronics,2025-12-01,Training Mean Baseline,646.8,750.8
+Global Training Mean Baseline,2017,HDMI Cable,Accessories,2025-10-01,Training Mean Baseline,2756.05,2499.8286
+Global Training Mean Baseline,2017,HDMI Cable,Accessories,2025-11-01,Training Mean Baseline,2526.7,2499.8286
+Global Training Mean Baseline,2017,HDMI Cable,Accessories,2025-12-01,Training Mean Baseline,2344.1,2499.8286
+Global Training Mean Baseline,2018,Microphone,Electronics,2025-10-01,Training Mean Baseline,8393.75,7460.7738
+Global Training Mean Baseline,2018,Microphone,Electronics,2025-11-01,Training Mean Baseline,8240.75,7460.7738
+Global Training Mean Baseline,2018,Microphone,Electronics,2025-12-01,Training Mean Baseline,9753.75,7460.7738
+Global Training Mean Baseline,2019,Tablet,Electronics,2025-10-01,Training Mean Baseline,9958.0,8930.381
+Global Training Mean Baseline,2019,Tablet,Electronics,2025-11-01,Training Mean Baseline,11219.0,8930.381
+Global Training Mean Baseline,2019,Tablet,Electronics,2025-12-01,Training Mean Baseline,9646.0,8930.381
+Global Training Mean Baseline,2020,Gaming Controller,Gaming,2025-10-01,Training Mean Baseline,6422.6,6348.4476
+Global Training Mean Baseline,2020,Gaming Controller,Gaming,2025-11-01,Training Mean Baseline,8734.6,6348.4476
+Global Training Mean Baseline,2020,Gaming Controller,Gaming,2025-12-01,Training Mean Baseline,6752.4,6348.4476
 Best Global ML,2001,Wireless Mouse,Electronics,2025-10-01,Ridge (a=10.0),3066.3,3220.6579
 Best Global ML,2001,Wireless Mouse,Electronics,2025-11-01,Ridge (a=10.0),3278.7,3216.4566
 Best Global ML,2001,Wireless Mouse,Electronics,2025-12-01,Ridge (a=10.0),3056.4,3212.2554
@@ -122,21 +122,21 @@ Best Global ML,2020,Gaming Controller,Gaming,2025-12-01,Ridge (a=10.0),6752.4,62
 Per-Product Selection,2001,Wireless Mouse,Electronics,2025-10-01,Moving Average,3066.3,3080.1
 Per-Product Selection,2001,Wireless Mouse,Electronics,2025-11-01,Moving Average,3278.7,3170.5
 Per-Product Selection,2001,Wireless Mouse,Electronics,2025-12-01,Moving Average,3056.4,3126.3333
-Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-10-01,Naive (rata-rata train),6686.7,7418.5952
-Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-11-01,Naive (rata-rata train),7991.8,7418.5952
-Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-12-01,Naive (rata-rata train),6503.8,7418.5952
-Per-Product Selection,2003,USB-C Cable,Accessories,2025-10-01,Naive (rata-rata train),2816.55,2429.5071
-Per-Product Selection,2003,USB-C Cable,Accessories,2025-11-01,Naive (rata-rata train),2414.25,2429.5071
-Per-Product Selection,2003,USB-C Cable,Accessories,2025-12-01,Naive (rata-rata train),2153.25,2429.5071
-Per-Product Selection,2004,Power Bank,Electronics,2025-10-01,Naive (rata-rata train),6209.0,5879.0833
-Per-Product Selection,2004,Power Bank,Electronics,2025-11-01,Naive (rata-rata train),5579.0,5879.0833
-Per-Product Selection,2004,Power Bank,Electronics,2025-12-01,Naive (rata-rata train),5005.0,5879.0833
-Per-Product Selection,2005,Laptop Stand,Accessories,2025-10-01,Naive (rata-rata train),3416.0,3628.0667
-Per-Product Selection,2005,Laptop Stand,Accessories,2025-11-01,Naive (rata-rata train),4225.2,3628.0667
-Per-Product Selection,2005,Laptop Stand,Accessories,2025-12-01,Naive (rata-rata train),4279.8,3628.0667
-Per-Product Selection,2006,Webcam,Electronics,2025-10-01,Naive (rata-rata train),4886.4,4967.3143
-Per-Product Selection,2006,Webcam,Electronics,2025-11-01,Naive (rata-rata train),4680.0,4967.3143
-Per-Product Selection,2006,Webcam,Electronics,2025-12-01,Naive (rata-rata train),4296.0,4967.3143
+Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-10-01,Training Mean Baseline,6686.7,7418.5952
+Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-11-01,Training Mean Baseline,7991.8,7418.5952
+Per-Product Selection,2002,Mechanical Keyboard,Electronics,2025-12-01,Training Mean Baseline,6503.8,7418.5952
+Per-Product Selection,2003,USB-C Cable,Accessories,2025-10-01,Training Mean Baseline,2816.55,2429.5071
+Per-Product Selection,2003,USB-C Cable,Accessories,2025-11-01,Training Mean Baseline,2414.25,2429.5071
+Per-Product Selection,2003,USB-C Cable,Accessories,2025-12-01,Training Mean Baseline,2153.25,2429.5071
+Per-Product Selection,2004,Power Bank,Electronics,2025-10-01,Training Mean Baseline,6209.0,5879.0833
+Per-Product Selection,2004,Power Bank,Electronics,2025-11-01,Training Mean Baseline,5579.0,5879.0833
+Per-Product Selection,2004,Power Bank,Electronics,2025-12-01,Training Mean Baseline,5005.0,5879.0833
+Per-Product Selection,2005,Laptop Stand,Accessories,2025-10-01,Training Mean Baseline,3416.0,3628.0667
+Per-Product Selection,2005,Laptop Stand,Accessories,2025-11-01,Training Mean Baseline,4225.2,3628.0667
+Per-Product Selection,2005,Laptop Stand,Accessories,2025-12-01,Training Mean Baseline,4279.8,3628.0667
+Per-Product Selection,2006,Webcam,Electronics,2025-10-01,Training Mean Baseline,4886.4,4967.3143
+Per-Product Selection,2006,Webcam,Electronics,2025-11-01,Training Mean Baseline,4680.0,4967.3143
+Per-Product Selection,2006,Webcam,Electronics,2025-12-01,Training Mean Baseline,4296.0,4967.3143
 Per-Product Selection,2007,Headphones,Electronics,2025-10-01,Ridge (a=10.0),12866.25,11525.8185
 Per-Product Selection,2007,Headphones,Electronics,2025-11-01,Ridge (a=10.0),8985.0,11591.4611
 Per-Product Selection,2007,Headphones,Electronics,2025-12-01,Ridge (a=10.0),9513.75,11657.1037
@@ -149,12 +149,12 @@ Per-Product Selection,2009,Smart Watch,Wearables,2025-12-01,Ridge (a=10.0),5196.
 Per-Product Selection,2010,Fitness Band,Wearables,2025-10-01,Seasonal Naive,6121.5,6228.75
 Per-Product Selection,2010,Fitness Band,Wearables,2025-11-01,Seasonal Naive,6363.5,3536.5
 Per-Product Selection,2010,Fitness Band,Wearables,2025-12-01,Seasonal Naive,5007.75,5486.25
-Per-Product Selection,2011,Desk Lamp,Home Office,2025-10-01,Naive (rata-rata train),3406.4,3865.6762
-Per-Product Selection,2011,Desk Lamp,Home Office,2025-11-01,Naive (rata-rata train),3897.6,3865.6762
-Per-Product Selection,2011,Desk Lamp,Home Office,2025-12-01,Naive (rata-rata train),3772.8,3865.6762
-Per-Product Selection,2012,Office Chair,Home Office,2025-10-01,Naive (rata-rata train),7749.0,11059.2857
-Per-Product Selection,2012,Office Chair,Home Office,2025-11-01,Naive (rata-rata train),9333.0,11059.2857
-Per-Product Selection,2012,Office Chair,Home Office,2025-12-01,Naive (rata-rata train),10602.0,11059.2857
+Per-Product Selection,2011,Desk Lamp,Home Office,2025-10-01,Training Mean Baseline,3406.4,3865.6762
+Per-Product Selection,2011,Desk Lamp,Home Office,2025-11-01,Training Mean Baseline,3897.6,3865.6762
+Per-Product Selection,2011,Desk Lamp,Home Office,2025-12-01,Training Mean Baseline,3772.8,3865.6762
+Per-Product Selection,2012,Office Chair,Home Office,2025-10-01,Training Mean Baseline,7749.0,11059.2857
+Per-Product Selection,2012,Office Chair,Home Office,2025-11-01,Training Mean Baseline,9333.0,11059.2857
+Per-Product Selection,2012,Office Chair,Home Office,2025-12-01,Training Mean Baseline,10602.0,11059.2857
 Per-Product Selection,2013,Notebook,Stationery,2025-10-01,Ridge (a=10.0),2025.8,2238.5085
 Per-Product Selection,2013,Notebook,Stationery,2025-11-01,Ridge (a=10.0),1922.9,2246.4608
 Per-Product Selection,2013,Notebook,Stationery,2025-12-01,Ridge (a=10.0),2494.45,2254.4131
@@ -164,18 +164,18 @@ Per-Product Selection,2014,Backpack,Accessories,2025-12-01,Moving Average,5602.8
 Per-Product Selection,2015,Bluetooth Speaker,Electronics,2025-10-01,Moving Average,6290.1,8066.8333
 Per-Product Selection,2015,Bluetooth Speaker,Electronics,2025-11-01,Moving Average,8027.2,8203.7778
 Per-Product Selection,2015,Bluetooth Speaker,Electronics,2025-12-01,Moving Average,6580.1,8080.9037
-Per-Product Selection,2016,Monitor,Electronics,2025-10-01,Naive (rata-rata train),619.5,750.8
-Per-Product Selection,2016,Monitor,Electronics,2025-11-01,Naive (rata-rata train),1045.8,750.8
-Per-Product Selection,2016,Monitor,Electronics,2025-12-01,Naive (rata-rata train),646.8,750.8
+Per-Product Selection,2016,Monitor,Electronics,2025-10-01,Training Mean Baseline,619.5,750.8
+Per-Product Selection,2016,Monitor,Electronics,2025-11-01,Training Mean Baseline,1045.8,750.8
+Per-Product Selection,2016,Monitor,Electronics,2025-12-01,Training Mean Baseline,646.8,750.8
 Per-Product Selection,2017,HDMI Cable,Accessories,2025-10-01,Seasonal Naive,2756.05,2754.95
 Per-Product Selection,2017,HDMI Cable,Accessories,2025-11-01,Seasonal Naive,2526.7,1970.65
 Per-Product Selection,2017,HDMI Cable,Accessories,2025-12-01,Seasonal Naive,2344.1,3087.15
-Per-Product Selection,2018,Microphone,Electronics,2025-10-01,Naive (rata-rata train),8393.75,7460.7738
-Per-Product Selection,2018,Microphone,Electronics,2025-11-01,Naive (rata-rata train),8240.75,7460.7738
-Per-Product Selection,2018,Microphone,Electronics,2025-12-01,Naive (rata-rata train),9753.75,7460.7738
+Per-Product Selection,2018,Microphone,Electronics,2025-10-01,Training Mean Baseline,8393.75,7460.7738
+Per-Product Selection,2018,Microphone,Electronics,2025-11-01,Training Mean Baseline,8240.75,7460.7738
+Per-Product Selection,2018,Microphone,Electronics,2025-12-01,Training Mean Baseline,9753.75,7460.7738
 Per-Product Selection,2019,Tablet,Electronics,2025-10-01,Moving Average,9958.0,7596.3333
 Per-Product Selection,2019,Tablet,Electronics,2025-11-01,Moving Average,11219.0,7866.4444
 Per-Product Selection,2019,Tablet,Electronics,2025-12-01,Moving Average,9646.0,8074.9259
-Per-Product Selection,2020,Gaming Controller,Gaming,2025-10-01,Naive (rata-rata train),6422.6,6348.4476
-Per-Product Selection,2020,Gaming Controller,Gaming,2025-11-01,Naive (rata-rata train),8734.6,6348.4476
-Per-Product Selection,2020,Gaming Controller,Gaming,2025-12-01,Naive (rata-rata train),6752.4,6348.4476
+Per-Product Selection,2020,Gaming Controller,Gaming,2025-10-01,Training Mean Baseline,6422.6,6348.4476
+Per-Product Selection,2020,Gaming Controller,Gaming,2025-11-01,Training Mean Baseline,8734.6,6348.4476
+Per-Product Selection,2020,Gaming Controller,Gaming,2025-12-01,Training Mean Baseline,6752.4,6348.4476

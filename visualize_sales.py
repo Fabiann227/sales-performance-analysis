@@ -294,12 +294,14 @@ def plot_actual_vs_predicted_sales() -> None:
 
 
 def plot_forecasting_error_contribution() -> None:
-    """Visualize the top 10 contributors to Global Naive forecasting error."""
+    """Visualize the top 10 contributors to the training mean baseline error."""
     input_file = Path("temp/final_test_error_analysis.csv")
 
     df = pd.read_csv(input_file)
 
-    naive_errors = df.loc[df["strategy"] == "Global Naive"].copy()
+    naive_errors = df.loc[
+        df["strategy"] == "Global Training Mean Baseline"
+    ].copy()
 
     top_errors = (
         naive_errors.sort_values(

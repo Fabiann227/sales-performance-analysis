@@ -11,7 +11,7 @@ comparison = df.pivot(
 
 # Calculate which strategy performs best for each product.
 strategies = [
-    "Global Naive",
+    "Global Training Mean Baseline",
     "Best Global ML",
     "Per-Product Selection",
 ]

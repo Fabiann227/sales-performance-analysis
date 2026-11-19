@@ -1,6 +1,6 @@
 import pandas as pd
 
-NAIVE = "Naive (rata-rata train)"
+NAIVE = "Training Mean Baseline"
 
 df = pd.read_csv("temp/product_model_metrics.csv")
 

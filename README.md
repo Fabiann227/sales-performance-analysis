@@ -1,239 +1,392 @@
-# Dokumentasi: Model Sales Performance Analysis
+# Analisis Kinerja Penjualan Marketplace Online Berbasis Machine Learning
 
-Dokumen ini menjelaskan alur dari awal sampai akhir: menaruh dataset, cleaning dan merge, sampai training model regresi.
+Proyek analisis dan peramalan penjualan menggunakan Python dengan menerapkan metodologi **CRISP-DM (Cross-Industry Standard Process for Data Mining)**.
 
-Referensi materi (folder `materi/`):
-- `Cleaning.pdf` → data preparation (missing value, duplikat, tipe data)
-- `Modeling.pdf` → alur train/test, data leakage
-- `SUPERVISED LEARNING  REGRESSION.pdf` → Linear, Polynomial, Ridge, Lasso, metrik MAE/MSE/RMSE/R²
+## 1. Gambaran Umum Proyek
 
----
+Proyek ini bertujuan untuk menganalisis data historis penjualan dari sebuah marketplace online serta menerapkan berbagai metode machine learning dan statistik untuk mengevaluasi kinerja penjualan dan memprediksi penjualan di masa mendatang.
 
-## 1. Struktur folder
+Tujuan utama proyek:
 
+- Menganalisis pola penjualan historis dan kinerja setiap produk.
+- Melakukan pembersihan dan persiapan data transaksi marketplace.
+- Membandingkan 12 model peramalan menggunakan validasi berdasarkan urutan waktu.
+- Mengidentifikasi strategi peramalan dengan performa terbaik.
+- Mengevaluasi hasil prediksi menggunakan data pengujian yang belum pernah digunakan dalam pelatihan.
+- Menghasilkan prediksi penjualan untuk setiap produk.
+
+**Periode data:** Januari 2024 hingga Desember 2025  
+**Periode peramalan:** Januari hingga Maret 2026  
+**Jumlah produk:** 20 produk  
+**Dataset hasil pembersihan:** 41.954 baris  
+**Dataset peramalan bulanan:** 480 observasi produk-bulan
+
+## 2. Teknologi yang Digunakan
+
+| Teknologi    | Kegunaan                                      |
+| ------------ | --------------------------------------------- |
+| Python       | Bahasa pemrograman utama                      |
+| Pandas       | Manipulasi dan pemrosesan data                |
+| NumPy        | Komputasi numerik                             |
+| Scikit-learn | Algoritma machine learning dan evaluasi model |
+| Matplotlib   | Visualisasi data                              |
+| CSV          | Penyimpanan dataset dan hasil eksperimen      |
+
+## 3. Metodologi Penelitian: CRISP-DM
+
+Proyek ini mengikuti enam tahapan metodologi CRISP-DM.
+
+### 3.1 Business Understanding (Pemahaman Bisnis)
+
+Tahap ini berfokus pada penentuan tujuan analisis kinerja penjualan marketplace serta pengembangan model peramalan untuk mendukung perencanaan dan pengambilan keputusan bisnis.
+
+### 3.2 Data Understanding (Pemahaman Data)
+
+Dataset awal diperoleh dari Kaggle dan terdiri dari empat file utama:
+
+| Dataset         | Deskripsi                       |
+| --------------- | ------------------------------- |
+| `orders.csv`    | Informasi transaksi dan pesanan |
+| `customers.csv` | Informasi pelanggan             |
+| `payments.csv`  | Informasi pembayaran            |
+| `products.csv`  | Informasi produk                |
+
+Analisis menggunakan data dari tahun kalender 2024 dan 2025. Data historis tahun 2026 yang belum lengkap tidak disertakan dalam analisis.
+
+### 3.3 Data Preparation (Persiapan Data)
+
+Tahapan persiapan data meliputi:
+
+1. Membaca seluruh dataset awal.
+2. Mengidentifikasi nilai kosong, duplikasi, dan data yang tidak valid.
+3. Menghapus data pesanan duplikat.
+4. Menghapus baris dengan tanggal, kuantitas, atau diskon yang tidak valid.
+5. Mengisi nilai usia pelanggan yang kosong menggunakan median.
+6. Mengisi informasi kota dan metode pembayaran yang kosong menggunakan nilai `Unknown`.
+7. Menyeragamkan penulisan nama kota.
+8. Menghapus data pelanggan yang tidak memiliki referensi yang valid.
+9. Menggabungkan dataset berdasarkan relasi antar tabel yang telah divalidasi.
+10. Menghitung nilai penjualan setiap transaksi.
+
+Rumus perhitungan penjualan:
+
+```python
+Sales = Quantity * UnitPrice * (1 - Discount)
 ```
-model-sales-performance-analysis/
-├── datasets/            # data RAW (input)
-│   ├── customers.csv
-│   ├── orders.csv
-│   ├── payments.csv
-│   ├── products.csv
-│   └── clean_final_data.csv   # bukan raw; hasil referensi, TIDAK dipakai pipeline
-├── materi/              # PDF materi kuliah
-├── temp/                # semua OUTPUT pipeline
-├── salespipe/
-│   ├── config.py        # nama file, nama kolom (Schema), parameter model
-│   ├── cleaning.py      # langkah 1: load, cleaning, merge
-│   └── modeling.py      # langkah 2: split, training, evaluasi, tren
-├── main.py              # entry point (CLI)
-├── config.example.json  # contoh override untuk dataset lain
-└── README.md
+
+Hasil akhir proses pembersihan menghasilkan **41.954 baris dan 17 kolom**.
+
+Selanjutnya, data transaksi diagregasikan menjadi data penjualan bulanan untuk setiap produk.
+
+Hasil agregasi terdiri dari:
+
+- 20 produk.
+- 24 bulan.
+- 480 observasi produk-bulan.
+
+Kombinasi produk dan bulan yang tidak memiliki transaksi direpresentasikan sebagai nilai penjualan nol.
+
+Hanya transaksi dengan status `Completed` yang diperhitungkan dalam perhitungan penjualan.
+
+### 3.4 Modeling (Pemodelan)
+
+Target peramalan adalah nilai penjualan bulanan (`Sales`).
+
+Fitur waktu `t` digunakan untuk merepresentasikan indeks bulan secara berurutan.
+
+Sebanyak 12 model dan baseline peramalan diuji:
+
+| No. | Model                 | Konfigurasi              |
+| --: | --------------------- | ------------------------ |
+|   1 | Naive                 | Rata-rata data pelatihan |
+|   2 | Linear Regression     | Model linear             |
+|   3 | Polynomial Regression | Derajat 2                |
+|   4 | Polynomial Regression | Derajat 5                |
+|   5 | Ridge Regression      | Alpha = 0.1              |
+|   6 | Ridge Regression      | Alpha = 1                |
+|   7 | Ridge Regression      | Alpha = 10               |
+|   8 | Lasso Regression      | Alpha = 0.1              |
+|   9 | Lasso Regression      | Alpha = 1                |
+|  10 | Lasso Regression      | Alpha = 10               |
+|  11 | Seasonal Naive        | Baseline musiman         |
+|  12 | Moving Average        | Jendela 3 bulan          |
+
+Model regresi dievaluasi secara terpisah untuk setiap produk.
+
+#### Pembagian Data Berdasarkan Urutan Waktu
+
+Pembagian dataset dilakukan secara kronologis sebagai berikut:
+
+| Dataset    | Periode             |   Durasi |
+| ---------- | ------------------- | -------: |
+| Training   | Jan 2024 - Mei 2025 | 17 bulan |
+| Validation | Jun 2025 - Sep 2025 |  4 bulan |
+| Testing    | Okt 2025 - Des 2025 |  3 bulan |
+
+Pembagian data secara acak tidak digunakan karena urutan waktu harus dipertahankan dalam analisis deret waktu (_time series_).
+
+#### Walk-Forward Validation
+
+Evaluasi model menggunakan pendekatan _expanding window_ dengan tiga fold:
+
+| Fold | Periode Training  | Periode Validation |
+| ---- | ----------------- | ------------------ |
+| 1    | Jan-Des 2024      | Jan-Mar 2025       |
+| 2    | Jan 2024-Mar 2025 | Apr-Jun 2025       |
+| 3    | Jan 2024-Jun 2025 | Jul-Sep 2025       |
+
+Setiap model dievaluasi pada ketiga fold tersebut.
+
+Model dengan nilai rata-rata RMSE terendah dipilih sebagai model dengan performa terbaik.
+
+Untuk pemilihan model per produk, model dengan rata-rata RMSE terendah dari ketiga fold dipilih secara individual untuk setiap produk.
+
+### 3.5 Evaluation (Evaluasi)
+
+Kinerja model dievaluasi menggunakan beberapa metrik:
+
+| Metrik | Kegunaan                                                |
+| ------ | ------------------------------------------------------- |
+| MAE    | Mengukur rata-rata kesalahan absolut prediksi           |
+| MSE    | Mengukur rata-rata kuadrat kesalahan prediksi           |
+| RMSE   | Mengukur akar rata-rata kuadrat kesalahan prediksi      |
+| WAPE   | Mengukur persentase kesalahan absolut berbobot          |
+| R²     | Mengukur kemampuan model dalam menjelaskan variasi data |
+
+Evaluasi akhir membandingkan tiga strategi peramalan:
+
+1. **Global Naive:** Menggunakan baseline Naive secara global.
+2. **Best Global ML:** Menggunakan Ridge Regression dengan alpha 10.
+3. **Per-Product Selection:** Menggunakan model terbaik yang dipilih secara individual untuk setiap produk berdasarkan hasil walk-forward validation.
+
+Model akhir dilatih ulang menggunakan data pengembangan dari Januari 2024 hingga September 2025, kemudian dievaluasi menggunakan data pengujian yang tidak digunakan dalam proses pemilihan model, yaitu Oktober hingga Desember 2025.
+
+#### Hasil Evaluasi Akhir
+
+| Strategi              |        MAE |         RMSE |       WAPE |        R² |
+| --------------------- | ---------: | -----------: | ---------: | --------: |
+| Global Naive          | **769.89** | **1,101.98** | **13.59%** | **0.858** |
+| Best Global ML        |     818.86 |     1,173.88 |     14.46% |     0.839 |
+| Per-Product Selection |     928.47 |     1,326.27 |     16.39% |     0.794 |
+
+**Temuan utama:** Strategi Global Naive memperoleh performa agregat terbaik pada dataset pengujian akhir dibandingkan Ridge Regression maupun strategi pemilihan model secara individual per produk.
+
+### 3.6 Deployment (Penerapan)
+
+Model peramalan terpilih digunakan untuk menghasilkan 60 prediksi yang mencakup 20 produk selama tiga bulan mendatang:
+
+- Januari 2026.
+- Februari 2026.
+- Maret 2026.
+
+Hasil prediksi disimpan dalam file `temp/future_forecast.csv`.
+
+Prediksi tersebut dihasilkan berdasarkan data historis yang tersedia hingga Desember 2025. Hasil ini merupakan estimasi dari model, bukan data penjualan aktual.
+
+## 4. Instalasi dan Persiapan
+
+### Persyaratan
+
+- Python 3.11 atau versi yang kompatibel.
+- pip.
+- Git (opsional).
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+cd sales-performance-analysis
 ```
 
-## 2. Persiapan
+### Membuat Virtual Environment
 
-### 2.1 Menaruh dataset
-Letakkan 4 file raw di folder `datasets/` (atau folder lain, lihat 2.4):
+Linux / macOS:
 
-| File | Isi | Kunci |
-|---|---|---|
-| `customers.csv` | Profil pelanggan (Age, City, SignupDate, CustomerSegment) | CustomerID |
-| `orders.csv` | Transaksi (OrderDate, ProductID, Quantity, Discount, PaymentMethod, Status) | OrderID |
-| `payments.csv` | Status pembayaran per order | OrderID |
-| `products.csv` | Master produk (ProductName, Category, UnitPrice) | ProductID |
-
-Format file yang didukung: `.csv`, `.xlsx`, `.parquet`. Folder output dibuat otomatis jika belum ada.
-
-### 2.2 Kebutuhan
-Python 3 dengan `pandas` dan `scikit-learn` (`openpyxl` dan `pyarrow` hanya perlu untuk file `.xlsx` / `.parquet`):
-
+```bash
+python -m venv venv
+source venv/bin/activate
 ```
+
+### Instalasi Dependencies
+
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 2.3 Cara menjalankan
-Dari root project:
+## 5. Cara Menggunakan Proyek
 
-```
-python main.py clean     # cleaning + merge -> temp/clean_merged.csv
-python main.py model     # split, training, evaluasi (butuh clean_merged.csv)
-python main.py all       # keduanya berurutan
-```
+File utama untuk menjalankan pipeline adalah `main.py`.
 
-### 2.4 Memakai dataset lain
-Input bersifat dinamis lewat tiga opsi:
+Pipeline mendukung tiga mode eksekusi:
 
-| Opsi | Default | Fungsi |
-|---|---|---|
-| `--data-dir` | `datasets` | folder berisi 4 tabel raw |
-| `--out-dir` | `temp` | folder output |
-| `--config` | (tidak ada) | file JSON untuk mengganti nama file, nama kolom, dan parameter model |
+### Menjalankan Data Cleaning
 
-Contoh: dataset dengan `transactions.csv` yang kolom tanggalnya `date` dan jumlahnya `qty`:
-
-```
-python main.py all --data-dir data_baru --out-dir hasil_baru --config config.json
+```bash
+python main.py clean
 ```
 
-```json
-{
-  "schema": {"orders_file": "transactions.csv", "order_date": "date", "quantity": "qty"},
-  "model":  {"sales_status": "Completed", "train_ratio": 0.7, "val_ratio": 0.15}
-}
+Perintah ini memproses dataset awal dan menghasilkan data bersih yang diperlukan untuk tahap pemodelan.
+
+### Menjalankan Pemodelan dan Evaluasi
+
+```bash
+python main.py model
 ```
 
-### 2.5 Periode data
-Secara default hanya **tahun penuh (12 bulan)** yang diproses. Data mentah berisi Jan 2024 – Jun 2026, sehingga 2026 (baru 6 bulan) dibuang otomatis dan yang dipakai 2024–2025. Ini diatur di bagian `period`:
+Perintah ini menjalankan agregasi penjualan bulanan, pelatihan dan evaluasi model, walk-forward validation, pemilihan model terbaik, serta pembuatan prediksi penjualan.
 
-```json
-{"period": {"full_years_only": true, "start": null, "end": null}}
+### Menjalankan Seluruh Pipeline
+
+```bash
+python main.py all
 ```
 
-- `full_years_only: false` memakai semua data termasuk tahun yang belum lengkap.
-- `start` / `end` (format `"YYYY-MM-DD"`) membatasi rentang secara manual.
+Perintah ini menjalankan proses data cleaning dan pemodelan secara berurutan.
 
-Semua kunci yang bisa diganti ada di `salespipe/config.py` (`Schema`, `ModelConfig`, dan `PeriodConfig`). Kunci yang salah ditolak dengan pesan jelas. Jika file atau kolom wajib tidak ditemukan, pipeline berhenti dengan pesan yang menyebut tabel dan kolomnya.
+### Menghasilkan Visualisasi
 
-Syarat dataset lain: tetap punya 4 tabel dengan peran yang sama (orders, customers, payments, products) dan `Discount` berupa pecahan (0,1 = 10%).
+Setelah seluruh file CSV yang diperlukan tersedia, jalankan:
+
+```bash
+python visualize_sales.py
+```
+
+Seluruh grafik akan disimpan dalam direktori `visualizations/`.
+
+**Catatan:** Script visualisasi membaca hasil CSV yang sudah tersedia. Jalankan pipeline pemodelan terlebih dahulu apabila file hasil pemodelan belum tersedia atau perlu dibuat ulang.
+
+## 6. Struktur Direktori Proyek
+
+```text
+sales-performance-analysis/
+│
+├── datasets/
+│   ├── orders.csv
+│   ├── customers.csv
+│   ├── payments.csv
+│   ├── products.csv
+│   └── clean_final_data.csv
+│
+├── salespipe/
+│   ├── __init__.py
+│   ├── cleaning.py
+│   ├── config.py
+│   └── modeling.py
+│
+├── temp/
+│   ├── clean_merged.csv
+│   ├── monthly.csv
+│   ├── train.csv
+│   ├── validasi.csv
+│   ├── test.csv
+│   ├── model_metrics.csv
+│   ├── walk_forward_metrics.csv
+│   ├── walk_forward_summary.csv
+│   ├── final_selected_models.csv
+│   ├── final_test_predictions.csv
+│   ├── final_test_metrics.csv
+│   ├── final_test_error_analysis.csv
+│   └── future_forecast.csv
+│
+├── visualizations/
+│   ├── overall_monthly_sales.png
+│   ├── product_monthly_sales.png
+│   ├── product_sales_comparison.png
+│   ├── model_performance_comparison.png
+│   ├── actual_vs_predicted_sales.png
+│   ├── forecasting_error_contribution.png
+│   ├── overall_future_forecast.png
+│   └── future_forecast_by_product.png
+│
+├── main.py
+├── predict.py
+├── validate_forecast.py
+├── visualize_sales.py
+│
+├── analyze_errors.py
+├── analyze_product_metrics.py
+├── analyze_product_models.py
+│
+├── config.example.json
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+### Fungsi Komponen Utama
+
+| File / Direktori             | Fungsi                                                              |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `datasets/`                  | Menyimpan dataset awal dan dataset hasil pembersihan                |
+| `salespipe/cleaning.py`      | Membaca, membersihkan, menggabungkan data, dan menghitung penjualan |
+| `salespipe/config.py`        | Mengelola konfigurasi pipeline                                      |
+| `salespipe/modeling.py`      | Agregasi bulanan, pelatihan model, validasi, dan peramalan          |
+| `main.py`                    | Titik masuk utama untuk menjalankan pipeline                        |
+| `predict.py`                 | Pembuatan atau pemeriksaan hasil prediksi                           |
+| `validate_forecast.py`       | Validasi hasil peramalan                                            |
+| `visualize_sales.py`         | Menghasilkan delapan visualisasi                                    |
+| `analyze_errors.py`          | Analisis kesalahan prediksi                                         |
+| `analyze_product_metrics.py` | Analisis metrik evaluasi per produk                                 |
+| `analyze_product_models.py`  | Perbandingan model per produk                                       |
+| `temp/`                      | Menyimpan dataset perantara dan hasil eksperimen                    |
+| `visualizations/`            | Menyimpan grafik hasil analisis                                     |
+| `requirements.txt`           | Daftar dependensi Python                                            |
+| `config.example.json`        | Contoh konfigurasi proyek                                           |
+
+Direktori `temp/` berisi hasil eksperimen dan dataset yang dihasilkan oleh pipeline. File CSV di dalamnya digunakan untuk analisis, evaluasi, dan visualisasi.
+
+## 7. Visualisasi yang Dihasilkan
+
+Proyek ini menghasilkan delapan visualisasi utama:
+
+| No. | Visualisasi                      | Deskripsi                                                         |
+| --: | -------------------------------- | ----------------------------------------------------------------- |
+|   1 | Overall Monthly Sales            | Total penjualan marketplace selama 2024-2025                      |
+|   2 | Monthly Sales by Product         | Tren penjualan bulanan setiap produk                              |
+|   3 | Total Sales by Product           | Perbandingan total penjualan antarproduk                          |
+|   4 | Model Performance Comparison     | Perbandingan rata-rata RMSE dari walk-forward validation          |
+|   5 | Actual vs Predicted Sales        | Perbandingan prediksi dengan penjualan aktual pada data pengujian |
+|   6 | Forecasting Error Contribution   | Produk dengan kontribusi kesalahan prediksi terbesar              |
+|   7 | Overall Future Sales Forecast    | Prediksi agregat penjualan Januari-Maret 2026                     |
+|   8 | Future Sales Forecast by Product | Prediksi penjualan setiap produk beserta model terpilih           |
+
+Seluruh visualisasi dibuat menggunakan Matplotlib dan disimpan dalam format PNG dengan resolusi 300 DPI.
+
+## 8. Keterbatasan Penelitian
+
+Beberapa keterbatasan yang perlu diperhatikan dalam menginterpretasikan hasil penelitian:
+
+- Periode data historis hanya mencakup 24 bulan.
+- Dataset terdiri dari 20 produk.
+- Periode pengujian akhir hanya mencakup tiga bulan.
+- Model peramalan terutama menggunakan informasi urutan waktu dan belum memanfaatkan banyak variabel eksternal sebagai faktor penjelas.
+- Model belum tentu dapat menangkap perubahan pasar yang tidak terduga, promosi, maupun pola musiman.
+- Prediksi masa depan belum diverifikasi menggunakan data penjualan aktual tahun 2026.
+
+Oleh karena itu, hasil penelitian perlu diinterpretasikan sesuai dengan cakupan dataset dan metodologi eksperimen yang digunakan.
+
+## 9. Referensi Dataset
+
+Dataset sumber:
+
+[E-Commerce Sales Data Analysis & EDA](https://www.kaggle.com/datasets/erfan4524/e-commerce-sales-data-analysis-and-eda/data)
+
+Sumber: Kaggle.
+
+## 10. Status Proyek
+
+| Tahapan CRISP-DM       | Status                                     |
+| ---------------------- | ------------------------------------------ |
+| Business Understanding | Selesai                                    |
+| Data Understanding     | Selesai                                    |
+| Data Preparation       | Selesai                                    |
+| Modeling               | Selesai                                    |
+| Evaluation             | Selesai untuk eksperimen saat ini          |
+| Deployment             | Pembuatan prediksi dan visualisasi selesai |
 
 ---
 
-## 3. Tahap 1: Cleaning dan merge (`salespipe/cleaning.py`)
+**Judul Proyek:** Analisis Kinerja Penjualan Marketplace Online Berbasis Machine Learning Menggunakan Kerangka CRISP-DM
 
-Mengikuti `Cleaning.pdf`. Prinsipnya: pilih teknik sesuai tujuan analisis. Data yang menentukan nominal transaksi tidak boleh diimputasi, tetapi baris dihapus bila missing sedikit (<5%) dan acak.
-
-### 3.1 Masalah yang ditemukan di data raw
-
-| Tabel | Masalah | Jumlah |
-|---|---|---|
-| orders | Baris duplikat penuh | 120 |
-| orders | OrderDate kosong | 35 |
-| orders | Quantity kosong | 80 |
-| orders | Discount kosong | 221 |
-| orders | PaymentMethod kosong | 452 |
-| orders | Quantity ≤ 0 (tidak valid) | 25 |
-| orders | CustomerID 999999 tidak ada di customers (orphan) | 30 |
-| customers | Age kosong | 180 |
-| customers | City kosong | 119 |
-| customers | Penulisan City tidak seragam (`tehran`, `Mashad`) | 110 |
-| payments | PaymentDate kosong | 35 |
-
-### 3.2 Penanganan
-
-| Masalah | Penanganan | Alasan |
-|---|---|---|
-| Duplikat | `drop_duplicates()` | OrderID unik per transaksi, baris identik penuh = input ganda |
-| OrderDate / Quantity / Discount kosong | `dropna` pada baris tersebut | Menentukan waktu dan nominal Sales, jadi tidak boleh diimputasi (Kasus A materi). Persentasenya <1% dan acak. OrderDate yang kosong juga kosong di payments, jadi tidak bisa dipulihkan. |
-| Quantity ≤ 0 | Baris dihapus | Pembelian minimal 1 unit, dianggap data invalid |
-| Age kosong | Imputasi **median** | Numerik, median tidak sensitif outlier |
-| City kosong | Isi **"Unknown"** | Memakai modus akan membiaskan ke Tehran |
-| City tidak seragam | `str.title()` + `Mashad` → `Mashhad` | Menyamakan kategori yang sebenarnya sama |
-| PaymentMethod kosong | Isi **"Unknown"** | Tidak ada sumber untuk menebak metode bayar |
-| CustomerID orphan | Dibuang lewat inner join | Atribut pelanggan tidak ada |
-| Tipe data | `pd.to_datetime`, `astype(int)` | Tanggal dan angka terbaca sebagai teks/float |
-
-### 3.3 Merge
-
-```
-orders ──(OrderID, one_to_one)──> payments
-       ──(ProductID, many_to_one)──> products
-       ──(CustomerID, many_to_one, inner)──> customers
-```
-
-- Semua join memakai `validate=` agar tidak terjadi duplikasi baris (fan-out) tanpa disadari.
-- `PaymentDate` dibuang karena identik dengan `OrderDate`.
-- Kolom turunan: `Sales = Quantity × UnitPrice × (1 − Discount)`.
-
-### 3.4 Output
-`temp/clean_merged.csv`: **49.610 baris × 17 kolom**, tanpa missing value dan tanpa duplikat.
-
-Kolom: OrderID, CustomerID, OrderDate, ProductID, Quantity, Discount, PaymentMethod, Status, PaymentStatus, Age, City, SignupDate, CustomerSegment, ProductName, Category, UnitPrice, Sales.
-
-### 3.5 Catatan kualitas data (dicatat, tidak diubah)
-- 13.892 order bertanggal sebelum `SignupDate` pelanggan.
-- Ada order `Status = Completed` dengan `PaymentStatus = Failed` (1.752 baris) dan kombinasi tidak konsisten lain. Kedua kolom dibiarkan apa adanya.
-
----
-
-## 4. Tahap 2: Training model (`salespipe/modeling.py`)
-
-Mengikuti `Modeling.pdf` dan `SUPERVISED LEARNING  REGRESSION.pdf`.
-
-### 4.1 Tujuan dan bentuk data
-- **Target (y):** Sales bulanan per produk. Hanya order `Status = Completed` yang dihitung. Bulan tanpa penjualan dicatat 0.
-- **Fitur (X):** `t` = urutan bulan (0–29, Jan 2024 sampai Jun 2026).
-- **Jenis masalah:** regresi (target berupa angka).
-- **Satu model per produk** (20 produk), karena tiap produk punya pola tren sendiri.
-
-### 4.2 Split 70 / 15 / 15
-
-| Set | Fungsi | Bulan | Periode | Baris |
-|---|---|---|---|---|
-| Train | Belajar parameter | 21 | 2024-01 .. 2025-09 | 420 |
-| Validasi | Memilih konfigurasi | 4 | 2025-10 .. 2026-01 | 80 |
-| Test | Evaluasi akhir (sekali) | 5 | 2026-02 .. 2026-06 | 100 |
-
-Split dilakukan **berurutan waktu**, bukan acak. Split acak membuat model melihat bulan "masa depan" saat training (data leakage, lihat `Modeling.pdf`). 30 bulan dibulatkan menjadi 21/4/5.
-
-Hasil split disimpan sebagai `train_monthly.csv`, `validasi_monthly.csv`, `test_monthly.csv`.
-
-### 4.3 Model yang dibandingkan
-Semua dari keluarga regresi linear sesuai materi:
-
-| Model | Keterangan |
-|---|---|
-| Naive (rata-rata train) | Hanya acuan: tebakan paling sederhana |
-| **Linear Regression** | Baseline / model utama: ŷ = β₀ + β₁·t |
-| Polynomial (derajat 2 dan 5) | Menambah t², …; diuji untuk melihat overfitting |
-| Ridge (alpha 0,1; 1; 10) | Regularisasi L2, memakai `StandardScaler` |
-| Lasso (alpha 0,1; 1; 10) | Regularisasi L1, memakai `StandardScaler` |
-
-### 4.4 Metrik
-MAE, MSE, RMSE, R² dihitung di train, validasi, dan test (gabungan semua produk).
-
-### 4.5 Pemilihan model
-1. Semua model dilatih di **train**.
-2. Model dipilih berdasarkan **RMSE terkecil di validasi**.
-3. **Test** dilaporkan sekali sebagai ukuran jujur pada data yang belum pernah dilihat.
-
-### 4.6 Tren per produk
-Linear Regression dilatih per produk. **Slope** (perubahan sales per bulan) menjadi penanda arah tren: negatif = turun. Disimpan dua versi di `temp/product_trend.csv`:
-- `slope_train`: hanya data sebelum Okt 2025
-- `slope_all`: seluruh data
-
-### 4.7 Output di `temp/`
-
-| File | Isi |
-|---|---|
-| `clean_merged.csv` | Data bersih hasil merge (dari tahap 1) |
-| `train_monthly.csv`, `validasi_monthly.csv`, `test_monthly.csv` | Hasil split |
-| `model_metrics.csv` | MAE, MSE, RMSE, R² tiap model di tiap set |
-| `product_trend.csv` | Slope, R², dan label tren per produk |
-
----
-
-## 5. Hasil dan keterbatasan
-
-RMSE (makin kecil makin baik):
-
-| Model | Train | Validasi | Test |
-|---|---|---|---|
-| Naive (rata-rata) | 1048 | 1110 | 2156 |
-| Linear | 1022 | 1200 | 2262 |
-| Polynomial 2 | 986 | 1496 | 3128 |
-| Polynomial 5 | 877 | 10601 | 80687 |
-| Ridge (alpha 10), terbaik di validasi | 1025 | 1150 | 2208 |
-
-Kesimpulan dan keterbatasan:
-- **Tidak ada model yang lebih baik dari tebakan rata-rata.** R² test Linear = −0,10 (lebih buruk dari menebak rata-rata).
-- **Polynomial 5 overfitting:** error train kecil, tetapi error test meledak. Sesuai materi, model yang lebih fleksibel belum tentu lebih baik.
-- **Penyebab utama:** sales stabil di 2024–2025 (±350–378 ribu per kuartal), lalu turun tajam mulai Feb 2026 (Q1 291 ribu, Q2 254 ribu; jumlah order juga turun). Model yang dilatih pada data stabil tidak dapat menebak penurunan mendadak ini. Perlu dipastikan apakah penurunan 2026 itu nyata atau data 2026 belum lengkap.
-- **Slope sensitif terhadap periode:** dengan `slope_train` hanya 10 dari 20 produk yang turun, dengan `slope_all` semuanya turun. Kesimpulan "produk X selalu turun" belum bisa ditarik.
-- **R² validasi tinggi (±0,85) menyesatkan**, karena dihitung gabungan lintas produk sehingga perbedaan level antar produk ikut dihitung sebagai variasi yang dijelaskan.
-- Hanya satu fitur (`t`), jadi musiman (Lebaran, Nataru) belum tertangkap.
-
-## 6. Langkah lanjutan
-- Verifikasi data 2026 (apakah lengkap).
-- Analisis Pareto produk per tahun dan kontribusi kategori (agregasi pandas).
-- Perbandingan tahun ke tahun (selisih, PnL, growth).
-- Tambah fitur musiman (bulan dalam tahun, event Lebaran/Nataru) bila penurunan 2026 terbukti bukan masalah data.
+**Tujuan:** Penelitian akademik dan penerapan metode peramalan deret waktu untuk menganalisis kinerja penjualan marketplace menggunakan machine learning dan metode statistik sebagai baseline.
